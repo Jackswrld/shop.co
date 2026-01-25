@@ -1,0 +1,1 @@
+console.log("Cart.js file is linked successfully.");
