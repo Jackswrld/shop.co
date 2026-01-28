@@ -72,8 +72,8 @@ nav {
 
 .search-bar {
   flex: 1;
-  max-width: 300px;
-  padding: 10px 15px;
+  max-width: 600px;
+  padding: 10px 300px;
   padding-left: 40px;
   border: 1px solid #ddd;
   border-radius: 20px;
