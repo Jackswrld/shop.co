@@ -1,8 +1,15 @@
 /* =============== HERO SECTION =============== */
 
 .hero-section {
-  background-color: var(--primary); /* #f2f0f1 - your light bg */
+  background-color: var(--primary); 
   padding: var(--space-xl) 0;
+  display: inline;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-text-container {
+  background-color: void;
 }
 
 .hero-heading {
@@ -10,15 +17,12 @@
   font-weight: var(--font-weight-bold);
   line-height: 1.1;
   color: var(--color-text-primary);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
-.hero-description {
-  font-size: var(--font-size-lg); /* 20px */
-  color: var(--color-text-secondary); /* #6b6b6b */
-  max-width: 480px;
-  margin-bottom: var(--space-xl);
-  line-height: 1.5;
+.hero-description { 
+  margin-bottom: var(--space-md);
+  line-height: 1.2 ;
 }
 
 .btn-shop-now {
@@ -55,16 +59,24 @@
   margin: 0;
 }
 
-.hero-image {
-  max-height: 650px;
-  width: auto;
-  object-fit: contain;
+.hero-image-container {
+  background-color: void;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.hero-image-container .hero-image {
+
+}
+
+
 
 /* Brands bar below hero */
 .brands-bar {
   border-top: 1px solid var(--color-border);
-  background-color: var(--color-bg-section);
+  background-color: var(--color-black);
 }
 
 .brand-name {
@@ -79,13 +91,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  .new__arrivals__container {
-    .h1 {
-      text-align: center;
-    }
-  }
 }
+
+.product__section__container .new__arrivals__container h1 {
+  text-align: center;
+}
+
 
 /* Mobile adjustments */
 @media (max-width: 991px) {
@@ -97,13 +108,14 @@
     font-size: 42px;
   }
 
-  .hero-description {
-    font-size: 18px;
-  }
-
   .hero-image {
-    max-height: 500px;
-    margin-top: var(--space-lg);
+  width: 100%;
+  max-width: 420px;
+  margin-top: var(--space-lg);
+   height: auto;
+    transform: none;
+}
+
   }
 
   .btn-shop-now {
