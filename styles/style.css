@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  text-decoration: none;
   box-sizing: border-box;
 }
 
@@ -93,12 +94,11 @@ a {
 }
 
 p{
-  font-family: var(--font-primary) !important;
+  font-family: var(--font-primary);
 }
 
 img {
   max-width: 100%;
-  display: block;
 }
 
 button {
