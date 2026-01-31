@@ -1,44 +1,102 @@
 /* =============== HERO SECTION =============== */
 
-/* Hero Section */
 .hero-section {
- background-color: rgba(222, 220, 220, 0.405);
- display: flex;
- align-items: center;
- justify-content: center;
- padding: 0rem 5rem;
+  background-color: var(--primary);
+  padding: 4rem 0; /* reasonable top/bottom – adjust as needed */
+  min-height: 80vh;
 }
 
+/* Remove !important where possible – use specificity instead */
 .hero-text-container {
-  background-color: void;
-  max-width: 50%;
+  /* No heavy padding-inline here – let Bootstrap handle gutters */
+  padding-left: 0; /* reset if needed */
+  padding-right: 0;
+
+  @media (max-width: 768px) {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
 }
 
-.hero-heading {
-  font-size: var(--font-size-xxl); /* 48px */
-  font-weight: var(--font-weight-bold);
-  line-height: 1.1;
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-md);
+/* Stats – remove flex overrides that conflict with Bootstrap row */
+.hero-stats {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.hero-description { 
-  margin-bottom: var(--space-lg);
-  line-height: 1.3;
-}
-
-.btnshop-now {
-  display: inline-block;
-  width: 35%;
+/* No need for display:flex on .hero-stats – it's already a .row (flex) */
+.hero-stats .col-6,
+.hero-stats .col-sm-6,
+.hero-stats .col-md-4,
+.hero-stats .col-10,
+.hero-stats .col-sm-8 {
   text-align: center;
-  padding-block: 10px;
+  padding: 0 var(--space-md);
+}
+
+/* Dividers – only show on md+ when 3-up */
+@media (min-width: 768px) {
+  .hero-stats .col-md-4:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 60%;
+    background-color: var(--color-border);
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-stats .col-md-4:not(:last-child)::after {
+    display: none;
+  }
+}
+
+/* Image centering on mobile */
+.hero-image-container {
+  text-align: center; /* centers image horizontally when stacked */
+}
+
+.hero-image {
+  max-height: 620px;
+  object-fit: contain;
+  width: auto;
+  margin: 0 auto; /* extra centering safety */
+}
+
+@media (max-width: 991px) {
+  .hero-image {
+    width: 100%;
+    max-width: 420px;
+    margin-top: var(--space-lg);
+    height: auto;
+  }
+}
+
+/* Your other rules (heading, description, button, brands) can stay mostly as-is */
+
+.btn-shop-now {
+  display: block;
+  max-width: 100%;
+  width: 200px;
+  padding-block: var(--space-md);
+  text-align: center;
   background-color: var(--color-black);
   color: var(--color-white);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
-  border-radius: var(--radius-lg); /* 20px */
+  border-radius: 62px;
   transition: var(--transition);
   text-decoration: none;
+
+  @media (max-width: 768px) {
+    width: auto;
+    font-size: var(--font-size-md);
+  }
 }
 
 .btn-shop-now:hover {
@@ -46,57 +104,143 @@
   transform: translateY(-2px);
 }
 
+/* Hero Stats Dividers */
 .hero-stats {
-  max-width: 420px;
+  position: relative;
+  /* background: red; */
+  align-items: start;
+  justify-content: start;
+  display: flex;
+}
+
+@media (max-width: 767px) {
+  .hero-stats .col-md-4:not(:last-child)::after {
+    display: none;
+  }
+}
+
+.hero-stats .col-4 {
+  background-color: yellow;
+  position: relative;
+  text-align: center;
+  padding: 0 var(--space-md);
+}
+
+.hero-stats .col-4:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 60%;
+  background-color: var(--color-border);
+  opacity: 0.6;
+}
+
+@media (max-width: 991px) {
+  .hero-stats .col-4::after {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-stats .col-4 {
+    padding: var(--space-sm) 0;
+  }
 }
 
 .stats-number {
-  font-size: 32px;
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  margin-bottom: var(--space-xs);
+  font-family: "SatoshiBold", sans-serif;
   color: var(--color-text-primary);
+  margin-bottom: 0rem;
+  text-align: center;
 }
 
 .stats-label {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted); /* #9ca3af */
+  font-family: "Satoshi", sans-serif;
+  font-size: 12px;
+  color: var(--color-text-muted);
   margin: 0;
+  text-align: center;
 }
 
-/* Right Image Container */
-.hero-image-container {
-  background-color: void;yyy
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.hero-image {
+  max-height: 620px;
+  object-fit: contain;
+  width: auto;
 }
-
-
 
 /* Brands bar below hero */
-.brands-bar {
-  border-top: 1px solid var(--color-border);
+.full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   background-color: var(--color-black);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-lg) 0;
+  overflow: hidden;
 }
 
+/* Track that holds both lists side-by-side */
+.brands-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 25s linear infinite;
+  will-change: transform;
+}
+
+/* Each list of brands */
+.brands-list {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  flex-shrink: 0;
+  padding: 0 2rem;
+}
+
+/* Individual brand styling */
 .brand-name {
-  font-size: 28px;
+  font-size: 2.2rem; /* ≈35px – adjust to taste */
   font-weight: var(--font-weight-bold);
   color: var(--color-text-muted);
   opacity: 0.7;
   letter-spacing: 1px;
+  white-space: nowrap; /* Prevents wrapping */
 }
 
-.product__section__container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* The infinite scroll keyframes */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(
+      -50%
+    ); /* Moves exactly half way – because we duplicated the list */
+  }
 }
 
-.product__section__container .new__arrivals__container h1 {
-  text-align: center;
+/* Pause on hover – nice UX touch */
+.brands-track:hover {
+  animation-play-state: paused;
 }
 
+/* Responsive – slower on mobile or smaller gap */
+@media (max-width: 991px) {
+  .brands-list {
+    gap: 2.5rem; /* Smaller spacing on tablets/mobile */
+  }
+  .brands-track {
+    animation-duration: 35s; /* Slower on smaller screens feels better */
+  }
+}
 
 /* Mobile adjustments */
 @media (max-width: 991px) {
@@ -109,17 +253,11 @@
   }
 
   .hero-image {
-  width: 100%;
-  max-width: 420px;
-  margin-top: var(--space-lg);
-   height: auto;
+    width: 100%;
+    max-width: 420px;
+    margin-top: var(--space-lg);
+    height: auto;
     transform: none;
-}
-
-  }
-
-  .btn-shop-now {
-    padding: 14px 40px;
   }
 }
 

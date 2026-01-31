@@ -17,10 +17,14 @@
     src: url('../Fonts/satoshi/Satoshi-Light.otf') format('opentype');
 }
 
+@font-face {
+    font-family: 'SatoshiBold';
+    src: url('../Fonts/satoshi/Satoshi-Bold.otf') format('opentype');
+}
 
 /* General Styles */
 :root {
-  --primary: #f2f0f1;
+  --primary:  #dedcdc67;
   --secondary: #000;
 
   /* ===== COLORS ===== */
@@ -54,7 +58,7 @@
   --font-weight-bold: 700;
 
   /* ===== SPACING ===== */
-  --space-xs: 4px;
+  --space-xs: 5px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 32px;
@@ -90,7 +94,6 @@ body {
 
 a {
   text-decoration: none;
-  color: inherit;
 }
 
 p{
