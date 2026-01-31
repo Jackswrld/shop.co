@@ -163,6 +163,21 @@ nav {
   position: relative;
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+.search-icon-btn {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #666;
+  font-size: 18px;
+}
+
+.search-icon-btn:hover {
+  color: #000;
 }
 
 .search-container i {
@@ -170,6 +185,7 @@ nav {
   left: 12px;
   color: #666;
   pointer-events: none;
+  display: none;
 }
 
 .search-bar {
@@ -235,4 +251,102 @@ nav {
 }
 .dropdown:hover .dropdown-caret {
   transform: rotate(180deg);
+}
+
+.h1 {
+  font-size: var(--font-size-xxl) !important;
+  font-weight: var(--font-weight-bold) !important;
+  color: var(--secondary) !important;
+}
+
+/* Responsive Navbar */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  nav {
+    padding: 12px 18px;
+    position: relative;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-black);
+  }
+
+  .nav-left {
+    gap: 12px;
+  }
+
+  /* hide desktop menu and full search by default on small screens */
+  .nav-menu,
+  .search-bar {
+    display: none;
+  }
+
+  /* show only search icon button on small screens */
+  .search-icon-btn {
+    display: block;
+  }
+
+  .search-container {
+    display: flex;
+  }
+
+  /* hide the icon from search container on small screens */
+  .search-container i {
+    display: none;
+  }
+ 
+  /* when nav has .nav-open, show stacked menu */
+  nav.nav-open .nav-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  nav.nav-open .nav-menu li {
+    display: block;
+    padding: 10px 6px;
+    border-radius: 6px;
+  }
+
+  nav.nav-open .nav-menu .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    padding-left: 12px;
+  }
+
+  /* show search bar when nav is open */
+  nav.nav-open .search-bar {
+    display: block;
+    max-width: none;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    width: 100%;
+    margin: 12px 18px 20px;
+  }
+
+  nav.nav-open .search-container {
+    position: relative;
+  }
+
+  /* icons align right as compact buttons */
+  .nav-icons {
+    gap: 8px;
+  }
 }
