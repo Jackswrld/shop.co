@@ -158,7 +158,8 @@ nav {
   left: 12px;
   color: #666;
   pointer-events: none;
-  display: none;
+  display: block;
+  font-size: 16px;
 }
 
 .search-bar {
