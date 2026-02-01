@@ -1,12 +1,30 @@
 * {
   margin: 0;
   padding: 0;
+  text-decoration: none;
   box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('../Fonts/Integral-CF-Font-Family/Fontspring-DEMO-integralcf-bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../Fonts/satoshi/Satoshi-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'SatoshiBold';
+    src: url('../Fonts/satoshi/Satoshi-Bold.otf') format('opentype');
 }
 
 /* General Styles */
 :root {
-  --primary: #f2f0f1;
+  --primary:  #dedcdc67;
   --secondary: #000;
 
   /* ===== COLORS ===== */
@@ -25,14 +43,14 @@
   --color-star: #fbbf24; /* rating stars */
 
   /* ===== TYPOGRAPHY ===== */
-  --font-primary: "Inter", sans-serif;
+  --font-primary: "Satoshi", sans-serif;
 
-  --font-size-xs: 12px;
+  --font-size-xs: 10px;
   --font-size-sm: 14px;
   --font-size-md: 16px;
   --font-size-lg: 20px;
   --font-size-xl: 32px;
-  --font-size-xxl: 48px; /* hero heading */
+  --font-size-xxl: 45px; /* hero heading */
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -40,7 +58,7 @@
   --font-weight-bold: 700;
 
   /* ===== SPACING ===== */
-  --space-xs: 4px;
+  --space-xs: 5px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 32px;
@@ -67,14 +85,23 @@ body {
   font-size: var(--font-size-md);
 }
 
+.heading {
+    font-family: 'MyCustomFont', sans-serif;
+    font-weight: bold;
+    font-size: var(--font-size-xxl);
+    color: var(--color-text-primary);
+}
+
 a {
   text-decoration: none;
-  color: inherit;
+}
+
+p{
+  font-family: var(--font-primary);
 }
 
 img {
   max-width: 100%;
-  display: block;
 }
 
 button {
