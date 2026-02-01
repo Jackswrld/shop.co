@@ -89,74 +89,80 @@
         </div>
       </nav>
 
-      <!-- ==================== HERO SECTION (CYBUG)==================== -->
-      <section class="hero-section">
-        <div class="container-xl">
-          <div class="row align-items-center">
-            <!-- Left: Text content -->
-            <div class="col-lg-6">
-              <h1 class="hero-heading">
-                FIND CLOTHES <br class="d-xl-block d-none" />
-                THAT MATCHES <br class="d-xl-block d-none" />
-                YOUR STYLE
-              </h1>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-section">
+      <div class="container-xl">
+        <div class="row"> <!-- ONLY ONE row here -->
 
-              <p class="hero-description">
-                Browse through our diverse range of meticulously crafted
-                garments, designed to bring out your individuality and cater to
-                your sense of style.
-              </p>
+          <!-- Left: Text + button + stats -->
+          <div class="col-lg-6 hero-text-container">
+            <h1 class="hero-heading heading">
+              FIND CLOTHES <br class="d-xl-block d-none" />
+              THAT MATCHES <br class="d-xl-block d-none" />
+              YOUR STYLE
+            </h1>
 
-              <a href="#" class="btn-shop-now">Shop Now</a>
+            <p class="hero-description">
+              Browse through our diverse range of meticulously crafted
+              garments, designed to bring out your individuality and cater to
+              your sense of style.
+            </p>
 
-              <div class="row hero-stats mt-5">
-                <div class="col-4">
-                  <h3 class="stats-number">200+</h3>
-                  <p class="stats-label">International Brands</p>
-                </div>
-                <div class="col-4">
-                  <h3 class="stats-number">2,000+</h3>
-                  <p class="stats-label">High-Quality Products</p>
-                </div>
-                <div class="col-4">
-                  <h3 class="stats-number">30,000+</h3>
-                  <p class="stats-label">Happy Customers</p>
-                </div>
+            <a href="#" class="btn-shop-now">Shop Now</a>
+
+            <!-- Stats – centered via justify-content-center -->
+            <div class="row hero-stats mt-5 justify-content-center">
+              <div class="col-6 col-sm-6 col-md-4">
+                <h3 class="stats-number">200+</h3>
+                <p class="stats-label">International Brands</p>
+              </div>
+
+              <div class="col-6 col-sm-6 col-md-4">
+                <h3 class="stats-number">2,000+</h3>
+                <p class="stats-label">High-Quality Products</p>
+              </div>
+
+              <div class="col-10 col-sm-8 col-md-4 mt-4 mt-md-0">
+                <h3 class="stats-number">30,000+</h3>
+                <p class="stats-label">Happy Customers</p>
               </div>
             </div>
-
-            <!-- Right: Image -->
-            <div class="col-lg-6 text-center">
-              <img
-                src="images/hero.png"
-                alt="Fashion models showcasing SHOP.CO style"
-                class="img-fluid hero-image"
-              />
-            </div>
           </div>
-        </div>
 
-        <!-- Brands trust bar -->
-        <div class="brands-bar">
-          <div class="container-xl">
-            <div
-              class="d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center gap-5 py-4"
-            >
-              <span class="brand-name">VERSACE</span>
-              <span class="brand-name">ZARA</span>
-              <span class="brand-name">GUCCI</span>
-              <span class="brand-name">PRADA</span>
-              <span class="brand-name">Calvin Klein</span>
-            </div>
+          <!-- Right: Image -->
+          <div class="col-lg-6 hero-image-container">
+            <img src="images/hero-image.png" alt="Fashion models showcasing SHOP.CO style"
+              class="img-fluid hero-image" />
           </div>
-        </div>
-      </section>
-      <!-- ============== PRODUCTS SECTION CONTAINER ========= -->
-      <div class="product__section__container container-fluid">
-        <div class="new__arrivals__container">
-          <h1 class="h1">New Arrivals</h1>
+
+        </div> <!-- end of main row -->
+      </div> <!-- end of container-xl -->
+
+      <!-- Brands bar (full-bleed) -->
+      <div class="brands-bar full-bleed mt-5 pt-4 border-top">
+        <div class="brands-track">
+
+          <!-- First set of logos -->
+          <div class="brands-list">
+            <span class="brand-name">VERSACE</span>
+            <span class="brand-name">ZARA</span>
+            <span class="brand-name">GUCCI</span>
+            <span class="brand-name">PRADA</span>
+            <span class="brand-name">Calvin Klein</span>
+          </div>
+
+          <div class="brands-list">
+            <span class="brand-name">VERSACE</span>
+            <span class="brand-name">ZARA</span>
+            <span class="brand-name">GUCCI</span>
+            <span class="brand-name">PRADA</span>
+            <span class="brand-name">Calvin Klein</span>
+          </div>
         </div>
       </div>
-    </body>
+    </section>
+
+    <script src="main.js"></script>
+  </body>
+
   </html>
-</html>
