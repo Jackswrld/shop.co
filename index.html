@@ -1,148 +1,162 @@
-<!DOCTYPE html>
-<hmtl lang="en">
+<html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>cart.co</title>
+      <!-- =============== FONT AWESOME CDN ================ -->
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shop.co</title>
-    <!-- =============== FONT AWESOME CDN ================ -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+      <!-- STYLE.CSS -->
+      <link rel="stylesheet" href="styles/style.css" />
+      <link rel="stylesheet" href="styles/home.css" />
+      <!-- =============== BOOTSTRAP CDN ================ -->
+      <!-- Bootstrap 5.3 CSS -->
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"
+      />
 
-    <!-- STYLE.CSS -->
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="stylesheet" href="styles/home.css" />
-    <!-- =============== BOOTSTRAP CDN ================ -->
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+      <!-- Bootstrap 5.3 JS bundle (includes Popper for dropdowns, tooltips, etc.) -->
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
+        defer
+      ></script>
+    </head>
 
-    <!-- Bootstrap 5.3 JS bundle (includes Popper for dropdowns, tooltips, etc.) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"
-      defer></script>
-  </head>
-
-  <body>
-    <!----===================== HEADER / NAVBAR (jackswrld) ===================== -->
-    <!-- Top Info Bar -->
-    <div class="top-info">
-      Sign up and get 20% off your first order. Sign Up Now
-    </div>
-
-    <!-- Navigation Bar/check for improvement -->
-    <nav>
-      <div class="nav-left">
-        <a href="#" class="logo">SHOP.CO</a>
-        <ul class="nav-menu">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle">Shop
-              <i class="fa-solid fa-chevron-down dropdown-caret"></i>
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a href="#">Men</a></li>
-              <li><a href="#">Women</a></li>
-              <li><a href="#">Accessories</a></li>
-              <li><a href="#">Shoes</a></li>
-            </ul>
-          </li>
-
-          <li><a href="#">On Sale</a></li>
-          <li><a href="#">New Arrivals</a></li>
-          <li><a href="#">Brands</a></li>
-        </ul>
-      </div>
-      <div class="search-container">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" class="search-bar" placeholder="Search for products..." />
+    <body>
+      <!----===================== HEADER / NAVBAR (jackswrld) ===================== -->
+      <!-- Top Info Bar -->
+      <div class="top-info">
+        Sign up and get 20% off your first order. Sign Up Now
       </div>
 
-      <div class="nav-icons">
-        <button class="icon-btn">
-          <i class="fa-solid fa-cart-shopping"></i>
+      <!-- Navigation Bar/check for improvement -->
+      <nav>
+        <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars"></i>
         </button>
-        <button class="icon-btn">
-          <i class="fa-solid fa-circle-user"></i>
-        </button>
+        <div class="nav-left">
+          <a href="#" class="logo">SHOP.CO</a>
+          <ul class="nav-menu">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle"
+                >Shop
+                <i class="fa-solid fa-chevron-down dropdown-caret"></i>
+              </a>
 
-      </div>
-    </nav>
+              <ul class="dropdown-menu">
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">Shoes</a></li>
+              </ul>
+            </li>
 
-    <!-- ==================== HERO SECTION ==================== -->
-    <section class="hero-section">
-      <div class="container-xl">
-        <div class="row align-items-center"> <!-- ONLY ONE row here -->
+            <li><a href="#">On Sale</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Brands</a></li>
+          </ul>
+        </div>
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="Search for products..."
+            aria-label="Search"
+          />
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        </div>
 
-          <!-- Left: Text + button + stats -->
-          <div class="col-lg-6 hero-text-container">
-            <h1 class="hero-heading heading">
-              FIND CLOTHES <br class="d-xl-block d-none" />
-              THAT MATCHES <br class="d-xl-block d-none" />
-              YOUR STYLE
-            </h1>
+        <div class="nav-icons">
+          <button class="search-icon-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button class="icon-btn">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </button>
+          <button class="icon-btn">
+            <i class="fa-solid fa-circle-user"></i>
+          </button>
+        </div>
+      </nav>
 
-            <p class="hero-description">
-              Browse through our diverse range of meticulously crafted
-              garments, designed to bring out your individuality and cater to
-              your sense of style.
-            </p>
+      <!-- ==================== HERO SECTION (CYBUG)==================== -->
+      <section class="hero-section">
+        <div class="container-xl">
+          <div class="row align-items-center">
+            <!-- Left: Text content -->
+            <div class="col-lg-6">
+              <h1 class="hero-heading">
+                FIND CLOTHES <br class="d-xl-block d-none" />
+                THAT MATCHES <br class="d-xl-block d-none" />
+                YOUR STYLE
+              </h1>
 
-            <a href="#" class="btn-shop-now">Shop Now</a>
+              <p class="hero-description">
+                Browse through our diverse range of meticulously crafted
+                garments, designed to bring out your individuality and cater to
+                your sense of style.
+              </p>
 
-            <!-- Stats – centered via justify-content-center -->
-            <div class="row hero-stats mt-5 justify-content-center">
-              <div class="col-6 col-sm-6 col-md-4">
-                <h3 class="stats-number">200+</h3>
-                <p class="stats-label">International Brands</p>
-              </div>
+              <a href="#" class="btn-shop-now">Shop Now</a>
 
-              <div class="col-6 col-sm-6 col-md-4">
-                <h3 class="stats-number">2,000+</h3>
-                <p class="stats-label">High-Quality Products</p>
-              </div>
-
-              <div class="col-10 col-sm-8 col-md-4 mt-4 mt-md-0">
-                <h3 class="stats-number">30,000+</h3>
-                <p class="stats-label">Happy Customers</p>
+              <div class="row hero-stats mt-5">
+                <div class="col-4">
+                  <h3 class="stats-number">200+</h3>
+                  <p class="stats-label">International Brands</p>
+                </div>
+                <div class="col-4">
+                  <h3 class="stats-number">2,000+</h3>
+                  <p class="stats-label">High-Quality Products</p>
+                </div>
+                <div class="col-4">
+                  <h3 class="stats-number">30,000+</h3>
+                  <p class="stats-label">Happy Customers</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Right: Image -->
-          <div class="col-lg-6 hero-image-container">
-            <img src="images/hero-image.png" alt="Fashion models showcasing SHOP.CO style"
-              class="img-fluid hero-image" />
-          </div>
-
-        </div> <!-- end of main row -->
-      </div> <!-- end of container-xl -->
-
-      <!-- Brands bar (full-bleed) -->
-      <div class="brands-bar full-bleed mt-5 pt-4 border-top">
-        <div class="brands-track">
-
-          <!-- First set of logos -->
-          <div class="brands-list">
-            <span class="brand-name">VERSACE</span>
-            <span class="brand-name">ZARA</span>
-            <span class="brand-name">GUCCI</span>
-            <span class="brand-name">PRADA</span>
-            <span class="brand-name">Calvin Klein</span>
-          </div>
-
-          <div class="brands-list">
-            <span class="brand-name">VERSACE</span>
-            <span class="brand-name">ZARA</span>
-            <span class="brand-name">GUCCI</span>
-            <span class="brand-name">PRADA</span>
-            <span class="brand-name">Calvin Klein</span>
+            <!-- Right: Image -->
+            <div class="col-lg-6 text-center">
+              <img
+                src="images/hero.png"
+                alt="Fashion models showcasing SHOP.CO style"
+                class="img-fluid hero-image"
+              />
+            </div>
           </div>
         </div>
+
+        <!-- Brands trust bar -->
+        <div class="brands-bar">
+          <div class="container-xl">
+            <div
+              class="d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center gap-5 py-4"
+            >
+              <span class="brand-name">VERSACE</span>
+              <span class="brand-name">ZARA</span>
+              <span class="brand-name">GUCCI</span>
+              <span class="brand-name">PRADA</span>
+              <span class="brand-name">Calvin Klein</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ============== PRODUCTS SECTION CONTAINER ========= -->
+      <div class="product__section__container container-fluid">
+        <div class="new__arrivals__container">
+          <h1 class="h1">New Arrivals</h1>
+        </div>
       </div>
-    </section>
-
-    <script src="main.js"></script>
-  </body>
-
+    </body>
   </html>
+</html>
