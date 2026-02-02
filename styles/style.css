@@ -280,6 +280,7 @@ nav {
     align-items: center;
     justify-content: center;
     color: var(--color-black);
+    margin-right: -35px;
   }
 
   .nav-left {
