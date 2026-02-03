@@ -6,25 +6,26 @@
 }
 
 @font-face {
-    font-family: 'MyCustomFont';
-    src: url('../Fonts/Integral-CF-Font-Family/Fontspring-DEMO-integralcf-bold.otf') format('opentype');
-    font-weight: bold;
-    font-style: normal;
+  font-family: "MyCustomFont";
+  src: url("../assets/Fonts/Integral-CF-Font-Family/Fontspring-DEMO-integralcf-bold.otf")
+    format("opentype");
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Satoshi';
-    src: url('../Fonts/satoshi/Satoshi-Light.otf') format('opentype');
+  font-family: "Satoshi";
+  src: url("../assets/Fonts/satoshi/Satoshi-Light.otf") format("opentype");
 }
 
 @font-face {
-    font-family: 'SatoshiBold';
-    src: url('../Fonts/satoshi/Satoshi-Bold.otf') format('opentype');
+  font-family: "SatoshiBold";
+  src: url("../assets/Fonts/satoshi/Satoshi-Bold.otf") format("opentype");
 }
 
 /* General Styles */
 :root {
-  --primary:  #dedcdc67;
+  --primary: #dedcdc67;
   --secondary: #000;
 
   /* ===== COLORS ===== */
@@ -79,24 +80,27 @@
 }
 
 body {
-  font-family: var(--font-primary);
+  font-family: var(--font-primary) !important;
   background-color: var(--color-bg-body);
   color: var(--color-text-primary);
   font-size: var(--font-size-md);
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden !important;
 }
 
 .heading {
-    font-family: 'MyCustomFont', sans-serif;
-    font-weight: bold;
-    font-size: var(--font-size-xxl);
-    color: var(--color-text-primary);
+  font-family: "MyCustomFont", sans-serif;
+  font-weight: bold;
+  font-size: var(--font-size-xxl);
+  color: var(--color-text-primary);
 }
 
 a {
   text-decoration: none;
 }
 
-p{
+p {
   font-family: var(--font-primary);
 }
 
@@ -304,7 +308,7 @@ nav {
   .search-container i {
     display: none;
   }
- 
+
   /* when nav has .nav-open, show stacked menu */
   nav.nav-open .nav-menu {
     display: block;

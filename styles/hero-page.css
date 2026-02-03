@@ -2,7 +2,6 @@
 
 .hero-section {
   background-color: var(--primary);
-  padding: 4rem 0; /* reasonable top/bottom – adjust as needed */
   min-height: 80vh;
 }
 
@@ -16,49 +15,6 @@
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
-}
-
-/* Stats – remove flex overrides that conflict with Bootstrap row */
-.hero-stats {
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* No need for display:flex on .hero-stats – it's already a .row (flex) */
-.hero-stats .col-6,
-.hero-stats .col-sm-6,
-.hero-stats .col-md-4,
-.hero-stats .col-10,
-.hero-stats .col-sm-8 {
-  text-align: center;
-  padding: 0 var(--space-md);
-}
-
-/* Dividers – only show on md+ when 3-up */
-@media (min-width: 768px) {
-  .hero-stats .col-md-4:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    width: 2px;
-    height: 60%;
-    background-color: var(--color-border);
-    opacity: 0.6;
-  }
-}
-
-@media (max-width: 767px) {
-  .hero-stats .col-md-4:not(:last-child)::after {
-    display: none;
-  }
-}
-
-/* Image centering on mobile */
-.hero-image-container {
-  text-align: center; /* centers image horizontally when stacked */
 }
 
 .hero-image {
@@ -77,8 +33,11 @@
   }
 }
 
-/* Your other rules (heading, description, button, brands) can stay mostly as-is */
+.hero-description{
+  color: var(--color-text-muted);
+}
 
+/* Button of hero content */
 .btn-shop-now {
   display: block;
   max-width: 100%;
@@ -104,14 +63,39 @@
   transform: translateY(-2px);
 }
 
-/* Hero Stats Dividers */
+/* Stats */
 .hero-stats {
-  position: relative;
+  max-width: 500px;
   /* background: red; */
-  align-items: start;
-  justify-content: start;
-  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+ 
+  @media (max-width: 768px) {
+     text-align: center;
+  }
 }
+
+.hero-stats .col-6,
+.hero-stats .col-sm-6,
+.hero-stats .col-md-4 {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .hero-stats .col-md-4:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 11%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 90%;
+    background-color: var(--color-border);
+    opacity: 0.8;
+  }
+}
+
 
 @media (max-width: 767px) {
   .hero-stats .col-md-4:not(:last-child)::after {
@@ -120,9 +104,7 @@
 }
 
 .hero-stats .col-4 {
-  background-color: yellow;
   position: relative;
-  text-align: center;
   padding: 0 var(--space-md);
 }
 
@@ -156,7 +138,6 @@
   font-family: "SatoshiBold", sans-serif;
   color: var(--color-text-primary);
   margin-bottom: 0rem;
-  text-align: center;
 }
 
 .stats-label {
@@ -164,16 +145,9 @@
   font-size: 12px;
   color: var(--color-text-muted);
   margin: 0;
-  text-align: center;
 }
 
-.hero-image {
-  max-height: 620px;
-  object-fit: contain;
-  width: auto;
-}
-
-/* Brands bar below hero */
+/* Brands bar */
 .full-bleed {
   width: 100vw;
   position: relative;
@@ -196,7 +170,6 @@
   will-change: transform;
 }
 
-/* Each list of brands */
 .brands-list {
   display: flex;
   align-items: center;
@@ -205,17 +178,15 @@
   padding: 0 2rem;
 }
 
-/* Individual brand styling */
 .brand-name {
-  font-size: 2.2rem; /* ≈35px – adjust to taste */
+  font-size: 2.2rem; 
   font-weight: var(--font-weight-bold);
   color: var(--color-text-muted);
   opacity: 0.7;
   letter-spacing: 1px;
-  white-space: nowrap; /* Prevents wrapping */
+  white-space: nowrap;
 }
 
-/* The infinite scroll keyframes */
 @keyframes scroll-left {
   from {
     transform: translateX(0);
@@ -223,26 +194,23 @@
   to {
     transform: translateX(
       -50%
-    ); /* Moves exactly half way – because we duplicated the list */
+    ); 
   }
 }
 
-/* Pause on hover – nice UX touch */
 .brands-track:hover {
   animation-play-state: paused;
 }
 
-/* Responsive – slower on mobile or smaller gap */
 @media (max-width: 991px) {
   .brands-list {
-    gap: 2.5rem; /* Smaller spacing on tablets/mobile */
+    gap: 2.5rem; 
   }
   .brands-track {
-    animation-duration: 35s; /* Slower on smaller screens feels better */
+    animation-duration: 35s;
   }
 }
 
-/* Mobile adjustments */
 @media (max-width: 991px) {
   .hero-section {
     padding: var(--space-lg) 0;
