@@ -116,6 +116,7 @@ button {
 
 /* Top Info Bar */
 .top-info {
+  font-family: var(--font-primary);
   background-color: #000;
   color: #fff;
   text-align: center;
@@ -154,7 +155,8 @@ nav {
 
 .nav-menu a {
   text-decoration: none;
-  color: #000;
+  color: var(--color-text-primary);
+  opacity: 0.9;
   font-size: 14px;
   cursor: pointer;
 }
@@ -189,7 +191,8 @@ nav {
   left: 12px;
   color: #666;
   pointer-events: none;
-  display: none;
+  display: block;
+  font-size: 16px;
 }
 
 .search-bar {
@@ -225,7 +228,6 @@ nav {
   position: absolute;
   top: 100%;
   left: 0;
-
   background: white;
   list-style: none;
   padding: 10px 0;
@@ -236,6 +238,9 @@ nav {
 .dropdown-menu li {
   padding: 8px 20px;
   white-space: nowrap;
+}
+.dropdown-menu li a{
+  text-decoration: none;
 }
 .dropdown:hover .dropdown-menu {
   display: block;
@@ -255,6 +260,10 @@ nav {
 }
 .dropdown:hover .dropdown-caret {
   transform: rotate(180deg);
+}
+
+.dropdown-toggle::after {
+    display: none;
 }
 
 .h1 {
@@ -283,10 +292,12 @@ nav {
     align-items: center;
     justify-content: center;
     color: var(--color-black);
+    margin-right: -35px;
   }
 
   .nav-left {
     gap: 12px;
+    font-family: var(--font-primary);
   }
 
   /* hide desktop menu and full search by default on small screens */
@@ -298,6 +309,7 @@ nav {
   /* show only search icon button on small screens */
   .search-icon-btn {
     display: block;
+    color: var(--color-black);
   }
 
   .search-container {
