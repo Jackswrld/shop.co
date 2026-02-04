@@ -41,7 +41,7 @@
   --color-bg-card: #ffffff;
 
   --color-border: #e6e6e6;
-  --color-star: #fbbf24; /* rating stars */
+  --color-star: #FFC633; /* rating stars */
 
   /* ===== TYPOGRAPHY ===== */
   --font-primary: "Satoshi", sans-serif;
@@ -80,7 +80,6 @@
 }
 
 body {
-  font-family: var(--font-primary) !important;
   background-color: var(--color-bg-body);
   color: var(--color-text-primary);
   font-size: var(--font-size-md);
@@ -102,6 +101,10 @@ a {
 
 p {
   font-family: var(--font-primary);
+}
+
+span{
+  font-family: sans-serif;
 }
 
 img {
@@ -132,6 +135,7 @@ nav {
   padding: 15px 30px;
   background-color: #fff;
   border-bottom: 1px solid #eee;
+  font-family: var(--font-primary);
 }
 
 .nav-left {
