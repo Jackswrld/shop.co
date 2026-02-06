@@ -1,8 +1,9 @@
 /* PRODUCT DETAIL STYLES */
 .product-detail {
   background-color: var(--color-bg-body);
+  font-family: var(--font-primary) !important;
 }
- /* BREADCRUMB */
+/* BREADCRUMB */
 .breadcrumb {
   font-size: var(--font-size-sm);
   background: transparent;
@@ -17,13 +18,13 @@
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-  content: "\f054";               
+  content: "\f054";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-style: normal;
   font-size: 0.75rem;
   color: var(--color-text-secondary);
-  margin: 0 0.9rem 0 0; 
+  margin: 0 0.9rem 0 0;
   display: inline-block;
   float: none;
   opacity: 0.9;
@@ -35,6 +36,82 @@
   font-weight: var(--font-weight-medium);
 }
 
+/* ── Equal height gallery row ──────────────────────────────────────── */
+
+.gallery-row.equal-height-row {
+  display: flex; /* turn row into flex container */
+  flex-wrap: nowrap; /* prevent wrapping on desktop */
+  height: 100%; /* take full height of parent */
+  min-height: 500px; /* minimum height so it doesn't collapse */
+}
+
+.gallery-row.equal-height-row > div {
+  height: 90%;
+}
+
+/* Main image fills its column, keeps aspect ratio */
+.main-image-column {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px; /* prevent any image overflow */
+}
+
+.main-image-column img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Thumbnails column fills height and distributes thumbs evenly */
+.thumbnails-column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* spreads thumbs evenly vertically */
+  gap: 1rem;
+}
+
+.thumbnail {
+  flex: 1;
+  border-radius: 20px;
+  max-height: 30%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Mobile: revert to vertical stack, remove equal height constraints */
+@media (max-width: 991px) {
+  .gallery-row.equal-height-row {
+    flex-direction: column;
+    min-height: auto; /* let it grow naturally */
+  }
+
+  .gallery-row.equal-height-row > div {
+    height: auto; /* no forced height on mobile */
+  }
+
+  .thumbnails-column {
+    flex-direction: row;
+    justify-content: start;
+    height: auto;
+    margin-top: 1.5rem;
+  }
+
+  .thumbnail {
+    flex: 0 0 auto; /* back to natural size */
+    width: 70px;
+    height: 70px;
+    max-height: none;
+  }
+
+  .main-image-column img {
+    height: auto;
+    max-height: 450px;
+  }
+}
 
 .product-title {
   font-family: "MyCustomFont", sans-serif;
@@ -59,6 +136,44 @@
   .product-title,
   .stars,
   .rating-text {
-    text-align: center;
+    font-size: 24px;
+    max-width: 65%;
+  }
+}
+
+/* Price block */
+.price {
+  font-size: 1.75rem;
+}
+
+.current-price {
+  color: var(--color-text-primary);
+}
+
+.original-price {
+  font-size: 1.25rem;
+}
+
+.discount-badge {
+  font-size: 0.9rem;
+}
+
+/* Description */
+.product-description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* Mobile centering for price & description */
+@media (max-width: 991px) {
+  .price {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .product-description {
+    margin: 0 auto;
   }
 }

@@ -103,10 +103,6 @@ p {
   font-family: var(--font-primary);
 }
 
-span{
-  font-family: sans-serif;
-}
-
 img {
   max-width: 100%;
 }
