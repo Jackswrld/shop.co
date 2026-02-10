@@ -192,7 +192,12 @@
 
 .rating-text {
   font-size: var(--font-size-md);
-  color: var(--color-text-secondary);
+  color: var(--color-black);
+  letter-spacing: 1px;
+
+  span{
+    color: var(--color-text-secondary);
+  }
 }
 
 /* Mobile centering for title & rating */
@@ -212,6 +217,7 @@
 
 .original-price {
   font-size: 1.25rem;
+  font-weight: bold;
 }
 
 .discount-badge {
@@ -221,8 +227,9 @@
 .product-description {
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
-  line-height: 1.6;
-  max-width: 500px;
+  line-height: 1.5;
+  /* max-width: 500px; */
+  /* background: red; */
 }
 
 /* Mobile price adjustments */
