@@ -3,6 +3,7 @@
   background-color: var(--color-bg-body);
   font-family: var(--font-primary) !important;
 }
+
 /* BREADCRUMB */
 .breadcrumb {
   font-size: var(--font-size-sm);
@@ -36,83 +37,146 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* ── Equal height gallery row ──────────────────────────────────────── */
+/* ── Gallery Layout ──────────────────────────────────────────────── */
 
-.gallery-row.equal-height-row {
-  display: flex; /* turn row into flex container */
-  flex-wrap: nowrap; /* prevent wrapping on desktop */
-  height: 100%; /* take full height of parent */
-  min-height: 500px; /* minimum height so it doesn't collapse */
+.gallery-row.equal-height-row.responsive-gallery {
+  display: flex;
+  flex-wrap: nowrap;
+  min-height: 500px;
+  height: 100%;
 }
 
-.gallery-row.equal-height-row > div {
-  height: 90%;
+.gallery-row > div {
+  height: 100%;
 }
 
-/* Main image fills its column, keeps aspect ratio */
+/* Main image */
 .main-image-column {
   position: relative;
   overflow: hidden;
-  border-radius: 20px; /* prevent any image overflow */
+  margin: 0 auto !important;
+  border-radius: 20px;
+  /* background: red; */
 }
 
 .main-image-column img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
   display: block;
   border-radius: 20px;
 }
 
-/* Thumbnails column fills height and distributes thumbs evenly */
+/* Thumbnails column */
 .thumbnails-column {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* spreads thumbs evenly vertically */
+  justify-content: space-between;
   gap: 1rem;
 }
 
 .thumbnail {
   flex: 1;
-  border-radius: 20px;
+  width: 100%;
   max-height: 30%;
   object-fit: cover;
-  width: 100%;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  transition: var(--transition);
 }
 
-/* Mobile: revert to vertical stack, remove equal height constraints */
-@media (max-width: 991px) {
-  .gallery-row.equal-height-row {
-    flex-direction: column;
-    min-height: auto; /* let it grow naturally */
-  }
+.thumbnail.active,
+.thumbnail:hover {
+  opacity: 1;
+  border-color: var(--color-black);
+}
 
-  .gallery-row.equal-height-row > div {
-    height: auto; /* no forced height on mobile */
+/* ── Responsive Breakpoints ──────────────────────────────────────── */
+
+/* Large screens (≥992px): side-by-side, thumbs vertical */
+@media (min-width: 992px) {
+  .gallery-column {
+    padding-right: 2rem !important;
   }
 
   .thumbnails-column {
-    flex-direction: row;
-    justify-content: start;
-    height: auto;
-    margin-top: 1.5rem;
+    flex-direction: column;
+  }
+}
+
+/* Medium screens (991px - 451px): product info below, gallery constrained */
+@media (max-width: 991px) and (min-width: 451px) {
+
+  .product-main-row {
+    flex-direction: column;
+  }
+
+  .gallery-column,
+  .product-info-column {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+
+  .gallery-column {
+    max-width: 600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .thumbnails-column {
+    flex-direction: column !important;
+  }
+
+  .main-image-column img {
+    max-height: 450px !important;
+    width: 100% !important;
+    object-fit: contain !important;
   }
 
   .thumbnail {
-    flex: 0 0 auto; /* back to natural size */
-    width: 70px;
-    height: 70px;
+    max-height: 130px !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Small screens (≤450px): gallery stacks, thumbs horizontal */
+@media (max-width: 450px) {
+  .gallery-column {
+    padding-inline: 2px !important;
+  }
+
+  .main-image-column {
+    order: 1;
+    width: 100% !important;
+  }
+
+  .thumbnails-column {
+    order: 2;
+    flex-direction: row !important;
+    justify-content: center !important;
+    margin-top: 1.5rem;
+    width: 100%;
+    gap: 0.75rem !important;
+  }
+
+  .thumbnail {
+    width: 30%;
+    height: 30%;
+    flex: 0 0 auto;
     max-height: none;
   }
 
   .main-image-column img {
-    height: auto;
-    max-height: 450px;
+    max-height: 400px;
+    width: 100%;
+    margin: 0 auto;
   }
 }
 
+/* Product Title */
 .product-title {
   font-family: "MyCustomFont", sans-serif;
   font-size: var(--font-size-xl);
@@ -133,15 +197,11 @@
 
 /* Mobile centering for title & rating */
 @media (max-width: 991px) {
-  .product-title,
-  .stars,
-  .rating-text {
+  .product-title {
     font-size: 24px;
-    max-width: 65%;
   }
 }
 
-/* Price block */
 .price {
   font-size: 1.75rem;
 }
@@ -158,7 +218,6 @@
   font-size: 0.9rem;
 }
 
-/* Description */
 .product-description {
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
@@ -166,14 +225,10 @@
   max-width: 500px;
 }
 
-/* Mobile centering for price & description */
+/* Mobile price adjustments */
 @media (max-width: 991px) {
   .price {
     flex-wrap: wrap;
     gap: 1rem;
-  }
-
-  .product-description {
-    margin: 0 auto;
   }
 }

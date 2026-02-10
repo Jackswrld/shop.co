@@ -79,95 +79,103 @@
     </div>
   </nav>
 
+<!-- ==================== PRODUCT DETAIL SECTION ==================== -->
+<section class="product-detail py-3 px-4">
+  <div class="container-xl">
 
-  <!-- ==================== PRODUCT DETAIL SECTION ==================== -->
-  <section class="product-detail py-3">
-    <div class="container-xl">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+        <li class="breadcrumb-item"><a href="#">Men</a></li>
+        <li class="breadcrumb-item active" aria-current="page">T-shirts</li>
+      </ol>
+    </nav>
 
-      <!-- Breadcrumb -->
-      <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Shop</a></li>
-          <li class="breadcrumb-item"><a href="#">Men</a></li>
-          <li class="breadcrumb-item active" aria-current="page">T-shirts</li>
-        </ol>
-      </nav>
+    <div class="row g-5 product-main-row">
 
-      <!-- Main two-column grid -->
-      <div class="row g-5">
+      <!-- Left: Gallery (Thumbnails + Main Image) -->
+      <div class="col-lg-6 gallery-column px-lg-4 pt-4">
+        <div class="row g-3 gallery-row equal-height-row">
 
+          <!-- Thumbnails Column -->
+          <div class="col-3 col-lg-3 thumbnails-column">
+            <img 
+              src="../assets/images/products/brown-image.png" 
+              alt="Front view"
+              class="thumbnail img-fluid rounded-2 active"
+              data-full="../assets/images/products/brown-image.png"
+            >
 
-        <!-- Left: Gallery -->
-        <div class="col-lg-6">
-          <div class="row g-3 gallery-row equal-height-row">
+            <img 
+              src="../assets/images/products/brown-image2.png" 
+              alt="Back view" 
+              class="thumbnail img-fluid rounded-2"
+              data-full="../assets/images/products/brown-image2.png"
+            >
 
-            <!-- Thumbnails - vertical on desktop, horizontal on mobile -->
-            <div class="col-lg-3 thumbnails-column d-flex flex-lg-column flex-row flex-wrap gap-3 justify-content-lg-start justify-content-center">
-
-              <img src="../assets/images/products/brown-image.png" alt="Front view"
-                class="thumbnail img-fluid active"
-                data-full="../assets/images/products/brown-image.png">
-
-              <img src="../assets/images/products/brown-image2.png" alt="Back view" class="thumbnail img-fluid"
-               data-full="../assets/images/products/brown-image2.png">
-
-              <img src="../assets/images/products/shirt-brown.png" alt="On model" class="thumbnail img-fluid"
-               data-full="../assets/images/products/shirt-brown.png.png">
-
-            </div>
-
-            <!-- Main image column-->
-            <div class="col-12 col-lg-9 main-image-column">
-              <img id="main-product-image" src="../assets/images/products/brown-image.png"
-                alt="ONE LIFE GRAPHIC T-SHIRT front view" class="img-flui shadow-sm">
-            </div>
-
+            <img 
+              src="../assets/images/products/shirt-brown.png" 
+              alt="On model" 
+              class="thumbnail img-fluid rounded-2"
+              data-full="../assets/images/products/shirt-brown.png"
+            >
           </div>
+
+          <!-- Main Image Column -->
+          <div class="col-9 col-lg-9 main-image-column">
+            <img
+              id="main-product-image" 
+              src="../assets/images/products/brown-image.png"
+              alt="ONE LIFE GRAPHIC T-SHIRT front view" 
+              class="img-fluid shadow-sm"
+            >
+          </div>
+
         </div>
-
-        <!-- Right: Product Info -->
-         
-        <div class="col-lg-6">
-
-          <!-- Product title -->
-          <h1 id="product-title" class="product-title mb-3">
-            ONE LIFE GRAPHIC T-SHIRT
-          </h1>
-
-          <!-- Rating -->
-          <div class="d-flex align-items-center gap-2 mb-3">
-            <div class="stars">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star-half-stroke"></i>
-            </div>
-            <span id="rating-text" class="rating-text fw-semibold">4.5/5</span>
-          </div>
-
-          <!-- Price + Discount -->
-          <div class="price mb-4 d-flex align-items-center gap-3 flex-wrap">
-            <span id="current-price" class="current-price fw-bold fs-3">$260</span>
-            <span id="original-price" class="original-price text-muted text-decoration-line-through fs-4">$300</span>
-            <span id="discount-badge"
-              class="discount-badge bg-danger-subtle text-danger px-3 py-1 rounded-pill fw-semibold">-40%</span>
-          </div>
-
-          <!-- Description (placeholder for JS fill) -->
-          <p id="product-description" class="product-description mb-5">
-            This graphic t-shirt is perfect for any occasion. Crafted from soft and
-            breathable fabric, it offers superior comfort and style.
-          </p>
-
-          <!-- Colors, Sizes, Quantity, Add to Cart will come next -->
-        </div>
-
       </div>
-    </div>
-  </section>
 
+      <!-- Right: Product Info -->
+      <div class="col-lg-6 product-info-column p-0 pt-lg-2">
+        <!-- Product title -->
+        <h1 id="product-title" class="product-title mb-3">
+          ONE LIFE GRAPHIC T-SHIRT
+        </h1>
+
+        <!-- Rating -->
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <span id="rating-text" class="rating-text fw-semibold">4.5/5</span>
+        </div>
+
+        <!-- Price + Discount -->
+        <div class="price mb-4 d-flex align-items-center gap-3 flex-wrap">
+          <span id="current-price" class="current-price fw-bold fs-3">$260</span>
+          <span id="original-price" class="original-price text-muted text-decoration-line-through fs-4">$300</span>
+          <span id="discount-badge" class="discount-badge bg-danger-subtle text-danger px-3 py-1 rounded-pill fw-semibold">-40%</span>
+        </div>
+
+        <!-- Description -->
+        <p id="product-description" class="product-description mb-5">
+          This graphic t-shirt is perfect for any occasion. Crafted from soft and
+          breathable fabric, it offers superior comfort and style.
+        </p>
+
+        <!-- Colors, Sizes, Quantity, Add to Cart will come next -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  
 </body>
 
 </html>
