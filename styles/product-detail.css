@@ -49,7 +49,6 @@
   overflow: hidden;
   margin: 0 auto !important;
   border-radius: 20px;
-  /* background: red; */
 }
 
 .main-image-column img {
@@ -156,8 +155,8 @@
   }
 
   .thumbnail {
-    width: 30%;
-    height: 30%;
+    width: 90px;
+    height: 90px;
     flex: 0 0 auto;
     max-height: none;
   }
@@ -425,5 +424,194 @@
   .size-btn {
     min-width: 70px;
     padding: 0.6rem 1.2rem;
+  }
+}
+
+
+
+/* ============================================
+   PRODUCT TABS & REVIEWS SECTION
+   ============================================ */
+
+/* ── Section Wrapper ──────────────────────────────────────────── */
+
+.product-tabs-section {
+  background-color: var(--color-bg-body);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* ── TABS NAVIGATION ──────────────────────────────────────────── */
+
+.tabs-navigation {
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 2rem;
+}
+
+.nav-tabs {
+  border: none;
+  gap: 2rem;
+}
+
+.nav-tabs .nav-item {
+  margin-bottom: 0;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  padding: 1rem 0;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-tabs .nav-link:hover {
+  color: var(--color-text-primary);
+  border-color: transparent;
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  border-bottom-color: var(--color-black);
+  background-color: transparent;
+}
+
+/* ── TAB CONTENT ──────────────────────────────────────────── */
+
+.tab-content {
+  padding-top: 1.5rem;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* REVIEW HEADER */
+
+.reviews-header h5 {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.reviews-header .btn-outline-secondary {
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.reviews-header .btn-dark {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+}
+
+/* ── REVIEWS GRID ──────────────────────────────────────────── */
+
+.reviews-grid {
+  min-height: 300px;
+  margin-bottom: 2rem;
+}
+
+.reviews-grid .text-muted {
+  text-align: center;
+  padding: 3rem 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+}
+
+/* ── LOAD MORE BUTTON ──────────────────────────────────────────── */
+
+.load-more-container {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.load-more-btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.load-more-btn:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.load-more-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ── RESPONSIVE ADJUSTMENTS ──────────────────────────────────────── */
+
+/* Mobile adjustments */
+@meia (max-width: 991px) {
+
+  .reviews-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .reviews-header .d-flex {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Stack tabs on mobile */
+  .nav-tabs {
+    gap: 0;
+  }
+  
+  .nav-tabs .nav-link {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .nav-tabs .nav-link.active {
+    border-bottom-color: var(--color-border) !important;
+  }
+
+@media (max-width: 576px) {
+  .product-tabs-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .load-more-btn {
+    width: 100%;
   }
 }
