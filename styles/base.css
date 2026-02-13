@@ -292,12 +292,14 @@ nav {
     align-items: center;
     justify-content: center;
     color: var(--color-black);
-    margin-right: -35px;
+    margin-right: 12px;
+    flex-shrink: 0;
   }
 
   .nav-left {
     gap: 12px;
     font-family: var(--font-primary);
+    flex: 1;
   }
 
   /* hide desktop menu and full search by default on small screens */
@@ -346,19 +348,17 @@ nav {
     padding-left: 12px;
   }
 
-  /* show search bar when nav is open */
+  /* HIDE search bar entirely when menu is open on mobile */
   nav.nav-open .search-bar {
-    display: block;
-    max-width: none;
-    padding: 10px 14px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    width: 100%;
-    margin: 12px 18px 20px;
+    display: none !important;
   }
 
   nav.nav-open .search-container {
-    position: relative;
+    display: none;
+  }
+
+  nav.nav-open .search-icon-btn {
+    display: none;
   }
 
   /* icons align right as compact buttons */
