@@ -45,6 +45,8 @@
 
   /* ===== TYPOGRAPHY ===== */
   --font-primary: "Satoshi", sans-serif;
+  --font-primary-bold: "SatoshiBold", sans-serif;
+
 
   --font-size-xs: 10px;
   --font-size-sm: 14px;

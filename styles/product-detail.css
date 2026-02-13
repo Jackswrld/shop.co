@@ -100,7 +100,6 @@
 
 /* Medium screens (991px - 451px): product info below, gallery constrained */
 @media (max-width: 991px) and (min-width: 451px) {
-
   .product-main-row {
     flex-direction: column;
   }
@@ -187,7 +186,7 @@
   color: var(--color-black);
   letter-spacing: 1px;
 
-  span{
+  span {
     color: var(--color-text-secondary);
   }
 }
@@ -245,7 +244,7 @@
   letter-spacing: 0.5px;
 }
 
-.divider{
+.divider {
   border-color: rgba(128, 128, 128, 0.4);
 }
 
@@ -275,9 +274,9 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.color-circle.active {
+/*TODO ABOUT TO ADD AN ACTIVE CLASS .color-circle.active {
 
-}
+} */
 
 /* Checkmark inside color circle */
 .color-checkmark {
@@ -291,7 +290,6 @@
 .color-circle.active .color-checkmark {
   opacity: 1;
 }
-
 
 /* ── SIZE SELECTOR ──────────────────────────────────────────── */
 
@@ -412,22 +410,20 @@
   .cart-actions {
     flex-direction: column;
   }
-  
+
   .quantity-selector {
     justify-content: center;
   }
-  
+
   .add-to-cart-btn {
     width: 100%;
   }
-  
+
   .size-btn {
     min-width: 70px;
     padding: 0.6rem 1.2rem;
   }
 }
-
-
 
 /* ============================================
    PRODUCT TABS & REVIEWS SECTION
@@ -439,6 +435,7 @@
   background-color: var(--color-bg-body);
   padding-top: 3rem;
   padding-bottom: 3rem;
+  font-family: var(--font-primary);
 }
 
 /* ── TABS NAVIGATION ──────────────────────────────────────────── */
@@ -483,10 +480,6 @@
 
 /* ── TAB CONTENT ──────────────────────────────────────────── */
 
-.tab-content {
-  padding-top: 1.5rem;
-}
-
 .tab-pane {
   display: none;
 }
@@ -511,7 +504,8 @@
 
 .reviews-header h5 {
   font-size: 1.25rem;
-  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-primary-bold);
+  font-weight: var(--font-weight-bold);
 }
 
 .reviews-header .btn-outline-secondary {
@@ -533,6 +527,7 @@
 
 .reviews-grid .text-muted {
   text-align: center;
+  /* font-family: ; */
   padding: 3rem 0;
   font-size: var(--font-size-lg);
   color: var(--color-text-muted);
@@ -578,18 +573,36 @@
 /* Mobile adjustments */
 
 @media (max-width: 768px) {
-  /* Stack tabs on mobile */
+  /* TABS NAVIGATION */
   .nav-tabs {
     gap: 0;
   }
-  
+
   .nav-tabs .nav-link {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
   }
-  
-  .nav-tabs .nav-link.active {
-    border-bottom-color: var(--color-border) !important;
+
+  /* REVIEW HEADER */
+
+  .reviews-header h5 {
+    font-size: 1.15rem;
+  }
+
+  .reviews-header .btn-outline-secondary {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .reviews-header .btn-dark {
+    font-size: 0.7rem;
+    padding: 10px 12px !important;
+  }
+
+  /* ── REVIEWS GRID ──────────────────────────────────────────── */
+
+  .reviews-grid .text-muted {
+    font-size: var(--font-size-sm);
   }
 }
 
@@ -598,7 +611,7 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-  
+
   .load-more-btn {
     width: 100%;
   }
