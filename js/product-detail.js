@@ -167,6 +167,72 @@ function changeMainImage(clickedThumbnail) {
   // ========== INITIALIZATION ==========
 console.log('Product page loaded successfully!');
   console.log('Initial state:', productState);
+
+
+  // ============================================
+// PRODUCT TABS - Tab Switching Functionality
+// ============================================
+
+// ========== GET TAB ELEMENTS ==========
+const tabButtons = document.querySelectorAll('.nav-tabs .nav-link');
+const tabPanels = document.querySelectorAll('.tab-pane');
+const reviewHeader = document.querySelector('.reviews-header');
+
+// ========== TAB SWITCHING FUNCTION ==========
+function switchTab(clickedButton){
+  // Get the tab name from data attribute
+  const targetTab = clickedButton.dataset.tab;
+
+  // Remove 'active' class from all tab buttons
+  tabButtons.forEach((button) => {
+    button.classList.remove('active');
+  });
+
+  // Add 'active' class to clicked tab button
+  clickedButton.classList.add('active');
+
+  // Hide all tab tabPanels
+  tabPanels.forEach((panel) => {
+    panel.classList.remove('active');
+  });
+
+  // Show the selected tab panel
+  const targetPanel = document.getElementById(`${targetTab}-content`);
+
+  if (targetPanel){
+    targetPanel.classList.add('active');
+  }
+  
+  // 5. Show/hide reviews header based on active tab
+  if (targetTab === 'rating-reviews'){
+    reviewHeader.style.display = 'flex';
+  }
+  else {
+    reviewHeader.style.display = 'none';
+  }
+
+  // 6. Log for debugging
+  console.log('Switched to tab:', targetTab);
+  
+}
+
+// ========== ATTACH CLICK LISTENERS ==========
+tabButtons.forEach((button) => {
+  button.addEventListener('click', function(){
+    switchTab(this);
+  });
+});
+
+// ========== INITIALIZE ON PAGE LOAD ==========
+  // Make sure reviews header shows since Rating & Reviews is default active
+  const activeTab = document.querySelector('.nav-link.active');
+  if (activeTab && activeTab.dataset.tab !== 'rating-reviews'){
+    reviewHeader.style.display = 'none';
+  }
+
+  console.log('Product tabs loaded successfully!');
  
 });
+
+
 
