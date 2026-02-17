@@ -33,7 +33,7 @@ function createProductCard(product) {
 
   return `
     <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-      <div class="product-card">
+      <div class="product-card" data-id="${product.id}">
         <div class="product-image-wrapper">
           <img src="${product.images[0]}" alt="${product.name}" class="product-image" />
         </div>
@@ -71,6 +71,18 @@ function displayProducts() {
   if (topSellingContainer) {
     topSellingContainer.innerHTML = topSelling.map(createProductCard).join('');
   }
+
+   // 👇 ADD THIS AFTER HTML IS INSERTED
+  const productCards = document.querySelectorAll('.product-card');
+
+  productCards.forEach(card => {
+    card.addEventListener('click', function () {
+      const productId = this.dataset.id;
+
+      window.location.href = `../pages/product-details.html?id=${productId}`;
+    });
+  });
+
 }
 
 // Initialize when DOM is ready
