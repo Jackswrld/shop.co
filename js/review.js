@@ -5,7 +5,7 @@ export const reviews = [
   author: "Samaantha D.",
   verified: true,
   rating: 5,
-  comment: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. it's become my favorite go-to shirt.",
+  text: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. it's become my favorite go-to shirt.",
   date: "Auggust 14, 2023"
 },
 
