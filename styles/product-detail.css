@@ -188,8 +188,8 @@
 }
 
 .rating span {
-    color: var(--color-text-secondary);
-  }
+  color: var(--color-text-secondary);
+}
 
 /* Mobile centering for title & rating */
 @media (max-width: 991px) {
@@ -247,7 +247,6 @@
 .divider {
   border-color: rgba(128, 128, 128, 0.4);
 }
-
 
 /*TODO ABOUT TO ADD AN ACTIVE CLASS .color-circle.active {
 
@@ -480,6 +479,26 @@
   padding: 0.5rem 1rem;
 }
 
+.slider {
+  background-color: var(--color-bg-section);
+  width: 15%;
+}
+
+.dropdown-btn {
+  background-color: var(--color-bg-section);
+  display: inline-flex; 
+  align-items: center;  
+  justify-content: center;
+  gap: 1rem !important;
+  font-size: var(--font-size-sm); 
+ 
+  span i{
+    font-size: 0.7rem;
+    transform: translateY(-0.5px);
+    color: var(--color-text-muted);
+  }
+}
+
 /* ── REVIEWS GRID ──────────────────────────────────────────── */
 
 .reviews-grid {
@@ -594,7 +613,7 @@
   .reviews-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .review-card {
     padding: 1.25rem;
   }

@@ -268,31 +268,34 @@
             <!-- Reviews header (only shows when Reviews tab is active - static for now) -->
             <div class="reviews-header d-flex justify-content-between align-items-center mb-4">
               <h5 class="mb-0">
-                All Reviews <span class="text-muted reviews-count">(451)</span>
+                All Reviews <span class="text-muted reviews-count"></span>
               </h5>
 
               <div class="d-flex align-items-center gap-3">
                 <!-- Filter icon -->
-                <button class="btn btn-link text-muted p-0" aria-label="Filter reviews">
-                  <i class="fa-solid fa-sliders-up"></i>
+                <button class="btn p-2 rounded-pill slider" aria-label="Filter reviews">
+                      <img src="/assets/images/icons/vertical-sliders.png" alt="">
                 </button>
 
                 <!-- Latest dropdown -->
                 <div class="dropdown">
-                  <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="reviewsSort"
+
+                  <button class="btn rounded-pill dropdown-toggle dropdown-btn" type="button" id="reviewsSort"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    Latest
+                    Latest <span><i class="fa-solid fa-chevron-right"></i></span>
                   </button>
+
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reviewsSort">
                     <li><a class="dropdown-item" href="#">Latest</a></li>
                     <li><a class="dropdown-item" href="#">Oldest</a></li>
                     <li><a class="dropdown-item" href="#">Highest Rated</a></li>
                     <li><a class="dropdown-item" href="#">Lowest Rated</a></li>
                   </ul>
+
                 </div>
 
                 <!-- Write a Review button -->
-                <button class="btn btn-dark btn-sm rounded-pill px-4">
+                <button class="btn btn-dark rounded-pill">
                   Write a Review
                 </button>
               </div>
