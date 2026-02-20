@@ -44,27 +44,15 @@
       <link rel="stylesheet" href="styles/base.css" />
       <link rel="stylesheet" href="styles/hero-page.css" />
       <link rel="stylesheet" href="styles/products.css" />
+      <link rel="stylesheet" href="styles/search.css" />
     </head>
 
-<<<<<<< HEAD
-      <!-- BOOSTRAP OFFLINE CSS-->
-     <link rel="stylesheet" href="../assets/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
-
-     <!-- BOOSTRAP OFFLINE JS-->
-      <link rel="stylesheet" href="../assets/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js">
-
-
-  <!-- STYLE.CSS -->
-  <link rel="stylesheet" href="styles/base.css" />
-  <link rel="stylesheet" href="styles/hero-page.css" />
-=======
     <body>
       <!----===================== HEADER / NAVBAR (jackswrld) ===================== -->
       <!-- Top Info Bar -->
       <div class="top-info">
         Sign up and get 20% off your first order. Sign Up Now
       </div>
->>>>>>> 7bd84a7c1b33009ac393f59631b0c038ef1a3483
 
       <!-- Navigation Bar/check for improvement -->
       <nav>
@@ -105,6 +93,10 @@
             aria-label="Search"
           />
           <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <!-- Search Results Dropdown -->
+          <div class="search-results-dropdown" id="search-results-dropdown">
+            <ul class="search-results-list" id="search-results-list"></ul>
+          </div>
         </div>
 
         <div class="nav-icons">
@@ -134,21 +126,11 @@
                 YOUR STYLE
               </h1>
 
-<<<<<<< HEAD
-        <!-- Left: Text + button + stats -->
-        <div class="col-lg-6 hero-text-container p-3">
-          <h1 class="hero-heading heading">
-            FIND CLOTHES <br class="d-xl-block d-none" />
-            THAT MATCHES <br class="d-xl-block d-none" />
-            YOUR STYLE
-          </h1>
-=======
               <p class="hero-description">
                 Browse through our diverse range of meticulously crafted
                 garments, designed to bring out your individuality and cater to
                 your sense of style.
               </p>
->>>>>>> 7bd84a7c1b33009ac393f59631b0c038ef1a3483
 
               <a href="#" class="btn-shop-now">Shop Now</a>
 
@@ -377,6 +359,7 @@
       </footer>
 
       <script src="js/navbar.js"></script>
+      <script type="module" src="js/search.js"></script>
       <script type="module" src="js/render-products.js"></script>
       <script src="js/main.js"></script>
     </body>

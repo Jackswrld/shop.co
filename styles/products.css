@@ -262,9 +262,9 @@
 }
 
 .footer-heading {
-  font-size: 18px;
-  font-family: var(--font-primary);
-  font-weight: 700;
+  font-size: 25px;
+  font-family: "MyCustomFont", sans-serif;
+  font-weight: 800;
   margin-bottom: 20px;
 }
 
