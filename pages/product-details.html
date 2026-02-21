@@ -49,7 +49,7 @@
       <i class="fa-solid fa-bars"></i>
     </button>
     <div class="nav-left">
-      <a href="#" class="logo heading">SHOP.CO</a>
+      <a href="../index.html" class="logo heading">SHOP.CO</a>
       <ul class="nav-menu mb-0">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle">Shop
@@ -144,7 +144,7 @@
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star-half-stroke"></i>
             </div>
-            <span id="rating-text" class="rating-text fw-semibold">4.5/5</span>
+            <span id="rating-text" class="rating-text fw-semibold">4.5/<strong>5</strong></span>
           </div>
 
           <!-- Price + Discount -->
@@ -162,33 +162,6 @@
             This graphic t-shirt is perfect for any occasion. Crafted from soft and
             breathable fabric, it offers superior comfort and style.
           </p>
-
-          <!-- Divider -->
-          <hr class="my-3 divider">
-
-          <!-- ========== COLOR SELECTOR ========== -->
-          <div class="color-selector mb-4">
-            <p class="selector-label fw-medium mb-3">Select Colors</p>
-            <div class="color-options d-flex gap-3">
-
-              <div class="color-circle" data-color="olive" data-color-name="Olive Green"
-                style="background-color: #4F4631;" title="Olive Green">
-                <i class="fa-solid fa-check color-checkmark"></i>
-              </div>
-
-              <div class="color-circle" data-color="dark-green" data-color-name="Dark Green"
-                style="background-color: #314F4A;" title="Dark Green">
-                <i class="fa-solid fa-check color-checkmark"></i>
-              </div>
-
-              <div class="color-circle" data-color="navy" data-color-name="Navy Blue" style="background-color: #31344F;"
-                title="Navy Blue">
-                <i class="fa-solid fa-check color-checkmark"></i>
-
-              </div>
-
-            </div>
-          </div>
 
           <!-- Divider -->
           <hr class="my-4 divider">
@@ -248,131 +221,146 @@
   </section>
 
   <!-- ==================== PRODUCT TABS & REVIEWS SECTION ==================== -->
-<section class="product-tabs-section py-5">
-  <div class="container-xl">
+  <section class="product-tabs-section py-5">
+    <div class="container-xl">
 
-    <!-- ========== TABS NAVIGATION ========== -->
-    <div class="tabs-navigation mb-4">
-      <ul class="nav nav-tabs border-0 justify-content-evenly" role="tablist">
-        
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" 
-                  id="product-details-tab" 
-                  data-tab="product-details"
-                  type="button" 
-                  role="tab">
-            Product Details
-          </button>
-        </li>
+      <!-- ========== TABS NAVIGATION ========== -->
+      <div class="tabs-navigation mb-4">
+        <ul class="nav nav-tabs border-0 justify-content-evenly" role="tablist">
 
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" 
-                  id="rating-reviews-tab" 
-                  data-tab="rating-reviews"
-                  type="button" 
-                  role="tab">
-            Rating & Reviews
-          </button>
-        </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="product-details-tab" data-tab="product-details" type="button" role="tab">
+              Product Details
+            </button>
+          </li>
 
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" 
-                  id="faqs-tab" 
-                  data-tab="faqs"
-                  type="button" 
-                  role="tab">
-            FAQs
-          </button>
-        </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="rating-reviews-tab" data-tab="rating-reviews" type="button" role="tab">
+              Rating & Reviews
+            </button>
+          </li>
 
-      </ul>
-    </div>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="faqs-tab" data-tab="faqs" type="button" role="tab">
+              FAQs
+            </button>
+          </li>
 
-    <!-- ========== TAB CONTENT ========== -->
-    <div class="tab-content">
-
-      <!-- Product Details Tab (Hidden for now) -->
-      <div class="tab-pane" 
-           id="product-details-content" 
-           role="tabpanel">
-        <p>Product details will go here...</p>
-      </div>
-
-      <!-- Rating & Reviews Tab (Active/Visible) -->
-      <div class="tab-pane active" 
-           id="rating-reviews-content" 
-           role="tabpanel">
-
-           
-
-        <!-- ========== REVIEWS GRID (Empty for now) ========== -->
-        <div class="reviews-grid" id="reviews-grid">
-
-            <!-- Reviews header (only shows when Reviews tab is active - static for now) -->
-  <div class="reviews-header d-flex justify-content-between align-items-center mb-4">
-    <h5 class="mb-0">
-      All Reviews <span class="text-muted">(451)</span>
-    </h5>
-
-    <div class="d-flex align-items-center gap-3">
-      <!-- Filter icon -->
-      <button class="btn btn-link text-muted p-0" aria-label="Filter reviews">
-        <i class="fa-solid fa-sliders-up"></i>
-      </button>
-
-      <!-- Latest dropdown -->
-      <div class="dropdown">
-        <button 
-          class="btn btn-outline-secondary btn-sm dropdown-toggle" 
-          type="button" 
-          id="reviewsSort" 
-          data-bs-toggle="dropdown" 
-          aria-expanded="false"
-        >
-          Latest
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reviewsSort">
-          <li><a class="dropdown-item" href="#">Latest</a></li>
-          <li><a class="dropdown-item" href="#">Oldest</a></li>
-          <li><a class="dropdown-item" href="#">Highest Rated</a></li>
-          <li><a class="dropdown-item" href="#">Lowest Rated</a></li>
         </ul>
       </div>
 
-      <!-- Write a Review button -->
-      <button class="btn btn-dark btn-sm rounded-pill px-4">
-        Write a Review
-      </button>
-    </div>
-  </div>
+      <!-- ========== TAB CONTENT ========== -->
+      <div class="tab-content">
 
-          <!-- Review cards will be inserted here in Phase 2 -->
-          <p class="text-muted">Review cards will appear here...</p>
+        <!-- Product Details Tab (Hidden for now) -->
+        <div class="tab-pane" id="product-details-content" role="tabpanel">
+          <p>Product details will go here...</p>
         </div>
 
-        <!-- ========== LOAD MORE BUTTON ========== -->
-        <div class="load-more-container text-center mt-5">
-          <button class="load-more-btn" id="load-more-reviews">
-            Load More Reviews
-          </button>
+        <!-- Rating & Reviews Tab (Active/Visible) -->
+        <div class="tab-pane active" id="rating-reviews-content" role="tabpanel">
+
+
+
+          <!-- ========== REVIEWS GRID (Empty for now) ========== -->
+          <div class="reviews-grid" id="reviews-grid">
+
+            <!-- Reviews header (only shows when Reviews tab is active - static for now) -->
+            <div class="reviews-header d-flex justify-content-between align-items-center mb-4">
+              <h5 class="mb-0">
+                All Reviews <span class="text-muted reviews-count"></span>
+              </h5>
+
+              <div class="d-flex align-items-center gap-3">
+                <!-- Filter icon -->
+                <button class="btn p-2 rounded-pill slider" aria-label="Filter reviews">
+                      <img src="/assets/images/icons/vertical-sliders.png" alt="">
+                </button>
+
+                <!-- Latest dropdown -->
+                <div class="dropdown">
+
+                  <button class="btn rounded-pill dropdown-toggle dropdown-btn" type="button" id="reviewsSort"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Latest <span><i class="fa-solid fa-chevron-right"></i></span>
+                  </button>
+
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reviewsSort">
+                    <li><a class="dropdown-item" href="#">Latest</a></li>
+                    <li><a class="dropdown-item" href="#">Oldest</a></li>
+                    <li><a class="dropdown-item" href="#">Highest Rated</a></li>
+                    <li><a class="dropdown-item" href="#">Lowest Rated</a></li>
+                  </ul>
+
+                </div>
+
+                <!-- Write a Review button -->
+                <button class="btn btn-dark rounded-pill">
+                  Write a Review
+                </button>
+              </div>
+            </div>
+
+            <div class="reviews-card-container">
+              <!-- Single Review Card -->
+              <div class="review-card">
+
+                <!-- Card Header: Stars + Menu -->
+                <div class="review-header">
+                  <div class="review-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                  </div>
+                  <button class="review-menu-btn" aria-label="Review options">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                  </button>
+                </div>
+
+                <!-- Reviewer Name + Badge -->
+                <div class="review-author">
+                  <span class="author-name">Samantha D.</span>
+                  <i class="fa-solid fa-circle-check verified-badge"></i>
+                </div>
+
+                <!-- Review Text -->
+                <p class="review-text">
+                  "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable.
+                  As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt."
+                </p>
+
+                <!-- Posted Date -->
+                <p class="review-date">Posted on August 15, 2023</p>
+
+              </div>
+              
+              <!-- End Single Review Card -->
+               </div>
+
+
+            <!-- ========== LOAD MORE BUTTON ========== -->
+            <div class="load-more-container text-center mt-5">
+              <button class="load-more-btn" id="load-more-reviews">
+                Load More Reviews
+              </button>
+            </div>
+
+          </div>
+
+          <!-- FAQs Tab (Hidden for now) -->
+          <div class="tab-pane" id="faqs-content" role="tabpanel">
+            <p>FAQs will go here...</p>
+          </div>
+
         </div>
 
       </div>
+  </section>
 
-      <!-- FAQs Tab (Hidden for now) -->
-      <div class="tab-pane" 
-           id="faqs-content" 
-           role="tabpanel">
-        <p>FAQs will go here...</p>
-      </div>
 
-    </div>
-
-  </div>
-</section>
-  
-
-  <script src="../js/product-detail.js"></script>
+  <script type="module" src="../js/product-detail.js"></script>
 </body>
 
 </html>

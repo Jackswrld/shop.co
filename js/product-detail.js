@@ -1,238 +1,361 @@
-// ============================================
-// PRODUCT PAGE - Interactive Functionality
-// ============================================
+import { products } from "./products.js";
+import { reviews } from "./review.js";
+
+console.log("Reviews imported:", reviews);
+console.log("Number of reviews:", reviews.length);
 
 document.addEventListener("DOMContentLoaded", function () {
-  // ========== PRODUCT STATE (Data Storage) ==========
-  // This object stores all current user selections
+  // ============================================
+  // 1. GET PRODUCT DATA FROM URL
+  // ============================================
+
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
+  const product = products.find((p) => p.id == productId);
+
+  // Redirect if product not found
+  if (!product) {
+    alert("Product not found!");
+    window.location.href = "../index.html";
+    return; // Stop execution
+  }
+
+  // ============================================
+  // 2. PRODUCT STATE (User Selections)
+  // ============================================
+
   const productState = {
-    selectedColor: null,
-    selectedColorName: null,
     selectedSize: "large",
     quantity: 1,
-    price: 260,
-    productName: "ONE LIFE GRAPHIC T-SHIRT",
+    price: product.price, // Dynamic from product data
+    productName: product.name, // Dynamic from product data
   };
 
-  // ========== GET DOM ELEMENTS ==========
-  // Store references to HTML elements we'll interact
-  const colorCircles = document.querySelectorAll(".color-circle");
-  const sizeButtons = document.querySelectorAll(".size-btn");
-  const qtyDecreaseBtn = document.querySelector(".qty-decrease");
-  const qtyIncreaseBtn = document.querySelector(".qty-increase");
-  const qtyDisplay = document.getElementById("quantity-display");
-  const addToCartBtn = document.getElementById("add-to-cart-btn");
+  //Reviews state
+  let currentReviewsShown = 6;
+  let allProductReviews = [];
 
+  // ============================================
+  // 3. FUNCTION DEFINITIONS
+  // ============================================
 
-  // ========== COLOR SELECTION ==========
+  // ────── RENDER STARS (Used by multiple functions) ──────
+  function renderStars(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalf = rating % 1 !== 0;
+    let html = "";
 
-  function selectColor(clickedCircle) {
-    // 1. Remove 'active' class from all color circles
-    colorCircles.forEach((circle) => {
-      circle.classList.remove("active");
-    });
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+      html += '<i class="fa-solid fa-star"></i>';
+    }
 
-    //Add 'active' class from all color color circles
-    clickedCircle.classList.add("active");
+    // Add half star if needed
+    if (hasHalf) {
+      html += '<i class="fa-solid fa-star-half-stroke"></i>';
+    }
 
-    // 3. Store selection in productState
-    productState.selectedColor = clickedCircle.dataset.color;
-    productState.selectedColorName = clickedCircle.dataset.colorName;
+    // Add empty stars
+    const empty = 5 - Math.ceil(rating);
+    for (let i = 0; i < empty; i++) {
+      html += '<i class="fa-regular fa-star"></i>';
+    }
+
+    return html;
   }
 
-  // Attach click event to all color circles
-  colorCircles.forEach((circle) => {
-    circle.addEventListener("click", function () {
-      selectColor(this);
-    });
-  });
+  // ────── LOAD PRODUCT DATA ──────
+  function loadProductData() {
+    // Update title
+    document.getElementById("product-title").textContent = product.name;
 
-  // ========== SIZE SELECTION ==========
+    // Update rating
+    const starsContainer = document.querySelector(".stars");
+    starsContainer.innerHTML = renderStars(product.rating);
+    document.getElementById("rating-text").textContent = `${product.rating}/5`;
+
+    // Update prices
+    document.getElementById("current-price").textContent = `$${product.price}`;
+
+    const oldPriceElement = document.getElementById("original-price");
+    const discountBadge = document.getElementById("discount-badge");
+
+    if (product.oldPrice) {
+      oldPriceElement.textContent = `$${product.oldPrice}`;
+      const discount = Math.round(
+        ((product.oldPrice - product.price) / product.oldPrice) * 100,
+      );
+      discountBadge.textContent = `-${discount}%`;
+    } else {
+      oldPriceElement.style.display = "none";
+      discountBadge.style.display = "none";
+    }
+
+    // Update description
+    document.getElementById("product-description").textContent =
+      product.description;
+
+    // Update images
+    const mainImage = document.getElementById("main-product-image");
+    mainImage.src = product.images[0];
+
+    const thumbnailsContainer = document.querySelector(".thumbnails-column");
+    thumbnailsContainer.innerHTML = product.images
+      .map(
+        (img, index) => `
+      <img src="${img}"
+           alt="Product view ${index + 1}"
+           class="thumbnail img-fluid rounded-2 ${index === 0 ? "active" : ""}"
+           data-full="${img}">
+    `,
+      )
+      .join("");
+
+    // Update sizes
+    const sizeOptions = document.querySelector(".size-options");
+    if (product.sizes && product.sizes.length > 0) {
+      sizeOptions.innerHTML = product.sizes
+        .map(
+          (size, index) => `
+        <button class="size-btn ${index === 2 ? "active" : ""}" data-size="${size.toLowerCase()}">
+          ${size}
+        </button>
+      `,
+        )
+        .join("");
+    }
+
+    // Update product state
+    productState.price = product.price;
+    productState.productName = product.name;
+
+    console.log("✅ Product loaded:", product.name);
+  }
+
+  function displayReviews() {
+    //Get reviews to show (from 0 to currentReviewsShown)
+    const reviewsToShow = allProductReviews.slice(0, currentReviewsShown);
+
+    // Get first 6 reviews
+
+    // Create HTML for each review
+    const reviewsHtml = reviewsToShow
+      .map((review) => `
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-stars">
+            ${renderStars(review.rating)}
+          </div>
+          <button class="review-menu-btn" aria-label="Review options">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </button>
+        </div>
+        
+        <div class="review-author">
+          <span class="author-name">${review.author}</span>
+          ${review.verified ? '<i class="fa-solid fa-circle-check verified-badge"></i>' : ""}
+        </div>
+        
+        <p class="review-text">"${review.text}"</p>
+        <p class="review-date">Posted on ${review.date}</p>
+      </div>
+    `,
+      ).join('');
+
+    // Insert reviews into page
+    document.querySelector(".reviews-card-container").innerHTML = reviewsHtml;
+
+    //Show/Hide Load More Button
+    const loadMoreBtn = document.getElementById("load-more-reviews");
+    if (currentReviewsShown >= allProductReviews.length) {
+      loadMoreBtn.style.display = "none"; //Hide if all shown
+    } else {
+      loadMoreBtn.style.display = "inline-block"; //Show if more available
+    }
+
+    console.log(
+      `Showing ${reviewsToShow.length} of ${allProductReviews.length} reviews`,
+    );
+  }
+
+  // ────── LOAD REVIEWS ──────
+  function loadReviews() {
+    //Get all reviews for this product
+    allProductReviews = reviews.filter((r) => r.productId == productId);
+
+    // Reset to first 6
+    currentReviewsShown = 6;
+
+    // Display first 6
+    displayReviews();
+
+    // Update review count
+    document.querySelector(".reviews-count").textContent =
+      `(${allProductReviews.length})`;
+
+    console.log("✅ Reviews loaded:", allProductReviews.length);
+  }
+
+  // ────── SIZE SELECTION ──────
   function selectSize(clickedButton) {
-    // 1. Remove 'active' class from all size buttons
-    sizeButtons.forEach((button) => {
-      button.classList.remove("active");
-    });
+    // Remove active from all size buttons
+    const sizeButtons = document.querySelectorAll(".size-btn");
+    sizeButtons.forEach((button) => button.classList.remove("active"));
 
-    // 2. Add 'active' class to clicked button
+    // Add active to clicked button
     clickedButton.classList.add("active");
 
-    // 3. Store selection in productState
+    // Store selection in state
     productState.selectedSize = clickedButton.dataset.size;
 
-    // 4. Log for debugging
-    console.log("size selected:", productState.selectedSize);
+    console.log("Size selected:", productState.selectedSize);
   }
 
-  // Attach click event to all size buttons
-  sizeButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      selectSize(this);
-    });
-  });
-
-  // ========== QUANTITY CONTROLS ==========
-
+  // ────── QUANTITY CONTROLS ──────
   function decreaseQuantity() {
-    //Only decrease if quantity is greater than 1
     if (productState.quantity > 1) {
       productState.quantity--;
       updateQuantityDisplay();
     }
   }
 
-function increaseQuantity() {
-  // Increase quantity (add max-limit later)
-  productState.quantity++;
-  updateQuantityDisplay();
-}
+  // ────── INCREASE QUANTITY CONTROLS ──────
+  function increaseQuantity() {
+    productState.quantity++;
+    updateQuantityDisplay();
+  }
 
-function updateQuantityDisplay() {
-  // Update the number shown on screen
-  qtyDisplay.textContent = productState.quantity;
-  console.log("Quantity updated:", productState.quantity);
-}
-  
-  // Attach click events to quantity buttons
-  qtyDecreaseBtn.addEventListener("click", decreaseQuantity);
-  qtyIncreaseBtn.addEventListener("click", increaseQuantity);
+  // ────── DECREASE QUANTITY CONTROLS ──────
+  function updateQuantityDisplay() {
+    const qtyDisplay = document.getElementById("quantity-display");
+    qtyDisplay.textContent = productState.quantity;
+    console.log("Quantity updated:", productState.quantity);
+  }
 
-
-  // ========== ADD TO CART ==========
+  // ────── ADD TO CART ──────
   function addToCart() {
-    // 1. Validate: Check if color is selected
-    if (!productState.selectedColor) {
-      alert("Please select a color.");
-      return; // Stop function here if no color selected
-    }
-
-    // 2. Create cart item object with all selections
+    // Create cart item object
     const cartItem = {
       product: productState.productName,
-      color: productState.selectedColorName,
-      colorId: productState.selectedColor,
       size: productState.selectedSize,
       quantity: productState.quantity,
       price: productState.price,
-      total: productState.price * productState.quantity
+      total: productState.price * productState.quantity,
     };
 
-  // 3. Log cart item(later we'll save to localStorage or send to server)
-  console.log("Added to cart:", cartItem);
+    // Log cart item
+    console.log("Added to cart:", cartItem);
 
-  // 4. Show success message
-  alert(`Added to cart!\n
-    \nProduct: ${cartItem.product}
-    \nColor: ${cartItem.color}
-    \nSize: ${cartItem.size}
-    \nQuantity: ${cartItem.quantity}
-    \nPrice: $${cartItem.price}
-    \nTotal: $${cartItem.total}`);
+    // Show success message
+    alert(
+      `Added to cart!\n\nProduct: ${cartItem.product}\nSize: ${cartItem.size}\nQuantity: ${cartItem.quantity}\nPrice: $${cartItem.price}\nTotal: $${cartItem.total}`,
+    );
 
-    // TODO: Later we'll add:
-  // - Save to localStorage
-  // - Update cart count in navbar
-  // - Show cart sidebar
-  };
+    // TODO: Save to localStorage, update navbar count
+  }
 
-   // Attach click event to Add to Cart button
-   addToCartBtn.addEventListener("click", addToCart);
+  // ────── THUMBNAIL IMAGE SWITCHING ──────
+  function changeMainImage(clickedThumbnail) {
+    // Remove active from all thumbnails
+    const thumbnails = document.querySelectorAll(".thumbnail");
+    thumbnails.forEach((thumb) => thumb.classList.remove("active"));
 
+    // Add active to clicked thumbnail
+    clickedThumbnail.classList.add("active");
 
-  // ========== THUMBNAIL IMAGE SWITCHING ==========
- const thumbnails = document.querySelectorAll(".thumbnail");
-const mainImage = document.getElementById("main-product-image");
+    // Change main image
+    const mainImage = document.getElementById("main-product-image");
+    mainImage.src = clickedThumbnail.dataset.full;
+  }
 
-function changeMainImage(clickedThumbnail) {  
- // 1. Remove 'active' class from all thumbnails
- thumbnails.forEach((thumb) => {
-  thumb.classList.remove('active');
- });
- 
- // 2. Add 'active' class to clicked thumbnail
- clickedThumbnail.classList.add('active');
+  // ────── TAB SWITCHING ──────
+  function switchTab(clickedButton) {
+    const targetTab = clickedButton.dataset.tab;
 
- // 3. Change main image source to clicked thumbnail's full image
- const fullImagePath = clickedThumbnail.dataset.full;
- mainImage.src = fullImagePath;
-}
+    // Remove active from all tab buttons
+    const tabButtons = document.querySelectorAll(".nav-tabs .nav-link");
+    tabButtons.forEach((button) => button.classList.remove("active"));
 
-  // Attach click events to thumbnails
-  thumbnails.forEach((thumb) =>{
-    thumb.addEventListener("click", function () {
-      changeMainImage(this);
-    });
-  })
+    // Add active to clicked button
+    clickedButton.classList.add("active");
 
-  // ========== INITIALIZATION ==========
-console.log('Product page loaded successfully!');
-  console.log('Initial state:', productState);
+    // Hide all tab panels
+    const tabPanels = document.querySelectorAll(".tab-pane");
+    tabPanels.forEach((panel) => panel.classList.remove("active"));
 
+    // Show target panel
+    const targetPanel = document.getElementById(`${targetTab}-content`);
+    if (targetPanel) {
+      targetPanel.classList.add("active");
+    }
+
+    // Show/hide reviews header based on tab
+    const reviewHeader = document.querySelector(".reviews-header");
+    if (targetTab === "rating-reviews") {
+      reviewHeader.style.display = "flex";
+    } else {
+      reviewHeader.style.display = "none";
+    }
+
+    console.log("Switched to tab:", targetTab);
+  }
 
   // ============================================
-// PRODUCT TABS - Tab Switching Functionality
-// ============================================
+  // 4. EVENT LISTENERS (Event Delegation)
+  // ============================================
 
-// ========== GET TAB ELEMENTS ==========
-const tabButtons = document.querySelectorAll('.nav-tabs .nav-link');
-const tabPanels = document.querySelectorAll('.tab-pane');
-const reviewHeader = document.querySelector('.reviews-header');
+  // Sizes (dynamically created, use delegation)
+  document
+    .querySelector(".size-options")
+    .addEventListener("click", function (e) {
+      const button = e.target.closest(".size-btn");
+      if (button) selectSize(button);
+    });
 
-// ========== TAB SWITCHING FUNCTION ==========
-function switchTab(clickedButton){
-  // Get the tab name from data attribute
-  const targetTab = clickedButton.dataset.tab;
+  // Thumbnails (dynamically created, use delegation)
+  document
+    .querySelector(".thumbnails-column")
+    .addEventListener("click", function (e) {
+      const thumb = e.target.closest(".thumbnail");
+      if (thumb) changeMainImage(thumb);
+    });
 
-  // Remove 'active' class from all tab buttons
-  tabButtons.forEach((button) => {
-    button.classList.remove('active');
+  // Quantity controls (static elements)
+  document
+    .querySelector(".qty-decrease")
+    .addEventListener("click", decreaseQuantity);
+  document
+    .querySelector(".qty-increase")
+    .addEventListener("click", increaseQuantity);
+
+  // Add to cart button (static element)
+  document
+    .getElementById("add-to-cart-btn")
+    .addEventListener("click", addToCart);
+
+  // Tab navigation (static elements)
+  document.querySelectorAll(".nav-tabs .nav-link").forEach((button) => {
+    button.addEventListener("click", function () {
+      switchTab(this);
+    });
+
+    //Load More Reviews button
+    document
+      .getElementById("load-more-reviews")
+      .addEventListener("click", function () {
+        currentReviewsShown += 6;
+        displayReviews();
+      });
   });
 
-  // Add 'active' class to clicked tab button
-  clickedButton.classList.add('active');
+  // ============================================
+  // 5. INITIALIZE - Load Data (LAST!)
+  // ============================================
 
-  // Hide all tab tabPanels
-  tabPanels.forEach((panel) => {
-    panel.classList.remove('active');
-  });
+  loadProductData(); // Load product info first
+  loadReviews(); // Then load reviews
 
-  // Show the selected tab panel
-  const targetPanel = document.getElementById(`${targetTab}-content`);
-
-  if (targetPanel){
-    targetPanel.classList.add('active');
-  }
-  
-  // 5. Show/hide reviews header based on active tab
-  if (targetTab === 'rating-reviews'){
-    reviewHeader.style.display = 'flex';
-  }
-  else {
-    reviewHeader.style.display = 'none';
-  }
-
-  // 6. Log for debugging
-  console.log('Switched to tab:', targetTab);
-  
-}
-
-// ========== ATTACH CLICK LISTENERS ==========
-tabButtons.forEach((button) => {
-  button.addEventListener('click', function(){
-    switchTab(this);
-  });
-});
-
-// ========== INITIALIZE ON PAGE LOAD ==========
-  // Make sure reviews header shows since Rating & Reviews is default active
-  const activeTab = document.querySelector('.nav-link.active');
-  if (activeTab && activeTab.dataset.tab !== 'rating-reviews'){
-    reviewHeader.style.display = 'none';
-  }
-
-  console.log('Product tabs loaded successfully!');
- 
-});
-
-
-
+  console.log("🚀 Product page initialized!");
+  console.log("📦 Product:", product.name);
+  console.log("💰 Price:", productState.price);
+}); // End of DOMContentLoaded

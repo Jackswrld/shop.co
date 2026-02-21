@@ -1,3 +1,7 @@
 {
-    "livePreview.defaultPreviewPath": "/pages/product-details.html"
+  "livePreview.defaultPreviewPath": "/pages/product-details.html",
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on"
+  }
 }
