@@ -1,17 +1,21 @@
 import { products } from "./products.js";
 import { reviews } from "./review.js";
+import { getAllProducts } from "./api-service.js";
 
 console.log("Reviews imported:", reviews);
 console.log("Number of reviews:", reviews.length);
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // ============================================
   // 1. GET PRODUCT DATA FROM URL
   // ============================================
 
   const params = new URLSearchParams(window.location.search);
   const productId = params.get("id");
-  const product = products.find((p) => p.id == productId);
+  
+  // Get all products (local + API)
+  const allProducts = await getAllProducts(products);
+  const product = allProducts.find((p) => p.id == productId);
 
   // Redirect if product not found
   if (!product) {

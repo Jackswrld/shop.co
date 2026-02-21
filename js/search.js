@@ -1,4 +1,8 @@
 import { products } from "./products.js";
+import { searchAllProducts } from "./api-service.js";
+
+// Cache for all products (local + API)
+let allProducts = null;
 
 // Initialize search functionality
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle search input - filter and display results in lowercase
   if (searchBar) {
-    searchBar.addEventListener("input", (e) => {
+    searchBar.addEventListener("input", async (e) => {
       const searchTerm = e.target.value.trim().toLowerCase();
 
       // Clear results if search term is empty
@@ -20,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Filter products based on search term
-      const filteredProducts = filterProducts(searchTerm);
+      // Filter products based on search term (from both local and API)
+      const filteredProducts = await filterProducts(searchTerm);
 
       // Display filtered results
       displaySearchResults(filteredProducts, searchResultsList, searchResultsDropdown);
@@ -69,25 +73,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /**
  * Filter products based on search term in lowercase
- * Only shows products that START with the search term
+ * Searches both local and API products
  * @param {string} searchTerm - The lowercase search term
- * @returns {array} - Filtered products array
+ * @returns {Promise<array>} - Filtered products array
  */
-function filterProducts(searchTerm) {
-  return products.filter((product) => {
-    const productNameLower = product.name.toLowerCase();
-    const productCategoryLower = product.category.toLowerCase();
-    const productDescriptionLower = product.description.toLowerCase();
-    const productGenderLower = product.gender.toLowerCase();
-
-    // Match search term only at the START of product name, category, description, or gender
-    return (
-      productNameLower.startsWith(searchTerm) ||
-      productCategoryLower.startsWith(searchTerm) ||
-      productDescriptionLower.startsWith(searchTerm) ||
-      productGenderLower.startsWith(searchTerm)
-    );
-  });
+async function filterProducts(searchTerm) {
+  // Use API service to search both local and API products
+  const filteredProducts = await searchAllProducts(searchTerm, products);
+  
+  // Sort results: local products first, then API products
+  const localResults = filteredProducts.filter(p => !p.source || p.source === 'local');
+  const apiResults = filteredProducts.filter(p => p.source === 'api');
+  
+  return [...localResults, ...apiResults];
 }
 
 /**
