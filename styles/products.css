@@ -393,6 +393,7 @@
   justify-content: center;
   z-index: 9999;
   animation: fadeIn 0.3s ease;
+  padding: 1rem;
 }
 
 @keyframes fadeIn {
@@ -429,16 +430,19 @@
 
 .view-all-modal-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 2rem;
   border-bottom: 1px solid #e5e7eb;
+  position: relative;
 }
 
 .view-all-modal-header h2 {
   margin: 0;
   font-size: 1.8rem;
   color: var(--color-text-primary);
+  text-align: center;
+  flex: 1;
 }
 
 .view-all-modal-close {
@@ -448,6 +452,9 @@
   cursor: pointer;
   color: #666;
   transition: color 0.3s ease;
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
 }
 
 .view-all-modal-close:hover {
@@ -458,6 +465,12 @@
   flex: 1;
   overflow-y: auto;
   padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.view-all-modal-body .row {
+  width: 100%;
 }
 
 #view-all-products-container {
@@ -507,10 +520,17 @@
 
   .view-all-modal-header {
     padding: 1.5rem;
+    position: relative;
   }
 
   .view-all-modal-header h2 {
     font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .view-all-modal-close {
+    right: 1.5rem;
+    top: 1.5rem;
   }
 
   .view-all-modal-body {
@@ -540,8 +560,19 @@
     max-height: 80vh;
   }
 
+  .view-all-modal-header {
+    position: relative;
+    padding: 1.2rem 1rem;
+  }
+
   .view-all-modal-header h2 {
     font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .view-all-modal-close {
+    right: 1rem;
+    top: 1.2rem;
   }
 
   .view-all-prev-btn,

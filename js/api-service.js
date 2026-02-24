@@ -49,6 +49,7 @@ export async function fetchApiProducts() {
       id: 1000 + index, // Start from 1000 to differentiate from local products (1-999)
       name: product.title,
       category: mapCategory(product.category),
+      apiCategory: product.category, // Preserve original category for grouping
       gender: determineGender(product.category),
       price: Math.round(product.price),
       oldPrice: calculateOldPrice(product.price, product.discountPercentage),

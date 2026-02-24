@@ -186,12 +186,37 @@ async function displayProducts() {
     attachProductCardListeners();
   }
 
-  // Get FEATURED from API (first 4 API products)
-  const apiProducts = allProducts.filter(p => p.source === 'api');
-  const featuredApi = apiProducts.slice(0, 4);
-  const featuredApiContainer = document.getElementById('featured-api-container');
-  if (featuredApiContainer) {
-    featuredApiContainer.innerHTML = featuredApi.map(createProductCard).join('');
+  // Get FEATURED PRODUCTS by different categories
+  const shoes = allProducts.filter(p => ['mens-shoes', 'womens-shoes'].includes(p.apiCategory)).slice(0, 4);
+  const shirtsTops = allProducts.filter(p => ['mens-shirts', 'tops'].includes(p.apiCategory)).slice(0, 4);
+  const dresses = allProducts.filter(p => p.apiCategory === 'womens-dresses').slice(0, 4);
+  const accessories = allProducts.filter(p => ['womens-bags', 'womens-jewellery', 'sunglasses', 'mens-watches', 'womens-watches'].includes(p.apiCategory)).slice(0, 4);
+
+  // Display Featured Shoes
+  const shoesContainer = document.getElementById('featured-shoes-container');
+  if (shoesContainer && shoes.length > 0) {
+    shoesContainer.innerHTML = shoes.map(createProductCard).join('');
+    attachProductCardListeners();
+  }
+
+  // Display Featured Shirts & Tops
+  const shirtsContainer = document.getElementById('featured-shirts-container');
+  if (shirtsContainer && shirtsTops.length > 0) {
+    shirtsContainer.innerHTML = shirtsTops.map(createProductCard).join('');
+    attachProductCardListeners();
+  }
+
+  // Display Featured Dresses
+  const dressesContainer = document.getElementById('featured-dresses-container');
+  if (dressesContainer && dresses.length > 0) {
+    dressesContainer.innerHTML = dresses.map(createProductCard).join('');
+    attachProductCardListeners();
+  }
+
+  // Display Featured Accessories
+  const accessoriesContainer = document.getElementById('featured-accessories-container');
+  if (accessoriesContainer && accessories.length > 0) {
+    accessoriesContainer.innerHTML = accessories.map(createProductCard).join('');
     attachProductCardListeners();
   }
 
@@ -218,9 +243,21 @@ function setupViewAllButtons() {
         filteredProducts = allProducts.filter(p => p.tags.includes('top-selling'));
         sectionTitle = 'All Top Selling Products';
       } else if (index === 2) {
-        // Featured API View All
-        filteredProducts = allProducts.filter(p => p.source === 'api');
-        sectionTitle = 'All Featured Fashion';
+        // Featured Shoes View All
+        filteredProducts = allProducts.filter(p => ['mens-shoes', 'womens-shoes'].includes(p.apiCategory));
+        sectionTitle = 'All Shoes & Sneakers';
+      } else if (index === 3) {
+        // Featured Shirts & Tops View All
+        filteredProducts = allProducts.filter(p => ['mens-shirts', 'tops'].includes(p.apiCategory));
+        sectionTitle = 'All Shirts & Tops';
+      } else if (index === 4) {
+        // Featured Dresses View All
+        filteredProducts = allProducts.filter(p => p.apiCategory === 'womens-dresses');
+        sectionTitle = 'All Dresses';
+      } else if (index === 5) {
+        // Featured Accessories View All
+        filteredProducts = allProducts.filter(p => ['womens-bags', 'womens-jewellery', 'sunglasses', 'mens-watches', 'womens-watches'].includes(p.apiCategory));
+        sectionTitle = 'All Accessories';
       }
 
       if (filteredProducts.length > 0) {
