@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ────── SORT REVIEWS ──────
   function sortReviews(sortBy) {
-    let sortedReviews = [...allProductReviews];
+    let sortedReviews = [...originalProductReviews];
 
     switch (sortBy) {
       case "latest":
