@@ -369,6 +369,267 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ============================================
+// WRITE REVIEW MODAL
+// ============================================
+
+// ────── MODAL CONTROLS ──────
+function openReviewModal() {
+  const modal = document.getElementById('reviewModal');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent background scroll
+}
+
+function closeReviewModal() {
+  const modal = document.getElementById('reviewModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = ''; // Restore scroll
+  resetReviewForm();
+}
+
+function resetReviewForm() {
+  // Reset star rating
+  selectedRating = 0;
+  document.querySelectorAll('.star-rating-input i').forEach(star => {
+    star.classList.remove('selected');
+    star.classList.replace('fa-solid', 'fa-regular');
+  });
+  document.getElementById('ratingText').textContent = 'Select a rating';
+
+  // Reset inputs
+  document.getElementById('reviewerName').value = '';
+  document.getElementById('reviewTextarea').value = '';
+  document.getElementById('verifiedCheckbox').checked = false;
+  document.getElementById('charCount').textContent = '0';
+
+  // Clear errors
+  document.querySelectorAll('.error-message').forEach(error => {
+    error.classList.remove('show');
+  });
+  document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
+    input.classList.remove('error');
+  });
+}
+
+// ────── STAR RATING INTERACTION ──────
+let selectedRating = 0;
+
+function setupStarRating() {
+  const stars = document.querySelectorAll('.star-rating-input i');
+  const ratingText = document.getElementById('ratingText');
+
+  const ratingLabels = {
+    1: '⭐ Poor',
+    2: '⭐⭐ Fair',
+    3: '⭐⭐⭐ Good',
+    4: '⭐⭐⭐⭐ Very Good',
+    5: '⭐⭐⭐⭐⭐ Excellent'
+  };
+
+  // Hover effect
+  stars.forEach(star => {
+    star.addEventListener('mouseenter', function() {
+      const rating = parseInt(this.dataset.rating);
+      highlightStars(rating, true);
+      ratingText.textContent = ratingLabels[rating];
+    });
+
+    star.addEventListener('mouseleave', function() {
+      highlightStars(selectedRating, false);
+      ratingText.textContent = selectedRating > 0 
+        ? ratingLabels[selectedRating] 
+        : 'Select a rating';
+    });
+
+    // Click to select
+    star.addEventListener('click', function() {
+      selectedRating = parseInt(this.dataset.rating);
+      selectStars(selectedRating);
+      ratingText.textContent = ratingLabels[selectedRating];
+    });
+  });
+}
+
+function highlightStars(rating, isHover) {
+  const stars = document.querySelectorAll('.star-rating-input i');
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      if (isHover) {
+        star.classList.add('hover');
+      } else {
+        star.classList.remove('hover');
+      }
+    } else {
+      star.classList.remove('hover');
+    }
+  });
+}
+
+function selectStars(rating) {
+  const stars = document.querySelectorAll('.star-rating-input i');
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      star.classList.add('selected');
+      star.classList.replace('fa-regular', 'fa-solid');
+    } else {
+      star.classList.remove('selected');
+      star.classList.replace('fa-solid', 'fa-regular');
+    }
+  });
+}
+
+// ────── CHARACTER COUNTER ──────
+function setupCharCounter() {
+  const textarea = document.getElementById('reviewTextarea');
+  const charCount = document.getElementById('charCount');
+
+  textarea.addEventListener('input', function() {
+    const count = this.value.length;
+    charCount.textContent = count;
+
+    // Color changes based on length
+    if (count > 450) {
+      charCount.style.color = '#dc2626'; // Red when near limit
+    } else if (count > 400) {
+      charCount.style.color = '#f59e0b'; // Orange
+    } else {
+      charCount.style.color = 'var(--color-text-muted)'; // Default
+    }
+  });
+}
+
+// ────── FORM VALIDATION ──────
+function validateReviewForm() {
+  let isValid = true;
+
+  // Validate rating
+  if (selectedRating === 0) {
+    showError('ratingText', 'Please select a rating');
+    isValid = false;
+  }
+
+  // Validate name
+  const name = document.getElementById('reviewerName').value.trim();
+  const nameInput = document.getElementById('reviewerName');
+  const nameError = document.getElementById('nameError');
+
+  if (name === '') {
+    nameInput.classList.add('error');
+    nameError.textContent = 'Name is required';
+    nameError.classList.add('show');
+    isValid = false;
+  } else if (name.length < 2) {
+    nameInput.classList.add('error');
+    nameError.textContent = 'Name must be at least 2 characters';
+    nameError.classList.add('show');
+    isValid = false;
+  } else {
+    nameInput.classList.remove('error');
+    nameError.classList.remove('show');
+  }
+
+  // Validate review text
+  const reviewText = document.getElementById('reviewTextarea').value.trim();
+  const reviewTextarea = document.getElementById('reviewTextarea');
+  const reviewError = document.getElementById('reviewError');
+
+  if (reviewText === '') {
+    reviewTextarea.classList.add('error');
+    reviewError.textContent = 'Review is required';
+    reviewError.classList.add('show');
+    isValid = false;
+  } else if (reviewText.length < 10) {
+    reviewTextarea.classList.add('error');
+    reviewError.textContent = 'Review must be at least 10 characters';
+    reviewError.classList.add('show');
+    isValid = false;
+  } else {
+    reviewTextarea.classList.remove('error');
+    reviewError.classList.remove('show');
+  }
+
+  return isValid;
+}
+
+function showError(elementId, message) {
+  const element = document.getElementById(elementId);
+  element.textContent = message;
+  element.style.color = '#dc2626';
+  
+  setTimeout(() => {
+    element.style.color = 'var(--color-text-muted)';
+    if (elementId === 'ratingText' && selectedRating === 0) {
+      element.textContent = 'Select a rating';
+    }
+  }, 3000);
+}
+
+// ────── SUBMIT REVIEW ──────
+function submitReview() {
+  // Validate form
+  if (!validateReviewForm()) {
+    return;
+  }
+
+  // Get form data
+  const name = document.getElementById('reviewerName').value.trim();
+  const reviewText = document.getElementById('reviewTextarea').value.trim();
+  const isVerified = document.getElementById('verifiedCheckbox').checked;
+
+  // Create new review object
+  const newReview = {
+    id: reviews.length + 1,
+    productId: parseInt(productId),
+    author: name,
+    verified: isVerified,
+    rating: selectedRating,
+    text: reviewText,
+    date: new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })
+  };
+
+  // Add to reviews array
+  reviews.push(newReview);
+  originalProductReviews.push(newReview);
+  allProductReviews.push(newReview);
+
+  // Show success message
+  showSuccessMessage();
+
+  // Close modal
+  closeReviewModal();
+
+  // Refresh reviews display with animation
+  currentReviewsShown = 6;
+  smoothTransition(() => {
+    displayReviews();
+    document.querySelector('.reviews-count').textContent = 
+      `(${allProductReviews.length})`;
+  });
+}
+
+function showSuccessMessage() {
+  const message = document.createElement('div');
+  message.className = 'success-message';
+  message.innerHTML = `
+    <i class="fa-solid fa-circle-check"></i>
+    <span>Review submitted successfully!</span>
+  `;
+  
+  document.body.appendChild(message);
+
+  // Remove after 3 seconds
+  setTimeout(() => {
+    message.style.animation = 'slideInRight 0.3s ease reverse';
+    setTimeout(() => {
+      message.remove();
+    }, 300);
+  }, 3000);
+}
+
+  // ============================================
   // 7. DROPDOWN HANDLERS
   // ============================================
 
@@ -499,9 +760,50 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ============================================
+// MODAL EVENT LISTENERS
+// ============================================
+
+// Open modal
+document.querySelector('.reviews-header .btn-dark').addEventListener('click', openReviewModal);
+
+// Close modal - X button
+document.getElementById('closeModalBtn').addEventListener('click', closeReviewModal);
+
+// Close modal - Cancel button
+document.getElementById('cancelBtn').addEventListener('click', closeReviewModal);
+
+// Close modal - Click outside
+document.getElementById('reviewModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeReviewModal();
+  }
+});
+
+// Close modal - ESC key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('reviewModal');
+    if (modal.classList.contains('active')) {
+      closeReviewModal();
+    }
+  }
+});
+
+// Submit review
+document.getElementById('submitReviewBtn').addEventListener('click', submitReview);
+
+// Setup star rating interaction
+setupStarRating();
+
+// Setup character counter
+setupCharCounter();
+
+  // ============================================
   // 9. INITIALIZE
   // ============================================
 
   loadProductData();
   loadReviews();
+  setupStarRating();
+setupCharCounter();
 }); // End DOMContentLoaded
