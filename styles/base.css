@@ -1,3 +1,7 @@
+/* ============================================
+   GLOBAL RESET & FONTS
+   ============================================ */
+
 * {
   margin: 0;
   padding: 0;
@@ -23,69 +27,70 @@
   src: url("../assets/Fonts/satoshi/Satoshi-Bold.otf") format("opentype");
 }
 
-/* General Styles */
-:root {
-  --primary: #dedcdc67;
-  --secondary: #000;
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
 
-  /* ===== COLORS ===== */
+:root {
+  /* Colors */
   --color-black: #000000;
   --color-white: #ffffff;
-
   --color-text-primary: #000000;
   --color-text-secondary: #6b6b6b;
   --color-text-muted: #9ca3af;
-
   --color-bg-body: #fafafa;
   --color-bg-section: #f5f5f5;
   --color-bg-card: #ffffff;
-
   --color-border: #e6e6e6;
-  --color-star: #FFC633; /* rating stars */
+  --color-star: #ffc633;
 
-  /* ===== TYPOGRAPHY ===== */
+  /* Typography */
   --font-primary: "Satoshi", sans-serif;
   --font-primary-bold: "SatoshiBold", sans-serif;
-
-
   --font-size-xs: 10px;
   --font-size-sm: 14px;
   --font-size-md: 16px;
   --font-size-lg: 20px;
   --font-size-xl: 32px;
-  --font-size-xxl: 45px; /* hero heading */
-
+  --font-size-xxl: 45px;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* ===== SPACING ===== */
+  /* Spacing */
   --space-xs: 5px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 32px;
   --space-xl: 64px;
 
-  /* ===== RADIUS ===== */
+  /* Border Radius */
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-xl: 62px;
 
-  /* ===== SHADOWS ===== */
+  /* Shadows */
   --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
 
-  /* ===== LAYOUT ===== */
+  /* Other */
   --container-width: 1200px;
   --transition: 0.3s ease;
+  --primary: #dedcdc67;
+  --secondary: #000;
 }
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
 
 body {
   background-color: var(--color-bg-body);
   color: var(--color-text-primary);
   font-size: var(--font-size-md);
+  font-family: var(--font-primary);
   height: 100vh;
   width: 100%;
   overflow-x: hidden !important;
@@ -116,7 +121,10 @@ button {
   border: none;
 }
 
-/* Top Info Bar */
+/* ============================================
+   TOP INFO BAR
+   ============================================ */
+
 .top-info {
   font-family: var(--font-primary);
   background-color: #000;
@@ -126,7 +134,62 @@ button {
   font-size: 12px;
 }
 
-/* Navigation Bar */
+/* ============================================
+   GLOBAL SMOOTH TRANSITIONS
+   ============================================ */
+
+.btn,
+.load-more-btn,
+.add-to-cart-btn,
+.size-btn,
+.qty-btn {
+  transition: all 0.3s ease;
+}
+
+.review-card,
+.product-card,
+.thumbnail {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tab-pane {
+  transition: opacity 0.3s ease;
+}
+
+.tab-pane.active {
+  animation: fadeIn 0.3s ease;
+}
+
+.filter-option {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.reviews-count {
+  transition: color 0.3s ease;
+}
+
+.qty-display {
+  transition: transform 0.2s ease;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.qty-display.updated {
+  animation: bounce 0.3s ease;
+}
+
+/* ============================================
+   NAVIGATION BAR
+   ============================================ */
+
 nav {
   display: flex;
   align-items: center;
@@ -222,7 +285,8 @@ nav {
   cursor: pointer;
   color: #000;
 }
-/*Drop-down */
+
+/* Navbar dropdown */
 .dropdown {
   position: relative;
 }
@@ -235,47 +299,41 @@ nav {
   list-style: none;
   padding: 10px 0;
   margin: 0;
-
   display: none;
 }
+
 .dropdown-menu li {
   padding: 8px 20px;
   white-space: nowrap;
 }
-.dropdown-menu li a{
+
+.dropdown-menu li a {
   text-decoration: none;
 }
+
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
 .dropdown-toggle {
   display: flex;
   align-items: center;
-  gap: 6px; /* space between text and caret */
+  gap: 6px;
 }
+
 .dropdown-caret {
   font-size: 0.7rem;
   transition: transform 0.2s ease;
 }
-.dropdown-caret {
-  font-size: 0.7rem;
-  transition: transform 0.2s ease;
-}
+
 .dropdown:hover .dropdown-caret {
   transform: rotate(180deg);
 }
 
 .dropdown-toggle::after {
-    display: none;
+  display: none;
 }
 
-.h1 {
-  font-size: var(--font-size-xxl) !important;
-  font-weight: var(--font-weight-bold) !important;
-  color: var(--secondary) !important;
-}
-
-/* Responsive Navbar */
 .nav-toggle {
   display: none;
   background: none;
@@ -283,6 +341,10 @@ nav {
   font-size: 22px;
   cursor: pointer;
 }
+
+/* ============================================
+   RESPONSIVE NAVBAR
+   ============================================ */
 
 @media (max-width: 900px) {
   nav {
@@ -301,32 +363,23 @@ nav {
 
   .nav-left {
     gap: 12px;
-    font-family: var(--font-primary);
     flex: 1;
   }
 
-  /* hide desktop menu and full search by default on small screens */
   .nav-menu,
   .search-bar {
     display: none;
   }
 
-  /* show only search icon button on small screens */
   .search-icon-btn {
     display: block;
     color: var(--color-black);
   }
 
-  .search-container {
-    display: flex;
-  }
-
-  /* hide the icon from search container on small screens */
   .search-container i {
     display: none;
   }
 
-  /* when nav has .nav-open, show stacked menu */
   nav.nav-open .nav-menu {
     display: block;
     position: absolute;
@@ -351,20 +404,12 @@ nav {
     padding-left: 12px;
   }
 
-  /* HIDE search bar entirely when menu is open on mobile */
-  nav.nav-open .search-bar {
+  nav.nav-open .search-bar,
+  nav.nav-open .search-container,
+  nav.nav-open .search-icon-btn {
     display: none !important;
   }
 
-  nav.nav-open .search-container {
-    display: none;
-  }
-
-  nav.nav-open .search-icon-btn {
-    display: none;
-  }
-
-  /* icons align right as compact buttons */
   .nav-icons {
     gap: 8px;
   }

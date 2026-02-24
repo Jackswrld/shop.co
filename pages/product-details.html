@@ -271,73 +271,70 @@
                 All Reviews <span class="text-muted reviews-count"></span>
               </h5>
 
-              <div class="d-flex align-items-center gap-3">
-                <!-- Filter icon -->
-                <button class="btn p-2 rounded-pill slider" aria-label="Filter reviews">
-                      <img src="/assets/images/icons/vertical-sliders.png" alt="">
-                </button>
+            <div class="d-flex align-items-center gap-3">
+  
+  <!-- Filter dropdown -->
+  <div class="custom-dropdown">
+    <button class="dropdown-trigger p-2" id="filterBtn">
+      <img src="/assets/images/icons/vertical-sliders.png" alt="" style="width: 18px; height: 18px;">
+    </button>
+    
+    <ul class="dropdown-content" id="filterDropdown">
+      <li><a href="#" class="filter-option active" data-rating="all">All Reviews</a></li>
+      <li><a href="#" class="filter-option" data-rating="5">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </a></li>
+      <li><a href="#" class="filter-option" data-rating="4">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </a></li>
+      <li><a href="#" class="filter-option" data-rating="3">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </a></li>
+      <li><a href="#" class="filter-option" data-rating="2">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </a></li>
+      <li><a href="#" class="filter-option" data-rating="1">
+        <i class="fa-solid fa-star"></i>
+      </a></li>
+    </ul>
+  </div>
 
-                <!-- Latest dropdown -->
-                <div class="dropdown">
+  <!-- Latest dropdown -->
+  <div class="custom-dropdown">
+    <button class="dropdown-trigger" id="sortBtn">
+      <span>Latest</span>
+      <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+    </button>
+    
+    <ul class="dropdown-content" id="sortDropdown">
+      <li><a href="#" class="sort-option" data-sort="latest">Latest</a></li>
+      <li><a href="#" class="sort-option" data-sort="oldest">Oldest</a></li>
+      <li><a href="#" class="sort-option" data-sort="highest">Highest Rated</a></li>
+      <li><a href="#" class="sort-option" data-sort="lowest">Lowest Rated</a></li>
+    </ul>
+  </div>
 
-                  <button class="btn rounded-pill dropdown-toggle dropdown-btn" type="button" id="reviewsSort"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Latest <span><i class="fa-solid fa-chevron-right"></i></span>
-                  </button>
+  <!-- Write a Review button -->
+  <button class="btn btn-dark rounded-pill">
+    Write a Review
+  </button>
+  
+</div>
 
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reviewsSort">
-                    <li><a class="dropdown-item" href="#">Latest</a></li>
-                    <li><a class="dropdown-item" href="#">Oldest</a></li>
-                    <li><a class="dropdown-item" href="#">Highest Rated</a></li>
-                    <li><a class="dropdown-item" href="#">Lowest Rated</a></li>
-                  </ul>
-
-                </div>
-
-                <!-- Write a Review button -->
-                <button class="btn btn-dark rounded-pill">
-                  Write a Review
-                </button>
-              </div>
             </div>
 
             <div class="reviews-card-container">
-              <!-- Single Review Card -->
-              <div class="review-card">
-
-                <!-- Card Header: Stars + Menu -->
-                <div class="review-header">
-                  <div class="review-stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                  </div>
-                  <button class="review-menu-btn" aria-label="Review options">
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                  </button>
-                </div>
-
-                <!-- Reviewer Name + Badge -->
-                <div class="review-author">
-                  <span class="author-name">Samantha D.</span>
-                  <i class="fa-solid fa-circle-check verified-badge"></i>
-                </div>
-
-                <!-- Review Text -->
-                <p class="review-text">
-                  "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable.
-                  As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt."
-                </p>
-
-                <!-- Posted Date -->
-                <p class="review-date">Posted on August 15, 2023</p>
-
-              </div>
-              
-              <!-- End Single Review Card -->
-               </div>
+            </div>
 
 
             <!-- ========== LOAD MORE BUTTON ========== -->

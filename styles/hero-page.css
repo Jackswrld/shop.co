@@ -7,7 +7,6 @@
 
 /* Remove !important where possible – use specificity instead */
 .hero-text-container {
-  /* No heavy padding-inline here – let Bootstrap handle gutters */
   padding-left: 0; /* reset if needed */
   padding-right: 0;
 
@@ -66,13 +65,12 @@
 /* Stats */
 .hero-stats {
   max-width: 500px;
-  /* background: red; */
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: 0 !important;
   position: relative;
  
   @media (max-width: 768px) {
      text-align: center;
+      margin: 25px auto !important;
   }
 }
 
@@ -82,7 +80,19 @@
   position: relative;
 }
 
-@media (min-width: 768px) {
+ .hero-stats .col-md-4:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 11%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 90%;
+    background-color: var(--color-border);
+    opacity: 0.8;
+  }
+
+@media (mi-width: 768px) {
   .hero-stats .col-md-4:not(:last-child)::after {
     content: "";
     position: absolute;
