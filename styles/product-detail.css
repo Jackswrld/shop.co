@@ -609,47 +609,50 @@
 
 /* Modal Overlay (backdrop) */
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 20px;
-  
-  /* Hidden by default */
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 1000;
+
+/* Hidden by default */
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
 }
 
 /* Show modal */
 .modal-overlay.active {
   opacity: 1;
-  visibility: visible;
-}
+  visibility: visible;  
+} 
 
 /* Modal Card */
 .review-modal {
-  background: white;
-  border-radius: var(--radius-lg);
-  width: 100%;
-  max-width: 550px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  
-  /* Animation */
-  transform: scale(0.9) translateY(-20px);
-  transition: all 0.3s ease;
-}
+background: white;
+border-radius: var(--radius-lg);
+width: 100%;
+max-width: 550px;
+max-height: 90vh;
+overflow-y: auto;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 
+/* Animation */
+transform: scale(0.9) translateY(-20px);
+transition: all 0.3s ease;
+}
+  
 .modal-overlay.active .review-modal {
   transform: scale(1) translateY(0);
+}
+
+.review-modal.error{
+  border: 1px solid #dc2626;
 }
 
 /* Modal Header */
@@ -684,10 +687,10 @@
   transition: all 0.2s ease;
 }
 
-.modal-close-btn:hover {
-  background-color: var(--color-bg-section);
+.modal-header .close-btn:hover{
   color: var(--color-text-primary);
-}
+  background-color: var(--color-bg-section);
+} 
 
 /* Modal Body */
 .modal-body {
@@ -702,39 +705,42 @@
 .form-label {
   display: block;
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
   font-family: var(--font-primary);
 }
 
-.required {
+.required{
   color: #dc2626;
   font-weight: bold;
 }
 
 /* Star Rating Input */
-.star-rating-input {
+.star-rating-input{
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.star-rating-input i {
+.star-rating-input i{
   font-size: 2rem;
   color: var(--color-border);
   cursor: pointer;
   transition: all 0.2s ease;
 }
-
 .star-rating-input i:hover,
 .star-rating-input i.hover {
   color: var(--color-star);
   transform: scale(1.1);
 }
-
 .star-rating-input i.selected {
   color: var(--color-star);
+}
+
+.rating-preview-stars i {
+  color: var(--color-star);
+  margin-right: 2px;
 }
 
 .rating-text-display {
@@ -773,6 +779,7 @@
   min-height: 120px;
 }
 
+
 /* Character Count */
 .char-count {
   text-align: right;
@@ -793,6 +800,12 @@
 
 .error-message.show {
   display: block;
+}
+
+.error-active {
+  color: #dc2626 !important;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 /* Custom Checkbox */
@@ -842,6 +855,7 @@
   border-color: var(--color-black);
 }
 
+
 /* Modal Footer */
 .modal-footer {
   display: flex;
@@ -863,6 +877,7 @@
   transition: all 0.3s ease;
 }
 
+
 .btn-secondary {
   background-color: var(--color-bg-section);
   color: var(--color-text-primary);
@@ -871,6 +886,7 @@
 .btn-secondary:hover {
   background-color: var(--color-border);
 }
+
 
 .btn-primary {
   background-color: var(--color-black);
@@ -881,7 +897,7 @@
 .btn-primary:hover {
   background-color: #333;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
 .btn-primary:active {
@@ -910,9 +926,9 @@
   gap: 0.75rem;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  
+
   /* Animation */
-  animation: slideInRight 0.3s ease;
+   animation: slideInRight 0.3s ease;
 }
 
 @keyframes slideInRight {
@@ -927,24 +943,24 @@
 }
 
 /* Responsive */
+
 @media (max-width: 576px) {
-  .review-modal {
+    .review-modal {
     max-width: 100%;
     max-height: 100vh;
-    border-radius: 0;
   }
 
-  .modal-header,
+    .modal-header,
   .modal-body,
   .modal-footer {
     padding: 1.25rem;
   }
 
-  .modal-footer {
+   .modal-footer {
     flex-direction: column;
   }
 
-  .btn-secondary,
+    .btn-secondary,
   .btn-primary {
     width: 100%;
   }
