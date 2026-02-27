@@ -271,65 +271,65 @@
                 All Reviews <span class="text-muted reviews-count"></span>
               </h5>
 
-            <div class="d-flex align-items-center gap-3">
-  
-  <!-- Filter dropdown -->
-  <div class="custom-dropdown">
-    <button class="dropdown-trigger p-2" id="filterBtn">
-      <img src="/assets/images/icons/vertical-sliders.png" alt="" style="width: 18px; height: 18px;">
-    </button>
-    
-    <ul class="dropdown-content" id="filterDropdown">
-      <li><a href="#" class="filter-option active" data-rating="all">All Reviews</a></li>
-      <li><a href="#" class="filter-option" data-rating="5">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-      </a></li>
-      <li><a href="#" class="filter-option" data-rating="4">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-      </a></li>
-      <li><a href="#" class="filter-option" data-rating="3">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-      </a></li>
-      <li><a href="#" class="filter-option" data-rating="2">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-      </a></li>
-      <li><a href="#" class="filter-option" data-rating="1">
-        <i class="fa-solid fa-star"></i>
-      </a></li>
-    </ul>
-  </div>
+              <div class="d-flex align-items-center gap-3">
 
-  <!-- Latest dropdown -->
-  <div class="custom-dropdown">
-    <button class="dropdown-trigger" id="sortBtn">
-      <span>Latest</span>
-      <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
-    </button>
-    
-    <ul class="dropdown-content" id="sortDropdown">
-      <li><a href="#" class="sort-option" data-sort="latest">Latest</a></li>
-      <li><a href="#" class="sort-option" data-sort="oldest">Oldest</a></li>
-      <li><a href="#" class="sort-option" data-sort="highest">Highest Rated</a></li>
-      <li><a href="#" class="sort-option" data-sort="lowest">Lowest Rated</a></li>
-    </ul>
-  </div>
+                <!-- Filter dropdown -->
+                <div class="custom-dropdown">
+                  <button class="dropdown-trigger p-2" id="filterBtn">
+                    <img src="/assets/images/icons/vertical-sliders.png" alt="" style="width: 18px; height: 18px;">
+                  </button>
 
-  <!-- Write a Review button -->
-  <button class="btn btn-dark rounded-pill">
-    Write a Review
-  </button>
-  
-</div>
+                  <ul class="dropdown-content" id="filterDropdown">
+                    <li><a href="#" class="filter-option active" data-rating="all">All Reviews</a></li>
+                    <li><a href="#" class="filter-option" data-rating="5">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </a></li>
+                    <li><a href="#" class="filter-option" data-rating="4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </a></li>
+                    <li><a href="#" class="filter-option" data-rating="3">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </a></li>
+                    <li><a href="#" class="filter-option" data-rating="2">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </a></li>
+                    <li><a href="#" class="filter-option" data-rating="1">
+                        <i class="fa-solid fa-star"></i>
+                      </a></li>
+                  </ul>
+                </div>
+
+                <!-- Latest dropdown -->
+                <div class="custom-dropdown">
+                  <button class="dropdown-trigger" id="sortBtn">
+                    <span>Latest</span>
+                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                  </button>
+
+                  <ul class="dropdown-content" id="sortDropdown">
+                    <li><a href="#" class="sort-option" data-sort="latest">Latest</a></li>
+                    <li><a href="#" class="sort-option" data-sort="oldest">Oldest</a></li>
+                    <li><a href="#" class="sort-option" data-sort="highest">Highest Rated</a></li>
+                    <li><a href="#" class="sort-option" data-sort="lowest">Lowest Rated</a></li>
+                  </ul>
+                </div>
+
+                <!-- Write a Review button -->
+                <button class="btn btn-dark rounded-pill">
+                  Write a Review
+                </button>
+
+              </div>
 
             </div>
 
@@ -357,79 +357,85 @@
   </section>
 
   <!-- ==================== WRITE REVIEW MODAL ==================== -->
-<div class="modal-overlay" id="reviewModal">
-  <div class="review-modal">
-    
-    <!-- Modal Header -->
-    <div class="modal-header">
-      <h3>Write a Review</h3>
-      <button class="modal-close-btn" id="closeModalBtn">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
+  <div class="modal-overlay" id="reviewModal">
+    <div class="review-modal">
 
-    <!-- Modal Body -->
-    <div class="modal-body">
-      
-      <!-- Star Rating -->
-      <div class="form-group">
-        <label class="form-label">Your Rating <span class="required">*</span></label>
-        <div class="star-rating-input" id="starRating">
-          <i class="fa-regular fa-star" data-rating="1"></i>
-          <i class="fa-regular fa-star" data-rating="2"></i>
-          <i class="fa-regular fa-star" data-rating="3"></i>
-          <i class="fa-regular fa-star" data-rating="4"></i>
-          <i class="fa-regular fa-star" data-rating="5"></i>
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h3>Write a Review</h3>
+
+        <button class="modal-close-btn" id="closeModalBtn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+
+        <!-- Star Rating -->
+        <div class="form-group">
+          <label class="form-label">Your Rating <span class="required">*</span></label>
+
+          <div class="star-rating-input" id="starRating">
+            <i class="fa-regular fa-star" data-rating="1"></i>
+            <i class="fa-regular fa-star" data-rating="2"></i>
+            <i class="fa-regular fa-star" data-rating="3"></i>
+            <i class="fa-regular fa-star" data-rating="4"></i>
+            <i class="fa-regular fa-star" data-rating="5"></i>
+          </div>
+
+          <p class="rating-text-display" id="ratingText">Select a rating</p>
         </div>
-        <p class="rating-text-display" id="ratingText">Select a rating</p>
+
+        <!-- Name Input -->
+        <div class="form-group">
+        <form action="" id="review-form">
+          <label for="reviewerName" class="form-label">Your Name <span class="required">*</span></label>
+
+          <input 
+          type="text"
+          id="reviewerName" class="form-input" placeholder="Enter your name" maxlength="50">
+
+          <p class="error-message" id="nameError"></p>
+        </div>
+
+        <!-- Review Text -->
+        <div class="form-group">
+          <label for="reviewTextarea" class="form-label">Your Review <span class="required">*</span></label>
+
+          <textarea 
+          id="reviewTextarea" class="form-textarea" placeholder="Share your experience with this product..."
+            rows="2" maxlength="200"></textarea>
+
+          <p class="char-count"><span id="charCount">0</span>/200</p>
+          <p class="error-message" id="reviewError"></p>
+        </div>
+
+        </form>
+
+        <!-- Verified Purchase -->
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="verifiedCheckbox" class="form-checkbox">
+            <span class="checkbox-custom"></span>
+            <span>I purchased this product</span>
+          </label>
+        </div>
+
       </div>
 
-      <!-- Name Input -->
-      <div class="form-group">
-        <label for="reviewerName" class="form-label">Your Name <span class="required">*</span></label>
-        <input 
-          type="text" 
-          id="reviewerName" 
-          class="form-input" 
-          placeholder="Enter your name"
-          maxlength="50"
-        >
-        <p class="error-message" id="nameError"></p>
-      </div>
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button class="btn-secondary" id="cancelBtn">Cancel</button>
+        <button class="btn-primary" id="submitReviewBtn">Submit Review</button>
 
-      <!-- Review Text -->
-      <div class="form-group">
-        <label for="reviewText" class="form-label">Your Review <span class="required">*</span></label>
-        <textarea 
-          id="reviewTextarea" 
-          class="form-textarea" 
-          placeholder="Share your experience with this product..."
-          rows="5"
-          maxlength="500"
-        ></textarea>
-        <p class="char-count"><span id="charCount">0</span>/500</p>
-        <p class="error-message" id="reviewError"></p>
-      </div>
 
-      <!-- Verified Purchase (Optional) -->
-      <div class="form-group checkbox-group">
-        <label class="checkbox-label">
-          <input type="checkbox" id="verifiedCheckbox" class="form-checkbox">
-          <span class="checkbox-custom"></span>
-          <span>I purchased this product</span>
-        </label>
+
       </div>
 
     </div>
-
-    <!-- Modal Footer -->
-    <div class="modal-footer">
-      <button class="btn-secondary" id="cancelBtn">Cancel</button>
-      <button class="btn-primary" id="submitReviewBtn">Submit Review</button>
-    </div>
-
   </div>
-</div>
 
 
   <script type="module" src="../js/product-detail.js"></script>
