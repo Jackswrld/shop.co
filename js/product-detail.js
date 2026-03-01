@@ -248,8 +248,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     smoothTransition(() => {
       displayReviews();
-      document.querySelector(".reviews-count").textContent =
-        `(${allProductReviews.length})`;
+
+      const countElement = document.querySelector(".reviews-count");
+      countElement.classList.add("fade");
+
+      setTimeout(() => {
+        countElement.textContent = `(${allProductReviews.length})`;
+        countElement.classList.remove("fade");
+      }, 200);
+
     });
   }
 
@@ -280,6 +287,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     smoothTransition(() => {
       displayReviews();
+
+      document.querySelector(".reviews-count").textContent =
+        `(${allProductReviews.length})`;
+    
     });
   }
 
