@@ -603,6 +603,13 @@
   }
 }
 
+.reviews-count {
+  transition: opacity 0.2s ease;
+}
+.reviews-count.fade {
+  opacity: 0.3;
+}
+
 /* ============================================
    WRITE REVIEW MODAL
    ============================================ */
