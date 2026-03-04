@@ -24,29 +24,19 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"
     defer></script>
 
-  <!-- STYLE.CSS -->
-  <link rel="stylesheet" href="styles/base.css" />
-  <link rel="stylesheet" href="styles/hero-page.css" />
-  <link rel="stylesheet" href="styles/products.css" />
-</head>
+      <!-- STYLE.CSS -->
+      <link rel="stylesheet" href="styles/base.css" />
+      <link rel="stylesheet" href="styles/hero-page.css" />
+      <link rel="stylesheet" href="styles/products.css" />
+      <link rel="stylesheet" href="styles/search.css"/>
+    </head>
 
-<!-- BOOSTRAP OFFLINE CSS-->
-<link rel="stylesheet" href="../assets/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
-
-<!-- BOOSTRAP OFFLINE JS-->
-<link rel="stylesheet" href="../assets/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js">
-
-
-<!-- STYLE.CSS -->
-<link rel="stylesheet" href="styles/base.css" />
-<link rel="stylesheet" href="styles/hero-page.css" />
-
-<body>
-  <!----===================== HEADER / NAVBAR (jackswrld) ===================== -->
-  <!-- Top Info Bar -->
-  <div class="top-info">
-    Sign up and get 20% off your first order. Sign Up Now
-  </div>
+    <body>
+      <!----===================== HEADER / NAVBAR (jackswrld) ===================== -->
+      <!-- Top Info Bar -->
+      <div class="top-info">
+        Sign up and get 20% off your first order. Sign Up Now
+      </div>
 
   <!-- Navigation Bar/check for improvement -->
   <nav>
@@ -69,15 +59,24 @@
           </ul>
         </li>
 
-        <li><a href="#">On Sale</a></li>
-        <li><a href="#new-arrival">New Arrivals</a></li>
-        <li><a href="#">Brands</a></li>
-      </ul>
-    </div>
-    <div class="search-container">
-      <input type="text" class="search-bar" placeholder="Search for products..." aria-label="Search" />
-      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-    </div>
+            <li><a href="#">On Sale</a></li>
+            <li><a href="#new-arrival">New Arrivals</a></li>
+            <li><a href="#">Brands</a></li>
+          </ul>
+        </div>
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="Search for products..."
+            aria-label="Search"
+          />
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <!-- Search Results Dropdown -->
+          <div class="search-results-dropdown" id="search-results-dropdown">
+            <ul class="search-results-list" id="search-results-list"></ul>
+          </div>
+        </div>
 
     <div class="nav-icons">
       <button class="search-icon-btn" aria-label="Search">
@@ -216,6 +215,102 @@
     </div>
   </section>
 
+  <!-- ==================== FEATURED PRODUCTS - SHOES ==================== -->
+  <section class="featured-shoes-section py-5">
+    <div class="container-xl">
+      <!-- Section Title -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2 class="section-title text-center">FEATURED SHOES & SNEAKERS</h2>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="row g-4" id="featured-shoes-container">
+        <!-- Products will be dynamically inserted here -->
+      </div>
+
+      <!-- View All Button -->
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <button class="btn-view-all">View All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED PRODUCTS - SHIRTS & TOPS ==================== -->
+  <section class="featured-shirts-section py-5">
+    <div class="container-xl">
+      <!-- Section Title -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2 class="section-title text-center">FEATURED SHIRTS & TOPS</h2>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="row g-4" id="featured-shirts-container">
+        <!-- Products will be dynamically inserted here -->
+      </div>
+
+      <!-- View All Button -->
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <button class="btn-view-all">View All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED PRODUCTS - DRESSES ==================== -->
+  <section class="featured-dresses-section py-5">
+    <div class="container-xl">
+      <!-- Section Title -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2 class="section-title text-center">FEATURED DRESSES</h2>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="row g-4" id="featured-dresses-container">
+        <!-- Products will be dynamically inserted here -->
+      </div>
+
+      <!-- View All Button -->
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <button class="btn-view-all">View All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED PRODUCTS - ACCESSORIES ==================== -->
+  <section class="featured-accessories-section py-5">
+    <div class="container-xl">
+      <!-- Section Title -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2 class="section-title text-center">FEATURED ACCESSORIES</h2>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="row g-4" id="featured-accessories-container">
+        <!-- Products will be dynamically inserted here -->
+      </div>
+
+      <!-- View All Button -->
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <button class="btn-view-all">View All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ====================  BROWSE BY DRESS STYLE ==================== -->
   <section class="browse-style-section">
     <div class="container-xl">
@@ -331,11 +426,12 @@
     </div>
   </footer>
 
-  <script src="js/navbar.js"></script>
-  <script type="module" src="js/render-products.js"></script>
-  <script src="js/main.js"></script>
-</body>
-
+      <script src="js/navbar.js"></script>
+      <script type="module" src="js/render-products.js"></script>
+      <script src="js/main.js"></script>
+      <script type="module" src="js/search.js"></script>
+    </body>
+  </html>
 </html>
 
 </html>
