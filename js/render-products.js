@@ -32,7 +32,7 @@ function renderStars(rating) {
 }
 
 // Function to create product card HTML
-function createProductCard(product) {
+export function createProductCard(product) {
   const discountPercent = product.oldPrice
     ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
     : null;
@@ -63,7 +63,7 @@ function createProductCard(product) {
 }
 
 // Function to attach click listeners to product cards
-function attachProductCardListeners() {
+export function attachProductCardListeners() {
   const productCards = document.querySelectorAll('.product-card');
 
   productCards.forEach(card => {
@@ -175,7 +175,7 @@ const loadingHTML = `
 
 // Function to filter and display products
 async function displayProducts() {
-
+ 
   // Show loading spinner in ALL sections before fetching
   const containerIds = [
     'new-arrivals-container',

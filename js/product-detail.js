@@ -1,6 +1,9 @@
 import { products } from "./products.js";
 import { reviews } from "./review.js";
 import { getAllProducts } from "./api-service.js";
+import { createProductCard } from "./render-products.js";
+import { attachProductCardListeners } from "./render-products.js";
+
 
 document.addEventListener("DOMContentLoaded", async function () {
   // ============================================
@@ -182,6 +185,23 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     document.querySelector(".reviews-count").textContent =
       `(${allProductReviews.length})`;
+  }
+
+  function loadSimilarProducts() {
+    let similarProducts = allProducts.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+
+    if (similarProducts.length === 0) {
+      similarProducts = allProducts.filter(p => p.id !== product.id).slice(0, 4);
+    }
+
+    const similarProductsContainer = document.getElementById("similar-products-container");
+
+    if (similarProductsContainer) {
+
+      similarProductsContainer.innerHTML = similarProducts.map(createProductCard).join('');
+      attachProductCardListeners();
+    }
+
   }
 
   // ────── DISPLAY REVIEWS ──────
@@ -851,6 +871,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   loadProductData();
   loadReviews();
+  loadSimilarProducts()
   setupStarRating();
   setupCharCounter();
 }); // End DOMContentLoaded
