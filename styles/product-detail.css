@@ -7,6 +7,35 @@
   font-family: var(--font-primary) !important;
 }
 
+/* Hide product content until JS is ready, show spinner */
+.product-main-row {
+  display: none;
+}
+
+.product-loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 60vh;
+}
+
+.product-loading-spinner i {
+  font-size: 3rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.product-loading-spinner p {
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* When JS adds this class, show the content */
+.product-main-row.loaded {
+  display: flex;
+}
+
 /* ============================================
    BREADCRUMB
    ============================================ */

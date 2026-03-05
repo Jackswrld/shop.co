@@ -2,9 +2,6 @@ import { products } from "./products.js";
 import { reviews } from "./review.js";
 import { getAllProducts } from "./api-service.js";
 
-console.log("Reviews imported:", reviews);
-console.log("Number of reviews:", reviews.length);
-
 document.addEventListener("DOMContentLoaded", async function () {
   // ============================================
   // 1. GET PRODUCT DATA FROM URL
@@ -23,6 +20,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     window.location.href = "../index.html";
     return;
   }
+
+  // Hide spinner, reveal real content
+  document.getElementById('product-loading-spinner').style.display = 'none';
+  document.querySelector('.product-main-row').classList.add('loaded');
 
   // ============================================
   // 2. STATE MANAGEMENT

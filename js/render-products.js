@@ -165,8 +165,32 @@ function displayViewAllProducts(filteredProducts, containerDiv) {
   }
 }
 
+// Reusable loading spinner HTML
+const loadingHTML = `
+  <div class="col-12" style="text-align: center; padding: 3rem;">
+    <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: #999;"></i>
+    <p style="color: #999; margin-top: 1rem;">Loading products...</p>
+  </div>
+`;
+
 // Function to filter and display products
 async function displayProducts() {
+
+  // Show loading spinner in ALL sections before fetching
+  const containerIds = [
+    'new-arrivals-container',
+    'top-selling-container',
+    'featured-shoes-container',
+    'featured-shirts-container',
+    'featured-dresses-container',
+    'featured-accessories-container'
+  ];
+
+  containerIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = loadingHTML;
+  });
+
   // Fetch and combine all products
   allProducts = await getAllProducts(products);
 
