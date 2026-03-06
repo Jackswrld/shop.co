@@ -188,10 +188,20 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   function loadSimilarProducts() {
-    let similarProducts = allProducts.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
 
+    // Fall back to broad category if apiCategory is not available (local products)
+    const matchKey = product.apiCategory || product.category;
+    const matchField = product.apiCategory ? 'apiCategory' : 'category';
+
+    let similarProducts = allProducts
+      .filter(p => p[matchField] === matchKey && p.id !== product.id)
+      .slice(0, 4);
+
+    // Fallback — if still empty, try same broad category
     if (similarProducts.length === 0) {
-      similarProducts = allProducts.filter(p => p.id !== product.id).slice(0, 4);
+      similarProducts = allProducts
+        .filter(p => p.category === product.category && p.id !== product.id)
+        .slice(0, 4);
     }
 
     const similarProductsContainer = document.getElementById("similar-products-container");
