@@ -189,29 +189,69 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function loadSimilarProducts() {
 
-    // Fall back to broad category if apiCategory is not available (local products)
+    // Use apiCategory for precise matching, fall back to broad category for local products
     const matchKey = product.apiCategory || product.category;
     const matchField = product.apiCategory ? 'apiCategory' : 'category';
 
     let similarProducts = allProducts
-      .filter(p => p[matchField] === matchKey && p.id !== product.id)
-      .slice(0, 4);
+      .filter(p => p[matchField] === matchKey && p.id !== product.id);
 
-    // Fallback — if still empty, try same broad category
+    // Fallback — if empty, try same broad category
     if (similarProducts.length === 0) {
-      similarProducts = allProducts
-        .filter(p => p.category === product.category && p.id !== product.id)
-        .slice(0, 4);
+      similarProducts = allProducts.filter(p => p.category === product.category && p.id !== product.id);
     }
 
     const similarProductsContainer = document.getElementById("similar-products-container");
+    if (!similarProductsContainer) return;
 
-    if (similarProductsContainer) {
+    similarProductsContainer.innerHTML = similarProducts.map(createProductCard).join('');
+   
+    similarProductsContainer.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', function (){
+        window.location.href = `../pages/product-details.html?id=${this.dataset.id}`
+      })
+    });
+    // ── Scroll logic ──
+    const track = document.getElementById("similar-scroll-track");
+    const inner = similarProductsContainer;
+    const leftBtn = document.getElementById("similar-scroll-left");
+    const rightBtn = document.getElementById("similar-scroll-right");
 
-      similarProductsContainer.innerHTML = similarProducts.map(createProductCard).join('');
-      attachProductCardListeners();
+    let currentIndex = 0;
+    const visibleCount = window.innerWidth <= 768 ? 2 : 4;
+    const totalCards = similarProducts.length;
+ 
+
+    function updateScroll() {
+      const gap = 16;
+      const cardWidth = (track.offsetWidth - (gap * (visibleCount - 1))) / visibleCount;
+
+      inner.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+
+       leftBtn.disabled = false;
+      rightBtn.disabled = false;
+
+      // Disable buttons at the edges
+      leftBtn.disabled = currentIndex === 0;
+      rightBtn.disabled = currentIndex >= totalCards - visibleCount;
     }
 
+    leftBtn.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateScroll();
+      }
+    });
+
+    rightBtn.addEventListener("click", () => {
+      if (currentIndex < totalCards - visibleCount) {
+        currentIndex++;
+        updateScroll();
+      }
+    });
+
+    // Set initial button state
+    updateScroll();
   }
 
   // ────── DISPLAY REVIEWS ──────

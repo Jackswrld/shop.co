@@ -28,6 +28,12 @@
   <!-- BOOSTRAP OFFLINE JS-->
   <link rel="stylesheet" href="../assets/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js">
 
+  <!-- Hide hardcoded product content immediately before any stylesheet loads -->
+  <style>
+    .product-main-row { display: none !important; }
+    .product-main-row.loaded { display: flex !important; }
+  </style>
+
   <!-- STYLE.CSS -->
   <link rel="stylesheet" href="../styles/base.css" />
   <link rel="stylesheet" href="../styles/product-detail.css" />
@@ -118,20 +124,12 @@
 
             <!-- Thumbnails Column -->
             <div class="col-3 col-lg-3 thumbnails-column">
-              <img src="../assets/images/products/brown-image.png" alt="Front view"
-                class="thumbnail img-fluid rounded-2 active" data-full="../assets/images/products/brown-image.png">
-
-              <img src="../assets/images/products/brown-image2.png" alt="Back view"
-                class="thumbnail img-fluid rounded-2" data-full="../assets/images/products/brown-image2.png">
-
-              <img src="../assets/images/products/shirt-brown.png" alt="On model" class="thumbnail img-fluid rounded-2"
-                data-full="../assets/images/products/shirt-brown.png">
+              <!-- Filled by JS -->
             </div>
 
             <!-- Main Image Column -->
             <div class="col-9 col-lg-9 main-image-column">
-              <img id="main-product-image" src="../assets/images/products/brown-image.png"
-                alt="ONE LIFE GRAPHIC T-SHIRT front view" class="img-fluid shadow-sm">
+              <img id="main-product-image" src="" alt="" class="img-fluid shadow-sm">
             </div>
 
           </div>
@@ -444,18 +442,27 @@
 
   <!-- ==================== SIMILAR PRODUCTS SECTION==================== -->
 
-  <section class="similar-products-section pb-5" id="new-arrival">
+  <section class="similar-products-section pb-5">
     <div class="container-xl">
-      <!-- Section Title -->
-      <div class="row mb-3">
-        <div class="col-12">
-          <h2 class="section-title text-center">YOU MIGHT ALSO LIKE</h2>
-        </div>
-      </div>
 
-      <!-- Products Grid -->
-      <div class="row g-4" id="similar-products-container">
-        <!-- Products will be dynamically inserted here -->
+      <!-- Section Title -->
+      <h2 class="section-title text-center mb-4">YOU MIGHT ALSO LIKE</h2>
+
+      <!-- Scroll wrapper with arrow buttons -->
+      <div class="similar-scroll-wrapper">
+        <button class="similar-scroll-btn similar-scroll-left" id="similar-scroll-left" aria-label="Scroll left">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="similar-scroll-track" id="similar-scroll-track">
+          <div class="similar-products-inner" id="similar-products-container">
+            <!-- Products will be dynamically inserted here -->
+          </div>
+        </div>
+
+        <button class="similar-scroll-btn similar-scroll-right" id="similar-scroll-right" aria-label="Scroll right">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
       </div>
 
     </div>
@@ -466,10 +473,8 @@
 
 
   <script type="module" src="../js/product-detail.js"></script>
-  <script src="js/navbar.js"></script>
-  <script type="module" src="../js/render-products.js"></script>
-  <script src="js/main.js"></script>
-  <script type="module" src="../js/search.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 
 </html>

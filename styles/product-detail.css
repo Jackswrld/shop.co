@@ -2,40 +2,6 @@
    PRODUCT DETAIL PAGE STYLES
    ============================================ */
 
-.product-detail {
-  background-color: var(--color-bg-body);
-  font-family: var(--font-primary) !important;
-}
-
-/* Hide product content until JS is ready, show spinner */
-.product-main-row {
-  display: none;
-}
-
-.product-loading-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 60vh;
-}
-
-.product-loading-spinner i {
-  font-size: 3rem;
-  color: #9ca3af;
-  margin-bottom: 1rem;
-}
-
-.product-loading-spinner p {
-  color: #9ca3af;
-  margin: 0;
-}
-
-/* When JS adds this class, show the content */
-.product-main-row.loaded {
-  display: flex;
-}
-
 /* ============================================
    BREADCRUMB
    ============================================ */
@@ -1191,4 +1157,104 @@ transition: all 0.3s ease;
   .load-more-btn {
     width: 100%;
   }
+}
+
+
+/* ── Similar Products Scroll ── */
+.similar-scroll-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.similar-scroll-track {
+  overflow: hidden;
+  flex: 1;
+}
+
+.similar-products-inner {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.similar-products-inner .col-6,
+.similar-products-inner .col-sm-6,
+.similar-products-inner [class*="col-"] {
+  flex: 0 0 calc(25% - 0.75rem);
+  min-width: calc(25% - 0.75rem);
+  width: calc(25% - 0.75rem);
+}
+
+.similar-scroll-btn {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #111;
+  transition: background 0.2s, border-color 0.2s;
+  z-index: 1;
+}
+
+.similar-scroll-btn:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.similar-scroll-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .similar-products-inner [class*="col-"] {
+    flex: 0 0 calc(50% - 0.5rem);
+    min-width: calc(50% - 0.5rem);
+    width: calc(50% - 0.5rem);
+  }
+}
+
+.product-detail {
+  background-color: var(--color-bg-body);
+  font-family: var(--font-primary) !important;
+}
+
+/* Hide product content until JS is ready, show spinner */
+.product-main-row {
+  display: none !important;
+}
+
+/* When JS adds this class, show the content */
+.product-main-row.loaded {
+  display: flex !important;
+}
+
+.product-loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 60vh;
+}
+
+.product-loading-spinner i {
+  font-size: 3rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.product-loading-spinner p {
+  color: #9ca3af;
+  margin: 0;
 }
