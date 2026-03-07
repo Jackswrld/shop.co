@@ -7,20 +7,20 @@
 let cachedApiProducts = null;
 
 // sessionStorage key for cross-page cache
-const CACHE_KEY = 'shop_co_api_products';
+const CACHE_KEY = "shop_co_api_products";
 
 // Fashion-only categories from DummyJSON
 const FASHION_CATEGORIES = [
-  'mens-shirts',
-  'womens-dresses',
-  'tops',
-  'mens-shoes',
-  'womens-shoes',
-  'womens-bags',
-  'womens-jewellery',
-  'mens-watches',
-  'womens-watches',
-  'sunglasses'
+  "mens-shirts",
+  "womens-dresses",
+  "tops",
+  "mens-shoes",
+  "womens-shoes",
+  "womens-bags",
+  "womens-jewellery",
+  "mens-watches",
+  "womens-watches",
+  "sunglasses",
 ];
 
 /**
@@ -45,14 +45,14 @@ export async function fetchApiProducts() {
   try {
     // Fetch ALL categories in parallel instead of one-by-one
     const responses = await Promise.all(
-      FASHION_CATEGORIES.map(category =>
+      FASHION_CATEGORIES.map((category) =>
         fetch(`https://dummyjson.com/products/category/${category}`)
-          .then(res => res.ok ? res.json() : { products: [] })
-          .catch(() => ({ products: [] }))
-      )
+          .then((res) => (res.ok ? res.json() : { products: [] }))
+          .catch(() => ({ products: [] })),
+      ),
     );
 
-    const allProducts = responses.flatMap(data => data.products || []);
+    const allProducts = responses.flatMap((data) => data.products || []);
 
     // Convert API format to your product format
     const formattedProducts = allProducts.map((product, index) => ({
@@ -65,10 +65,14 @@ export async function fetchApiProducts() {
       oldPrice: calculateOldPrice(product.price, product.discountPercentage),
       rating: product.rating,
       reviewCount: product.reviews ? product.reviews.length : 0,
-      images: [product.thumbnail, ...(product.images || [])].filter(img => img),
+      images: [
+        product.thumbnail,
+        ...(product.images ? product.images.slice(1) : []),]
+        .filter((img) => img)
+        .slice(0, 3),
       description: product.description,
-      tags: index < 4 ? ['new-arrival'] : (index < 8 ? ['top-selling'] : []),
-      source: 'api' // Mark as API product for tracking
+      tags: index < 4 ? ["new-arrival"] : index < 8 ? ["top-selling"] : [],
+      source: "api", // Mark as API product for tracking
     }));
 
     // Save to both in-memory and sessionStorage
@@ -79,7 +83,7 @@ export async function fetchApiProducts() {
 
     return formattedProducts;
   } catch (error) {
-    console.error('Error fetching API products:', error);
+    console.error("Error fetching API products:", error);
     return [];
   }
 }
@@ -91,19 +95,19 @@ export async function fetchApiProducts() {
  */
 function mapCategory(category) {
   const categoryMap = {
-    'mens-shirts': 'casual',
-    'tops': 'casual',
-    'womens-dresses': 'casual',
-    'womens-shoes': 'shoes',
-    'mens-shoes': 'shoes',
-    'mens-watches': 'accessories',
-    'womens-watches': 'accessories',
-    'womens-bags': 'accessories',
-    'womens-jewellery': 'accessories',
-    'sunglasses': 'accessories'
+    "mens-shirts": "casual",
+    tops: "casual",
+    "womens-dresses": "casual",
+    "womens-shoes": "shoes",
+    "mens-shoes": "shoes",
+    "mens-watches": "accessories",
+    "womens-watches": "accessories",
+    "womens-bags": "accessories",
+    "womens-jewellery": "accessories",
+    sunglasses: "accessories",
   };
-  
-  return categoryMap[category.toLowerCase()] || 'casual';
+
+  return categoryMap[category.toLowerCase()] || "casual";
 }
 
 /**
@@ -113,9 +117,11 @@ function mapCategory(category) {
  */
 function determineGender(category) {
   const lowerCategory = category.toLowerCase();
-  if (lowerCategory.includes('mens') || lowerCategory.includes('men')) return 'men';
-  if (lowerCategory.includes('womens') || lowerCategory.includes('women')) return 'women';
-  return 'unisex';
+  if (lowerCategory.includes("mens") || lowerCategory.includes("men"))
+    return "men";
+  if (lowerCategory.includes("womens") || lowerCategory.includes("women"))
+    return "women";
+  return "unisex";
 }
 
 /**
@@ -137,11 +143,11 @@ function calculateOldPrice(price, discount) {
  */
 export async function getAllProducts(localProducts = []) {
   // Add source property to local products
-  const localWithSource = localProducts.map(p => ({
+  const localWithSource = localProducts.map((p) => ({
     ...p,
-    source: 'local'
+    source: "local",
   }));
-  
+
   const apiProducts = await fetchApiProducts();
   return [...localWithSource, ...apiProducts];
 }
@@ -155,12 +161,12 @@ export async function getAllProducts(localProducts = []) {
 export async function searchAllProducts(searchTerm, localProducts = []) {
   const allProducts = await getAllProducts(localProducts);
   const lowerSearchTerm = searchTerm.toLowerCase();
-  
-  return allProducts.filter(product => {
+
+  return allProducts.filter((product) => {
     const name = product.name.toLowerCase();
     const category = product.category.toLowerCase();
     const description = product.description.toLowerCase();
-    
+
     return (
       name.includes(lowerSearchTerm) ||
       category.includes(lowerSearchTerm) ||
@@ -181,11 +187,11 @@ export function getPaginatedProducts(products, page = 0, itemsPerPage = 12) {
   const totalPages = Math.ceil(total / itemsPerPage);
   const start = page * itemsPerPage;
   const items = products.slice(start, start + itemsPerPage);
-  
+
   return {
     items,
     total,
     totalPages,
-    currentPage: page
+    currentPage: page,
   };
 }
