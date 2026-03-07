@@ -1164,6 +1164,7 @@ transition: all 0.3s ease;
 
 /* ── Similar Products Scroll ── */
 .similar-scroll-wrapper {
+  overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
@@ -1221,9 +1222,9 @@ transition: all 0.3s ease;
 
 @media (max-width: 768px) {
   .similar-products-inner [class*="col-"] {
-    flex: 0 0 calc(50% - 0.5rem);
-    min-width: calc(50% - 0.5rem);
-    width: calc(50% - 0.5rem);
+    flex: 0 0 calc(76.92% - 0.5rem);
+    min-width: calc(76.92% - 0.5rem);
+    width: calc(76.92% - 0.5rem);
   }
 }
 

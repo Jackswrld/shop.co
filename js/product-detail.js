@@ -218,40 +218,36 @@ document.addEventListener("DOMContentLoaded", async function () {
     const rightBtn = document.getElementById("similar-scroll-right");
 
     let currentIndex = 0;
-    const visibleCount = window.innerWidth <= 768 ? 2 : 4;
-    const totalCards = similarProducts.length;
- 
+    const visibleCount = window.innerWidth <= 768 ? 1.3 : 4;
+    const gap = 16;
+
+    function getCardWidth() {
+      const fullCards = Math.floor(visibleCount);
+      const totalGap = gap * (fullCards - 1);
+      return (track.offsetWidth - totalGap) / visibleCount;
+    }
 
     function updateScroll() {
-      const gap = 16;
-      const cardWidth = (track.offsetWidth - (gap * (visibleCount - 1))) / visibleCount;
-
+      const cardWidth = getCardWidth();
+      inner.querySelectorAll("[class*=\"col-\"]").forEach(col => {
+        col.style.flex = `0 0 ${cardWidth}px`;
+        col.style.width = `${cardWidth}px`;
+      });
       inner.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
-
-       leftBtn.disabled = false;
-      rightBtn.disabled = false;
-
-      // Disable buttons at the edges
       leftBtn.disabled = currentIndex === 0;
-      rightBtn.disabled = currentIndex >= totalCards - visibleCount;
+      rightBtn.disabled = currentIndex >= Math.ceil(similarProducts.length - visibleCount);
     }
 
     leftBtn.addEventListener("click", () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateScroll();
-      }
+      if (currentIndex > 0) { currentIndex--; updateScroll(); }
     });
 
     rightBtn.addEventListener("click", () => {
-      if (currentIndex < totalCards - visibleCount) {
-        currentIndex++;
-        updateScroll();
-      }
+      if (currentIndex < Math.ceil(similarProducts.length - visibleCount)) { currentIndex++; updateScroll(); }
     });
 
     // Set initial button state
-    updateScroll();
+    requestAnimationFrame(updateScroll);
   }
 
   // ────── DISPLAY REVIEWS ──────
