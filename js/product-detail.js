@@ -189,17 +189,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function loadSimilarProducts() {
 
-    // Use apiCategory for precise matching, fall back to broad category for local products
-    const matchKey = product.apiCategory || product.category;
-    const matchField = product.apiCategory ? 'apiCategory' : 'category';
-
+    // Match by broad category for more similar products
     let similarProducts = allProducts
-      .filter(p => p[matchField] === matchKey && p.id !== product.id);
-
-    // Fallback — if empty, try same broad category
-    if (similarProducts.length === 0) {
-      similarProducts = allProducts.filter(p => p.category === product.category && p.id !== product.id);
-    }
+      .filter(p => p.category === product.category && p.id !== product.id);
 
     const similarProductsContainer = document.getElementById("similar-products-container");
     if (!similarProductsContainer) return;
@@ -218,10 +210,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     const rightBtn = document.getElementById("similar-scroll-right");
 
     let currentIndex = 0;
-    const visibleCount = window.innerWidth <= 768 ? 1.3 : 4;
+    function getVisibleCount() { return window.innerWidth <= 768 ? 1.3 : 4; }
     const gap = 16;
 
     function getCardWidth() {
+      const visibleCount = getVisibleCount();
       const fullCards = Math.floor(visibleCount);
       const totalGap = gap * (fullCards - 1);
       return (track.offsetWidth - totalGap) / visibleCount;
@@ -235,7 +228,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
       inner.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
       leftBtn.disabled = currentIndex === 0;
-      rightBtn.disabled = currentIndex >= Math.ceil(similarProducts.length - visibleCount);
+      const vc = getVisibleCount();
+      rightBtn.disabled = currentIndex >= similarProducts.length - Math.floor(vc);
     }
 
     leftBtn.addEventListener("click", () => {
@@ -243,11 +237,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     rightBtn.addEventListener("click", () => {
-      if (currentIndex < Math.ceil(similarProducts.length - visibleCount)) { currentIndex++; updateScroll(); }
+      if (currentIndex < similarProducts.length - Math.floor(getVisibleCount())) { currentIndex++; updateScroll(); }
     });
 
     // Set initial button state
-    requestAnimationFrame(updateScroll);
+    requestAnimationFrame(() => requestAnimationFrame(updateScroll));
   }
 
   // ────── DISPLAY REVIEWS ──────
@@ -920,5 +914,31 @@ document.addEventListener("DOMContentLoaded", async function () {
   loadSimilarProducts()
   setupStarRating();
   setupCharCounter();
+
+
+  const track = document.getElementById('similar-scroll-track');
+const inner = document.getElementById('similar-products-container');
+console.log('track width:', track.offsetWidth);
+console.log('inner children:', inner.children.length);
+console.log('first col width:', inner.children[0]?.offsetWidth);
+console.log('first col style:', inner.children[0]?.style.width);
+console.log('window width:', window.innerWidth);
+
+console.log('HTML snippet:', inner.innerHTML.slice(0, 200));
+console.log('cols found:', inner.querySelectorAll('[class*="col-"]').length);
+inner.querySelectorAll('[class*="col-"]').forEach((c,i) => console.log(i, c.style.width, c.className));
+
+document.getElementById('similar-products-container').children.length
+
+const left = document.getElementById('similar-scroll-left');
+const right = document.getElementById('similar-scroll-right');
+console.log('left disabled:', left.disabled);
+console.log('right disabled:', right.disabled);
+console.log('left pointer-events:', getComputedStyle(left).pointerEvents);
+console.log('right pointer-events:', getComputedStyle(right).pointerEvents);
+
+
+
+
 }); // End DOMContentLoaded
   
