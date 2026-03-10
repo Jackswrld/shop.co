@@ -31,6 +31,8 @@
       <link rel="stylesheet" href="styles/hero-page.css" />
       <link rel="stylesheet" href="styles/products.css" />
       <link rel="stylesheet" href="styles/search.css"/>
+      <link rel="stylesheet" href="styles/product-detail.css"/>
+
     </head>
 
     <body>
@@ -352,6 +354,38 @@
 </section>
 
 
+  <!-- ==================== HAPPY CUSTOMERS REVIEWS ==================== -->
+   <section class="happy-customers-section">
+
+  <!-- Header row: title left, arrows right -->
+  <div class="hc-header">
+    <h2 class="hc-title">OUR HAPPY CUSTOMERS</h2>
+    <div class="hc-arrows">
+      <button class="hc-arrow" id="hc-prev" aria-label="Previous reviews">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button class="hc-arrow" id="hc-next" aria-label="Next reviews">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Carousel wrapper (handles the edge blur/peek) -->
+  <div class="hc-carousel-wrapper">
+    <!-- Fade edges -->
+    <div class="hc-fade hc-fade-left"></div>
+    <div class="hc-fade hc-fade-right"></div>
+
+    <!-- Scrollable track -->
+    <div class="hc-track" id="hc-track">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+
+</section>
+
+
+
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
     <!-- Newsletter Section -->
@@ -456,7 +490,7 @@
 
       <script src="js/navbar.js"></script>
       <script type="module" src="js/render-products.js"></script>
-      <script src="js/main.js"></script>
+      <script type="module" src="js/main.js"></script>
       <script type="module" src="js/search.js"></script>
     </body>
   </html>

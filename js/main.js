@@ -1,4 +1,4 @@
-
+  import { reviews } from './review.js';
 
   //Function For Stats Countdowm
   document.addEventListener("DOMContentLoaded", () => {
@@ -49,3 +49,130 @@
       requestAnimationFrame(update);
     }
   });
+
+
+
+
+  
+  function initHappyCustomers(allReviews) {
+
+    const track   = document.getElementById('hc-track');
+    const prevBtn = document.getElementById('hc-prev');
+    const nextBtn = document.getElementById('hc-next');
+    const fadeL   = document.querySelector('.hc-fade-left');
+    const fadeR   = document.querySelector('.hc-fade-right');
+
+    if (!track) return;
+
+    /* ── 2. Render stars (matches your existing renderStars fn) ── */
+    function renderStars(rating) {
+      let html = '';
+      for (let i = 1; i <= 5; i++) {
+        html += i <= rating
+          ? '<i class="fa-solid fa-star"></i>'
+          : '<i class="fa-regular fa-star"></i>';
+      }
+      return html;
+    }
+
+    /* ── 3. Build & inject cards ── */
+   function renderReviewCards() {
+    
+    if (!allReviews || allReviews.length === 0) {
+      // No reviews message
+      track.innerHTML = `
+        <p style="padding:2rem;color:#999;">No reviews yet.</p>
+      `;
+      return;
+
+    } 
+      // Display review cards
+      track.innerHTML = allReviews
+        .map(
+          (review) => `
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-stars">
+                ${renderStars(review.rating)}
+              </div>
+              <button class="review-menu-btn" aria-label="Review options">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+              </button>
+            </div>
+            
+            <div class="review-author">
+              <span class="author-name">${review.author}</span>
+              ${review.verified ? '<i class="fa-solid fa-circle-check verified-badge"></i>' : ""}
+            </div>
+            
+            <p class="review-text">"${review.text}"</p>
+            <p class="review-date">Posted on ${review.date}</p>
+          </div>
+        `,
+        )
+        .join("");
+      }
+
+    renderReviewCards();
+
+    /* ── 4. Scroll amount per arrow click ── */
+    const SCROLL_STEP = 340; // ~card width + gap
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -SCROLL_STEP, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: SCROLL_STEP, behavior: 'smooth' });
+    });
+
+    /* ── 5. Update fade overlays based on scroll position ── */
+    function updateFades() {
+      const { scrollLeft, scrollWidth, clientWidth } = track;
+      const atStart = scrollLeft <= 10;
+      const atEnd   = scrollLeft + clientWidth >= scrollWidth - 10;
+
+      fadeL.classList.toggle('hidden', atStart);
+      fadeR.classList.toggle('hidden', atEnd);
+    }
+
+    track.addEventListener('scroll', updateFades);
+    updateFades(); // run once on load
+
+    /* ── 6. Click-drag to scroll (desktop) ── */
+    let isDown = false;
+    let startX, scrollStart;
+
+    track.addEventListener('mousedown', e => {
+      isDown      = true;
+      startX      = e.pageX - track.offsetLeft;
+      scrollStart = track.scrollLeft;
+      track.style.scrollBehavior = 'auto'; // instant while dragging
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDown = false;
+      track.style.scrollBehavior = 'smooth';
+    });
+
+    track.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x    = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.2; // 1.2 = drag speed multiplier
+      track.scrollLeft = scrollStart - walk;
+    });
+  }
+
+  /* ── Expose so you can call it from your module ── */
+  window.initHappyCustomers = initHappyCustomers;
+
+  /* ── Auto-init if reviews is already global ── */
+  if (typeof reviews !== 'undefined') {
+    initHappyCustomers(reviews);
+  }
+
+
+
+
+initHappyCustomers(reviews);

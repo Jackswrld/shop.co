@@ -220,6 +220,126 @@
   padding-right: 0 !important;
 }
 
+/* =============== VIEW ALL MODAL =============== */
+.happy-customers-section {
+  padding: 60px 0;
+  overflow: hidden;           /* keep fade edges from leaking */
+}
+
+/* ── Header ── */
+.hc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  margin-bottom: 32px;
+}
+
+.hc-title {
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-primary, #111);
+  margin: 0;
+}
+
+/* ── Arrow buttons ── */
+.hc-arrows {
+  display: flex;
+  gap: 10px;
+}
+
+.hc-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border, #e5e5e5);
+  background: var(--color-bg-card, #fff);
+  color: var(--color-text-primary, #111);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.hc-arrow:hover {
+  background: var(--color-text-primary, #111);
+  color: #fff;
+  border-color: var(--color-text-primary, #111);
+}
+
+/* ── Carousel wrapper: relative so fade overlays sit on top ── */
+.hc-carousel-wrapper {
+  position: relative;
+  padding: 0 40px;             /* breathing room from page edge */
+}
+
+/* ── Fade/blur peek overlays ── */
+.hc-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;       /* clicks pass through to track */
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.hc-fade-left {
+  left: 40px;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+.hc-fade-right {
+  right: 40px;
+  background: linear-gradient(
+    to left,
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+/* Hide left fade when scrolled all the way to start */
+.hc-fade-left.hidden  { opacity: 0; }
+/* Hide right fade when scrolled all the way to end   */
+.hc-fade-right.hidden { opacity: 0; }
+
+/* ── Scrollable track ── */
+.hc-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  /* hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 8px;         /* tiny room for hover shadow */
+}
+
+.hc-track::-webkit-scrollbar { display: none; }
+
+.hc-track:active { cursor: grabbing; }
+
+/* ── Each card inside the track ── */
+.hc-track .review-card {
+  /* reuse ALL your existing .review-card styles — only override size */
+  flex: 0 0 300px;             /* fixed width, won't shrink */
+  min-width: 300px;
+  opacity: 1;                  /* override the fadeInUp animation opacity */
+  animation: none;             /* no stagger animation needed here */
+}
+
+
+
 /* =============== VIEW ALL BUTTON =============== */
 .btn-view-all {
   display: inline-block;
@@ -650,3 +770,5 @@
     text-align: center;
   }
 }
+
+
