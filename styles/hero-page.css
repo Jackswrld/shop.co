@@ -1,8 +1,7 @@
 /* =============== HERO SECTION =============== */
 
 .hero-section {
-  background-color: var(--primary);
-  min-height: 80vh;
+  background-color: var(--primary);   
 }
 
 /* Remove !important where possible – use specificity instead */
@@ -222,10 +221,6 @@
 }
 
 @media (max-width: 991px) {
-  .hero-section {
-    padding: var(--space-lg) 0;
-  }
-
   .hero-heading {
     font-size: 42px;
   }
