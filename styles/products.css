@@ -2,6 +2,10 @@
 /* Backgrounds for product listing sections */
 .new-arrivals-section,
 .top-selling-section,
+.featured-shoes-section,
+.featured-shirts-section,
+.featured-dresses-section,
+.featured-accessories-section,
 .featured-api-section {
   background-color: var(--color-bg-body);
 }
@@ -13,7 +17,7 @@
 /* Section titles (merged from both original definitions for consistency) */
 .section-title {
   font-family: "MyCustomFont", sans-serif;
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 900;
   color: var(--color-text-primary);
   margin-bottom: 2rem;
@@ -138,12 +142,14 @@
 
 /* =============== BROWSE BY STYLE CARDS =============== */
 /* Container for the style cards section */
+.browse-style-outer {
+  padding: 0 var(--space-md);
+}
+
 .section-wrapper {
   background-color: #f0f0f0;
   border-radius: 24px;
   padding: 48px 40px;
-  max-width: 1100px;
-  margin: 0 auto;
 }
 
 /* Individual style card */
@@ -170,7 +176,7 @@
   top: 22px;
   left: 22px;
   font-family: var(--font-primary-bold);
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 3vw, 2rem);
   color: #111;
   z-index: 2;
   letter-spacing: 0.3px;
@@ -220,6 +226,30 @@
   padding-right: 0 !important;
 }
 
+/* Mobile: stack cards full width, reduce height */
+@media (max-width: 575px) {
+  .browse-style-outer {
+    padding: 0;
+  }
+
+  .section-wrapper {
+    padding: 28px 20px;
+    border-radius: 16px;
+  }
+
+}
+
+/* Tablet */
+@media (min-width: 576px) and (max-width: 991px) {
+  .section-wrapper {
+    padding: 36px 28px;
+  }
+
+  .style-card {
+    height: 200px;
+  }
+}
+
 /* =============== VIEW ALL MODAL =============== */
 .happy-customers-section {
   padding: 60px 0;
@@ -231,17 +261,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
   margin-bottom: 32px;
 }
 
 .hc-title {
-  font-size: 2rem;
+  font-family: "MyCustomFont", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--color-text-primary, #111);
   margin: 0;
+  margin-bottom: 2rem;
 }
 
 /* ── Arrow buttons ── */
@@ -274,7 +305,7 @@
 /* ── Carousel wrapper: relative so fade overlays sit on top ── */
 .hc-carousel-wrapper {
   position: relative;
-  padding: 0 40px;             /* breathing room from page edge */
+  padding: 0 clamp(16px, 4vw, 40px);
 }
 
 /* ── Fade/blur peek overlays ── */
@@ -282,33 +313,44 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 120px;
-  pointer-events: none;       /* clicks pass through to track */
+   width: 7%;
+  max-width: 100%;    
+  height: 250px;
+  pointer-events: none;
   z-index: 2;
   transition: opacity 0.3s ease;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .hc-fade-left {
-  left: 40px;
-  background: linear-gradient(
-    to right,
-    rgba(255,255,255,1) 0%,
-    rgba(255,255,255,0) 100%
-  );
+  border-radius: 0 24px 24px 0;
+  left: clamp(16px, 4vw, 40px);
+ 
 }
 
 .hc-fade-right {
-  right: 40px;
-  background: linear-gradient(
-    to left,
-    rgba(255,255,255,1) 0%,
-    rgba(255,255,255,0) 100%
-  );
+  border-radius: 24px 0 0 24px;
+  right: clamp(16px, 4vw, 40px);
 }
 
-/* Hide left fade when scrolled all the way to start */
+/* =============== RESPONSIVE WIDTH =============== */
+
+@media (min-width: 768px) {
+ .hc-fade {
+    width: 6%;
+  }
+}
+
+@media (min-width: 1200px) {
+.hc-fade{
+    width: 4%;
+  }
+}
+
+
 .hc-fade-left.hidden  { opacity: 0; }
-/* Hide right fade when scrolled all the way to end   */
+
 .hc-fade-right.hidden { opacity: 0; }
 
 /* ── Scrollable track ── */
@@ -319,24 +361,22 @@
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   cursor: grab;
-  /* hide scrollbar */
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-bottom: 8px;         /* tiny room for hover shadow */
+  padding-bottom: 8px;       
 }
 
 .hc-track::-webkit-scrollbar { display: none; }
 
 .hc-track:active { cursor: grabbing; }
 
-/* ── Each card inside the track ── */
+
 .hc-track .review-card {
-  /* reuse ALL your existing .review-card styles — only override size */
-  flex: 0 0 300px;             /* fixed width, won't shrink */
-  min-width: 300px;
-  opacity: 1;                  /* override the fadeInUp animation opacity */
-  animation: none;             /* no stagger animation needed here */
-}
+  flex: 0 0 300px;      
+  min-width: clamp(150px, 400px, 300px);
+  opacity: 1;           
+  animation: none;           
+  }
 
 
 
@@ -602,8 +642,8 @@
 .view-all-modal-body {
   overflow-y: auto;
   padding: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(11.25rem, 100%), 1fr)) !important;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(11.25rem, 100%), 1fr)) !important; */
   grid-gap: 1rem;
 }
 
@@ -612,7 +652,8 @@
 }
 
 #view-all-products-container {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
 }
 
@@ -652,10 +693,6 @@
 /* =============== RESPONSIVE ADJUSTMENTS =============== */
 /* Tablet & below */
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 1.8rem;
-  }
-
   .product-card {
     margin-bottom: 1rem;
   }
@@ -668,9 +705,14 @@
     font-size: 1rem;
   }
 
-  .dress-style-name {
-    font-size: 1.2rem;
-    padding: 1.5rem 1rem 1rem;
+  /* Happy Customers */
+  .happy-customers-section {
+    padding: 40px 0;
+  }
+
+  .hc-track .review-card {
+    flex: 0 0 260px;
+    min-width: 260px;
   }
 
   /* Footer */
@@ -684,6 +726,12 @@
   .newsletter-form {
     flex-direction: column;
     min-width: auto;
+    width: 100%;
+  }
+  .newsletter-input,
+  .newsletter-btn {
+    width: 100%;
+    padding: 12px 20px;
   }
   .footer-bottom {
     flex-direction: column;
@@ -727,17 +775,13 @@
 
 /* Mobile */
 @media (max-width: 480px) {
-  .section-title {
-    font-size: 1.5rem;
-  }
-
   .product-name {
     min-height: 2.4em;
   }
 
-  .dress-style-name {
-    font-size: 1rem;
-    padding: 1rem 0.75rem 0.75rem;
+  .hc-track .review-card {
+    flex: 0 0 290px;
+    min-width: 290px;
   }
 
   /* Modal */

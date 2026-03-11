@@ -49,11 +49,6 @@
       requestAnimationFrame(update);
     }
   });
-
-
-
-
-  
   function initHappyCustomers(allReviews) {
 
     const track   = document.getElementById('hc-track');
@@ -171,8 +166,5 @@
   if (typeof reviews !== 'undefined') {
     initHappyCustomers(reviews);
   }
-
-
-
 
 initHappyCustomers(reviews);
