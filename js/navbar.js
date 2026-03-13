@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchIconBtn = document.querySelector(".search-icon-btn");
   const searchContainer = document.querySelector(".search-container");
   const searchBar = document.querySelector(".search-bar");
+  const cartBadge = document.getElementById("cart-badge");
 
   // Navbar menu toggle
   if (navToggle) {
@@ -53,4 +54,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  function loadCartFromStorage() {
+    try {
+      const raw = localStorage.getItem("shopco_cart");
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function updateCartBadge() {
+    if (!cartBadge) return;
+
+    const cart = loadCartFromStorage();
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+
+    if (totalItems > 0) {
+      cartBadge.textContent = totalItems > 99 ? "99+" : String(totalItems);
+      cartBadge.classList.add("visible");
+    } else {
+      cartBadge.textContent = "";
+      cartBadge.classList.remove("visible");
+    }
+  }
+
+  updateCartBadge();
 });
