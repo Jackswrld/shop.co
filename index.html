@@ -32,7 +32,7 @@
       <link rel="stylesheet" href="styles/products.css" />
       <link rel="stylesheet" href="styles/search.css"/>
       <link rel="stylesheet" href="styles/product-detail.css"/>
-
+      
     </head>
 
     <body>
@@ -75,7 +75,9 @@
             placeholder="Search for products..."
             aria-label="Search"
           />
+
           <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
           <!-- Search Results Dropdown -->
           <div class="search-results-dropdown" id="search-results-dropdown">
             <ul class="search-results-list" id="search-results-list"></ul>
@@ -86,9 +88,12 @@
       <button class="search-icon-btn" aria-label="Search">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
-      <button class="icon-btn">
+
+       <a href="../pages/cart.html" class="icon-btn cart-icon-wrapper" aria-label="View cart">
         <i class="fa-solid fa-cart-shopping"></i>
-      </button>
+        <span class="cart-badge" id="cart-badge"></span>
+      </a>
+
       <button class="icon-btn">
         <i class="fa-solid fa-circle-user"></i>
       </button>
@@ -497,7 +502,6 @@
       <script type="module" src="js/main.js"></script>
       <script type="module" src="js/search.js"></script>
     </body>
-  </html>
-</html>
+
 
 </html>

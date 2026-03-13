@@ -101,6 +101,38 @@ document.addEventListener("DOMContentLoaded", async function () {
     }, 300);
   }
 
+  // Reads cart from localStorage — same helper as cart.js
+// We duplicate it here so product-detail.js works standalone
+// without importing cart.js.
+function getCartFromStorage() {
+  try {
+    const raw = localStorage.getItem("shopco_cart");
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+ 
+function saveCartToStorage(cart) {
+  localStorage.setItem("shopco_cart", JSON.stringify(cart));
+}
+ 
+// Updates the navbar badge count on this page too
+function updateCartBadge() {
+  const badge = document.getElementById("cart-badge");
+  if (!badge) return;
+ 
+  const cart       = getCartFromStorage();
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+ 
+  if (totalItems > 0) {
+    badge.textContent = totalItems > 99 ? "99+" : totalItems;
+    badge.classList.add("visible");
+  } else {
+    badge.classList.remove("visible");
+  }
+}
+
   // ============================================
   // 4. PRODUCT DATA FUNCTIONS
   // ============================================
@@ -400,18 +432,112 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // ────── ADD TO CART ──────
   function addToCart() {
-    const cartItem = {
-      product: productState.productName,
-      size: productState.selectedSize,
-      quantity: productState.quantity,
-      price: productState.price,
-      total: productState.price * productState.quantity,
-    };
-
-    alert(
-      `Added to cart!\n\nProduct: ${cartItem.product}\nSize: ${cartItem.size}\nQuantity: ${cartItem.quantity}\nPrice: $${cartItem.price}\nTotal: $${cartItem.total}`,
-    );
+  /*
+    We're now SAVING to localStorage instead of showing an alert.
+ 
+    The cartItem object shape must match what cart.js expects:
+    {
+      id, name, image, price, size, color, category, quantity, cartKey
+    }
+ 
+    productState is already set up in your existing code —
+    we just extend it with image, category, and cartKey.
+  */
+ 
+  // Build the cart item object from productState + product data
+  const cartItem = {
+    id:       product.id,
+    name:     product.name,
+    image:    product.images[0],          // First image as thumbnail
+    price:    product.price,
+    size:     productState.selectedSize,
+    color:    product.color || null,      // Optional — some products may not have color
+    category: product.category || "fashion",
+    quantity: productState.quantity,
+    cartKey:  `${product.id}_${productState.selectedSize}`, // Unique key
+  };
+ 
+  // ── Load existing cart ──────────────────────────────────
+  const cart     = getCartFromStorage();
+  const existing = cart.findIndex((i) => i.cartKey === cartItem.cartKey);
+ 
+  if (existing !== -1) {
+    // Already in cart with same size → just increase quantity
+    cart[existing].quantity += cartItem.quantity;
+  } else {
+    // New item → push to array
+    cart.push(cartItem);
   }
+ 
+  // ── Save back to localStorage ───────────────────────────
+  saveCartToStorage(cart);
+ 
+  // ── Update navbar badge count ───────────────────────────
+  updateCartBadge();
+ 
+  // ── Show a visual confirmation toast ───────────────────
+  showAddToCartToast(product.name, productState.selectedSize, productState.quantity);
+}
+
+function showAddToCartToast(productName, size, qty) {
+  /*
+    createElement + appendChild — the programmatic way to add DOM elements.
+    Alternative to innerHTML: safer for user-generated content
+    because it doesn't parse HTML (no XSS risk).
+ 
+    HOWEVER — for our controlled data (product names from our own API)
+    innerHTML is fine and more readable. Both approaches work.
+  */
+  const toast = document.createElement("div");
+  toast.className = "add-to-cart-toast";
+  toast.innerHTML = `
+    <i class="fa-solid fa-circle-check" style="color:#16a34a; font-size:18px;"></i>
+    <div>
+      <strong>${productName}</strong> added to cart!
+      <span style="display:block; font-size:12px; color:#666; margin-top:2px;">
+        Size: ${size}  ·  Qty: ${qty}
+      </span>
+    </div>
+    <a href="../pages/cart.html" style="
+      background:#000;
+      color:#fff;
+      padding:6px 14px;
+      border-radius:20px;
+      font-size:12px;
+      text-decoration:none;
+      white-space:nowrap;
+      flex-shrink:0;
+    ">View Cart</a>
+  `;
+ 
+  // Inline styles for the toast container
+  Object.assign(toast.style, {
+    position:      "fixed",
+    bottom:        "24px",
+    right:         "24px",
+    background:    "#fff",
+    border:        "1px solid #e6e6e6",
+    borderRadius:  "12px",
+    padding:       "14px 18px",
+    display:       "flex",
+    alignItems:    "center",
+    gap:           "12px",
+    boxShadow:     "0 10px 30px rgba(0,0,0,0.12)",
+    zIndex:        "9999",
+    maxWidth:      "380px",
+    animation:     "slideInRight 0.3s ease",
+    fontFamily:    "inherit",
+  });
+ 
+  document.body.appendChild(toast);
+ 
+  // Auto-remove after 3.5 seconds
+  setTimeout(() => {
+    toast.style.animation = "slideInRight 0.3s ease reverse";
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+
 
   // ────── THUMBNAIL SWITCHING ──────
   function changeMainImage(clickedThumbnail) {
@@ -911,34 +1037,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   loadProductData();
   loadReviews();
-  loadSimilarProducts()
+  loadSimilarProducts();
+  updateCartBadge();
   setupStarRating();
   setupCharCounter();
-
-
-  const track = document.getElementById('similar-scroll-track');
-const inner = document.getElementById('similar-products-container');
-console.log('track width:', track.offsetWidth);
-console.log('inner children:', inner.children.length);
-console.log('first col width:', inner.children[0]?.offsetWidth);
-console.log('first col style:', inner.children[0]?.style.width);
-console.log('window width:', window.innerWidth);
-
-console.log('HTML snippet:', inner.innerHTML.slice(0, 200));
-console.log('cols found:', inner.querySelectorAll('[class*="col-"]').length);
-inner.querySelectorAll('[class*="col-"]').forEach((c,i) => console.log(i, c.style.width, c.className));
-
-document.getElementById('similar-products-container').children.length
-
-const left = document.getElementById('similar-scroll-left');
-const right = document.getElementById('similar-scroll-right');
-console.log('left disabled:', left.disabled);
-console.log('right disabled:', right.disabled);
-console.log('left pointer-events:', getComputedStyle(left).pointerEvents);
-console.log('right pointer-events:', getComputedStyle(right).pointerEvents);
-
-
-
 
 }); // End DOMContentLoaded
   
