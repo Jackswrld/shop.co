@@ -149,7 +149,9 @@ button {
 .review-card,
 .product-card,
 .thumbnail {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .tab-pane {
@@ -161,7 +163,9 @@ button {
 }
 
 .filter-option {
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .reviews-count {
@@ -201,6 +205,10 @@ nav {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.cart-breadcrumb {
+  z-index: 500 !important;
 }
 
 .nav-left {
@@ -346,35 +354,35 @@ nav {
 }
 
 .cart-icon-wrapper {
-     position: relative;
-     display: inline-flex;
-     align-items: center;
-     justify-content: center;
-     color: var(--color-black);
-   }
- 
-   .cart-badge {
-     display: none;
-     position: absolute;
-     top: -6px;
-     right: -8px;
-     background: #e53e3e;
-     color: #fff;
-     font-size: 10px;
-     font-family: var(--font-primary-bold);
-     min-width: 18px;
-     height: 18px;
-     border-radius: 50%;
-     align-items: center;
-     justify-content: center;
-     padding: 0 4px;
-     line-height: 1;
-     pointer-events: none;
-   }
- 
-   .cart-badge.visible {
-     display: flex;
-   }
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-black);
+}
+
+.cart-badge {
+  display: none;
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #e53e3e;
+  color: #fff;
+  font-size: 10px;
+  font-family: var(--font-primary-bold);
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.cart-badge.visible {
+  display: flex;
+}
 
 /* ============================================
    RESPONSIVE NAVBAR
