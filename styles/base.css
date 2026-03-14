@@ -80,6 +80,7 @@
   --transition: 0.3s ease;
   --primary: #e9e2e26d;
   --secondary: #000;
+  --nav-height: 0px;
 }
 
 /* ============================================
@@ -203,8 +204,21 @@ nav {
   border-bottom: 1px solid #eee;
   font-family: var(--font-primary);
   position: sticky;
+  right: 0;
+  left: 0;
   top: 0;
   z-index: 1000;
+}
+
+body.nav-fixed {
+  padding-top: var(--nav-height);
+}
+
+nav.nav-fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
 .cart-breadcrumb {
@@ -391,7 +405,6 @@ nav {
 @media (max-width: 900px) {
   nav {
     padding: 12px 18px;
-    position: relative;
   }
 
   .nav-toggle {

@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchContainer = document.querySelector(".search-container");
   const searchBar = document.querySelector(".search-bar");
   const cartBadge = document.getElementById("cart-badge");
+  const topInfo = document.querySelector(".top-info");
 
   // Navbar menu toggle
   if (navToggle) {
@@ -80,4 +81,35 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   updateCartBadge();
+
+ const updateNavState = () => {
+  if (!nav) return;
+
+  // Always update nav height
+  document.documentElement.style.setProperty("--nav-height", `${nav.offsetHeight}px`);
+
+  // Decide if nav should be fixed
+  const topInfoHeight = topInfo?.offsetHeight || 0;
+  const shouldFix = window.scrollY > topInfoHeight;
+
+  nav.classList.toggle("nav-fixed", shouldFix);
+  document.body.classList.toggle("nav-fixed", shouldFix);
+};
+
+// Run once on load
+updateNavState();
+
+// On resize, update everything
+window.addEventListener("resize", updateNavState);
+
+// On scroll, update only fixed state (like your original)
+window.addEventListener("scroll", () => {
+  if (!nav) return;
+  const topInfoHeight = topInfo?.offsetHeight || 0;
+  const shouldFix = window.scrollY > topInfoHeight;
+
+  nav.classList.toggle("nav-fixed", shouldFix);
+  document.body.classList.toggle("nav-fixed", shouldFix);
+}, { passive: true });
+
 });
