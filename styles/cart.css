@@ -1,0 +1,577 @@
+/* ============================================
+   CART PAGE — cart.css
+   Uses CSS variables already defined in base.css
+   ============================================ */
+
+
+/* ─── Page Layout ──────────────────────────── */
+
+.cart-page {
+  padding: 24px 0 80px;
+  min-height: 70vh;                  /* Keeps footer pushed down even on empty cart */
+}
+
+.cart-container {
+  max-width: 1200px;
+}
+
+
+/* ─── Breadcrumb ────────────────────────────── */
+
+.cart-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.breadcrumb {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.breadcrumb-item a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--color-text-primary);
+}
+
+.breadcrumb-item.active {
+  color: var(--color-text-primary);
+  font-family: var(--font-primary-bold);
+}
+
+/* Bootstrap's default "/" separator — keep it subtle */
+.breadcrumb-item + .breadcrumb-item::before {
+  color: var(--color-text-secondary);
+}
+
+/* Back button — mobile only (d-lg-none in HTML) */
+.back-btn {
+  background: var(--color-bg-section);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.back-btn:hover {
+  background: var(--color-border);
+}
+
+
+/* ─── Page Title ────────────────────────────── */
+
+.cart-title {
+  font-size: clamp(28px, 5vw, var(--font-size-xxl)); /* Scales nicely on mobile */
+  margin-bottom: 28px;
+  letter-spacing: -0.5px;
+}
+
+
+/* ─── EMPTY CART STATE ──────────────────────── */
+
+.empty-cart-state {
+  display: none;               /* JS shows this when cart is empty */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px 24px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.empty-cart-state.visible {
+  display: flex;
+}
+
+.empty-cart-icon {
+  font-size: 56px;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-cart-state h3 {
+  font-family: var(--font-primary-bold);
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.empty-cart-state p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: 24px;
+}
+
+.btn-continue {
+  border-radius: var(--radius-xl);
+  padding: 12px 28px;
+  font-size: var(--font-size-sm);
+}
+
+
+/* ─── CART ITEMS CARD ───────────────────────── */
+
+.cart-items-card {
+  display: none;               /* JS shows this when cart has items */
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.cart-items-card.visible {
+  display: block;
+}
+
+
+/* ─── INDIVIDUAL CART ITEM ──────────────────── */
+
+/*
+  Each item sits inside .cart-items-list.
+  They are separated by a border-bottom except the last child.
+*/
+.cart-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition);
+  position: relative;           /* Needed for absolute-positioned delete btn */
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item:hover {
+  background: #fafafa;
+}
+
+
+/* Product thumbnail image */
+.cart-item-img {
+  width: 100px;
+  height: 100px;
+  min-width: 100px;              /* Prevents shrinking on flex */
+  border-radius: var(--radius-sm);
+  object-fit: cover;             /* Crops to fill — no distortion */
+  background: var(--color-bg-section);
+}
+
+
+/* Text block: name, meta, price */
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cart-item-name {
+  font-family: var(--font-primary-bold);
+  font-size: 16px;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+  padding-right: 36px;           /* Leaves room for the trash icon */
+}
+
+.cart-item-meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.cart-item-meta span {
+  display: block;                /* Each meta line on its own row */
+}
+
+/* Price row: price left, qty right */
+.cart-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.cart-item-price {
+  font-family: var(--font-primary-bold);
+  font-size: 20px;
+  color: var(--color-text-primary);
+}
+
+
+/* Delete (Trash) button — top-right corner of each item */
+.cart-delete-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: #e53e3e;                /* Red trash icon matches design */
+  font-size: 17px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), transform var(--transition);
+  line-height: 1;
+}
+
+.cart-delete-btn:hover {
+  background: #fff5f5;
+  transform: scale(1.1);
+}
+
+
+/* ─── QUANTITY CONTROLS (pill shape) ────────── */
+
+/*
+  Matches the rounded pill in both design images.
+  Background is light grey, with – count + inside.
+*/
+.qty-controls {
+  display: flex;
+  align-items: center;
+  background: var(--color-bg-section);
+  border-radius: var(--radius-xl);
+  padding: 6px 4px;
+  gap: 4px;
+  user-select: none;             /* Prevents accidental text selection on rapid click */
+}
+
+.qty-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+
+.qty-btn:hover {
+  background: var(--color-border);
+}
+
+.qty-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.qty-number {
+  min-width: 28px;
+  text-align: center;
+  font-family: var(--font-primary-bold);
+  font-size: 15px;
+  color: var(--color-text-primary);
+}
+
+
+/* ─── ORDER SUMMARY CARD ────────────────────── */
+
+.order-summary-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  position: sticky;             /* Sticks to viewport while scrolling items */
+  top: 90px;                    /* Below the sticky navbar */
+}
+
+.summary-title {
+  font-family: var(--font-primary-bold);
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--color-text-primary);
+}
+
+/* Each row: label left, value right */
+.summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-value {
+  font-family: var(--font-primary-bold);
+  font-size: 15px;
+  color: var(--color-text-primary);
+}
+
+/* Red colour on discount value when applied */
+.discount-value.is-discount {
+  color: #e53e3e;
+}
+
+/* Small badge next to "Discount" label (e.g. "-20%") */
+.discount-badge {
+  background: #fff0f0;
+  color: #e53e3e;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-family: var(--font-primary-bold);
+}
+
+/* Thin separator before Total row */
+.summary-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 4px 0 0;
+}
+
+/* Total row — slightly bolder/larger */
+.summary-total-row .total-label {
+  font-family: var(--font-primary-bold);
+  color: var(--color-text-primary);
+  font-size: 16px;
+}
+
+.summary-total-row .total-value {
+  font-size: 20px;
+  color: var(--color-text-primary);
+}
+
+
+/* ─── PROMO CODE ROW ────────────────────────── */
+
+.promo-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  align-items: stretch;
+}
+
+/* Wrapper gives us the tag icon inside the input */
+.promo-input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.promo-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.promo-input {
+  width: 100%;
+  padding: 12px 14px 12px 38px;  /* Left padding makes room for the tag icon */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-primary);
+  outline: none;
+  transition: border-color var(--transition);
+  background: var(--color-bg-section);
+  text-transform: uppercase;
+}
+
+.promo-input:focus {
+  border-color: #999;
+  background: #fff;
+}
+
+.promo-apply-btn {
+  background: #000;
+  color: #fff;
+  border-radius: var(--radius-xl);
+  padding: 12px 20px;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-primary-bold);
+  white-space: nowrap;
+  transition: opacity var(--transition);
+}
+
+.promo-apply-btn:hover {
+  opacity: 0.8;
+  color: #fff;
+}
+
+/* Success / error feedback below promo row */
+.promo-message {
+  font-size: 13px;
+  margin-top: 8px;
+  min-height: 18px;             /* Prevents layout jump when message appears */
+}
+
+.promo-message.success {
+  color: #16a34a;
+}
+
+.promo-message.error {
+  color: #e53e3e;
+}
+
+
+
+/* ─── CHECKOUT BUTTON ───────────────────────── */
+
+.checkout-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-primary-bold);
+  letter-spacing: 0.3px;
+  background: #000;
+  color: #fff;
+  transition: opacity var(--transition);
+}
+
+.checkout-btn:hover {
+  opacity: 0.85;
+  color: #fff;
+}
+
+
+/* ─── NAVBAR CART BADGE ─────────────────────── */
+
+/*
+  The cart icon link needs position:relative so the badge
+  can be absolutely positioned in the top-right corner.
+*/
+.cart-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-badge {
+  display: none;                /* Hidden until cart has items — JS sets display:flex */
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #e53e3e;
+  color: #fff;
+  font-size: 10px;
+  font-family: var(--font-primary-bold);
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  line-height: 1;
+  pointer-events: none;         /* Clicks pass through to the parent link */
+}
+
+.cart-badge.visible {
+  display: flex;
+}
+
+
+/* ─── ITEM ENTER ANIMATION ──────────────────── */
+
+/*
+  When JS adds a new item to the list, it gets the "entering" class
+  for a brief moment, then that class is removed so the transition plays.
+*/
+@keyframes itemSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cart-item.entering {
+  animation: itemSlideIn 0.25s ease forwards;
+}
+
+
+/* ─── RESPONSIVE ────────────────────────────── */
+
+/* Tablet — tighten item padding */
+@media (max-width: 992px) {
+  .order-summary-card {
+    position: static;           /* No sticky on mobile — stacks below items */
+  }
+}
+
+@media (max-width: 576px) {
+  .cart-item {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .cart-item-img {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+  }
+
+  .cart-item-name {
+    font-size: 14px;
+  }
+
+  .cart-item-price {
+    font-size: 17px;
+  }
+
+  .qty-controls {
+    padding: 4px 2px;
+  }
+
+  .qty-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+  }
+
+  .order-summary-card {
+    padding: 20px 16px;
+  }
+
+  .promo-row {
+    flex-direction: row;        /* Keep input + button on same row even on small screens */
+  }
+
+  .promo-apply-btn {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+}

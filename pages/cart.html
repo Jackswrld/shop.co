@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart – SHOP.CO</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Project Base Styles -->
+  <link rel="stylesheet" href="../styles/base.css" />
+
+  <!-- Cart-specific Styles -->
+  <link rel="stylesheet" href="../styles/cart.css" />
+</head>
+
+<body>
+
+  <!-- ==============================
+       TOP INFO BAR
+  ================================ -->
+  <div class="top-info">
+    Sign up and get 20% off your first order.
+    <a href="#" style="color:#fff; text-decoration:underline; margin-left:4px;">Sign Up Now</a>
+  </div>
+
+  <!-- ==============================
+       NAVBAR
+  ================================ -->
+  <nav>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="nav-left">
+      <a href="../index.html" class="logo heading">SHOP.CO</a>
+      <ul class="nav-menu mb-0">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">
+            Shop <i class="fa-solid fa-chevron-down dropdown-caret"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Shoes</a></li>
+          </ul>
+        </li>
+        <li><a href="#">On Sale</a></li>
+        <li><a href="#new-arrival">New Arrivals</a></li>
+        <li><a href="#">Brands</a></li>
+      </ul>
+    </div>
+
+    <div class="search-container">
+      <input type="text" class="search-bar" placeholder="Search for products…" aria-label="Search" />
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+    </div>
+
+     <!-- Search Results Dropdown -->
+          <div class="search-results-dropdown" id="search-results-dropdown">
+            <ul class="search-results-list" id="search-results-list"></ul>
+          </div>
+        </div>
+
+    <div class="nav-icons">
+      <button class="search-icon-btn" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+      <a href="../pages/cart.html" class="icon-btn cart-icon-wrapper" aria-label="View cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge" id="cart-badge"></span>
+      </a>
+
+      <button class="icon-btn">
+        <i class="fa-solid fa-circle-user"></i>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- ==============================
+       MAIN CART PAGE
+  ================================ -->
+  <main class="cart-page">
+    <div class="container cart-container">
+
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="cart-breadcrumb">
+        <!--
+          The mobile "back" chevron (visible only on small screens).
+          Clicking it goes back one step in browser history.
+        -->
+        <button class="back-btn d-lg-none" onclick="history.back()" aria-label="Go back">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Cart</li>
+        </ol>
+      </nav>
+
+      <!-- Page Title -->
+      <h1 class="heading cart-title">YOUR CART</h1>
+
+      <!-- Two-column layout -->
+      <div class="row g-4 cart-layout">
+
+        <!-- ─────────────────────────────────────
+             LEFT COLUMN: CART ITEMS
+        ──────────────────────────────────────── -->
+        <div class="col-12 col-lg-7">
+
+          <!--
+            EMPTY STATE — shown when cart is empty.
+            JS toggles display between this and the items list.
+          -->
+          <div class="empty-cart-state" id="empty-cart-state">
+            <i class="fa-solid fa-cart-shopping empty-cart-icon"></i>
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added anything yet.</p>
+            <a href="../index.html" class="btn btn-dark btn-continue">
+              Continue Shopping <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+
+          <!--
+            CART ITEMS WRAPPER — shown when cart has items.
+            Each item is rendered by JS inside here.
+            Using a bordered card that wraps all items (matches Image 2 style).
+          -->
+          <div class="cart-items-card" id="cart-items-card">
+            <div class="cart-items-list" id="cart-items-list">
+              <!-- JS renders <div class="cart-item"> elements here -->
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ─────────────────────────────────────
+             RIGHT COLUMN: ORDER SUMMARY
+        ──────────────────────────────────────── -->
+        <div class="col-12 col-lg-5">
+          <div class="order-summary-card">
+
+            <h2 class="summary-title">Order Summary</h2>
+
+            <!-- Summary rows -->
+            <div class="summary-rows">
+
+              <div class="summary-row">
+                <span class="summary-label">Subtotal</span>
+                <!--
+                  id="summary-subtotal" — JS targets this to update the number.
+                  Same pattern for all dynamic values below.
+                -->
+                <span class="summary-value" id="summary-subtotal">$0.00</span>
+              </div>
+
+              <div class="summary-row">
+                <span class="summary-label">
+                  Discount
+                  <!-- Badge shows the % only when a promo code is active -->
+                  <span class="discount-badge" id="discount-badge" style="display:none"></span>
+                </span>
+                <!--
+                  discount-value gets class "is-discount" (red color) when > $0.
+                  Starts neutral. JS adds/removes the class.
+                -->
+                <span class="summary-value discount-value" id="summary-discount">-$0.00</span>
+              </div>
+
+              <div class="summary-row">
+                <span class="summary-label">Delivery Fee</span>
+                <span class="summary-value" id="summary-delivery">$15.00</span>
+              </div>
+
+              <!-- Divider above total -->
+              <hr class="summary-divider" />
+
+              <div class="summary-row summary-total-row">
+                <span class="summary-label total-label">Total</span>
+                <span class="summary-value total-value" id="summary-total">$0.00</span>
+              </div>
+
+            </div><!-- /summary-rows -->
+
+            <!-- Promo Code Input -->
+            <div class="promo-row">
+              <!--
+                Tag icon matches design.
+                Input is type="text" with placeholder.
+                The Apply button triggers applyPromoCode() in cart.js.
+              -->
+              <div class="promo-input-wrapper">
+                <i class="fa-solid fa-tag promo-icon"></i>
+                <input
+                  type="text"
+                  class="promo-input"
+                  id="promo-input"
+                  placeholder="Add promo code"
+                  aria-label="Promo code"
+                />
+              </div>
+              <button class="btn promo-apply-btn" id="promo-apply-btn" onclick="applyPromoCode()">
+                Apply
+              </button>
+            </div>
+
+            <!-- Promo feedback message (success/error) -->
+            <p class="promo-message" id="promo-message"></p>
+
+            <!-- Checkout Button -->
+            <button class="btn btn-dark checkout-btn" onclick="goToCheckout()">
+              Go to Checkout <i class="fa-solid fa-arrow-right ms-2"></i>
+            </button>
+
+          </div><!-- /order-summary-card -->
+        </div><!-- /col summary -->
+
+      </div><!-- /row -->
+    </div><!-- /container -->
+  </main>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Cart JS (must be after DOM) -->
+  <script src="../js/cart.js"></script>
+
+  <!-- Navbar toggle (reuse from your existing nav script) -->
+  <script>
+    // Mobile nav toggle — same pattern as your existing pages
+    const navToggle = document.querySelector('.nav-toggle');
+    const navEl = document.querySelector('nav');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        navEl.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', navEl.classList.contains('nav-open'));
+      });
+    }
+
+    // Mobile search icon
+    const searchIconBtn = document.querySelector('.search-icon-btn');
+    const searchContainer = document.querySelector('.search-container');
+    if (searchIconBtn) {
+      searchIconBtn.addEventListener('click', () => {
+        searchContainer.classList.toggle('search-open');
+      });
+    }
+  </script>
+
+</body>
+</html>
