@@ -1,0 +1,487 @@
+/* ============================================
+   SHOP PAGE — shop.css
+   Depends on: base.css (variables already defined there)
+   ============================================ */
+
+
+/* ── Page wrapper ───────────────────────────── */
+
+.shop-page {
+  padding: 20px 0 80px;
+  min-height: 80vh;
+}
+
+.shop-container {
+  max-width: 1400px;
+  padding: 0 24px;
+}
+
+
+/* ── Breadcrumb ─────────────────────────────── */
+
+.shop-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.shop-breadcrumb .breadcrumb-item a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.shop-breadcrumb .breadcrumb-item.active {
+  color: var(--color-text-primary);
+  font-family: var(--font-primary-bold);
+}
+
+.shop-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--color-text-secondary);
+}
+
+.back-btn {
+  background: var(--color-bg-section);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.back-btn:hover { background: var(--color-border); }
+
+
+/* ── Two-column layout ──────────────────────── */
+
+.shop-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+
+/* ─────────────────────────────────────────────
+   FILTER SIDEBAR
+───────────────────────────────────────────── */
+
+.filter-sidebar {
+  width: 260px;
+  flex-shrink: 0;       /* Never squeeze the sidebar */
+  position: sticky;
+  top: 90px;            /* Below sticky navbar */
+}
+
+.sidebar-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-title {
+  font-family: var(--font-primary-bold);
+  font-size: 18px;
+  color: var(--color-text-primary);
+}
+
+.filter-icon-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition);
+}
+
+.filter-icon-btn:hover { color: var(--color-text-primary); }
+
+.sidebar-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 16px 0;
+}
+
+
+/* ── Category Accordion ─────────────────────── */
+
+.filter-accordion-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-family: var(--font-primary-bold);
+  font-size: 15px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+/*
+  The caret rotates 180° when accordion is open.
+  JS toggles aria-expanded="true/false" on the button.
+  CSS uses the attribute to rotate the icon.
+*/
+.filter-accordion-btn[aria-expanded="true"] .accordion-caret {
+  transform: rotate(180deg);
+}
+
+.accordion-caret {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  transition: transform 0.25s ease;
+}
+
+/* Category list items */
+.category-list {
+  list-style: none;
+  padding: 8px 0 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 8px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.category-item:hover {
+  background: var(--color-bg-section);
+  color: var(--color-text-primary);
+}
+
+/* Active (selected) category */
+.category-item.active {
+  color: var(--color-text-primary);
+  font-family: var(--font-primary-bold);
+}
+
+.category-item i {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+
+/* ── Clear Filter Button ────────────────────── */
+
+.clear-filter-btn {
+  width: 100%;
+  background: var(--color-bg-section);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 12px;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.clear-filter-btn:hover { background: var(--color-border); }
+
+
+/* ─────────────────────────────────────────────
+   PRODUCT AREA
+───────────────────────────────────────────── */
+
+.product-area {
+  flex: 1;              /* Takes all remaining space */
+  min-width: 0;         /* Prevents flex overflow on narrow screens */
+}
+
+.product-area-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.shop-title {
+  font-size: clamp(24px, 4vw, 36px);
+  margin: 0;
+}
+
+.product-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+
+/* ── 3-Column Override ──────────────────────────────────────────
+   createProductCard() returns Bootstrap col-lg-3 (4 columns).
+   We override it here ONLY inside #shop-products-grid so
+   every other page that uses createProductCard() is untouched.
+
+   col-lg-3 = 25% width (Bootstrap)
+   We override to 33.333% = 3 columns.
+──────────────────────────────────────────────────────────────── */
+#shop-products-grid .col-lg-3 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+}
+
+
+/* ── Loading Spinner ────────────────────────── */
+
+.shop-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  gap: 16px;
+  width: 100%;
+}
+
+.shop-loading i {
+  font-size: 2rem;
+  color: var(--color-text-muted);
+}
+
+.shop-loading p {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+
+/* ── Empty State ────────────────────────────── */
+
+.shop-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+  width: 100%;
+}
+
+.shop-empty i {
+  font-size: 3rem;
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  margin-bottom: 16px;
+}
+
+.shop-empty h3 {
+  font-family: var(--font-primary-bold);
+  margin-bottom: 8px;
+}
+
+.shop-empty p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+
+/* ─────────────────────────────────────────────
+   PAGINATION
+───────────────────────────────────────────── */
+
+.pagination-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+/* Page number buttons + prev/next share base styles */
+.page-btn {
+  height: 38px;
+  min-width: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-card);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-btn:hover:not(:disabled):not(.active) {
+  background: var(--color-bg-section);
+}
+
+/* Active page: filled dark */
+.page-btn.active {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+  font-family: var(--font-primary-bold);
+  cursor: default;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Prev/Next are wider — text + icon */
+.prev-btn,
+.next-btn {
+  padding: 0 18px;
+  gap: 8px;
+}
+
+/* The "…" separator between page groups */
+.page-ellipsis {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  padding: 0 4px;
+  line-height: 38px;
+}
+
+/* Center page numbers between prev/next */
+.page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+
+/* ─────────────────────────────────────────────
+   MOBILE FILTER FAB + SIDEBAR
+───────────────────────────────────────────── */
+
+/* Fixed "Filters" button at bottom — mobile only */
+.mobile-filter-fab {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-black);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 14px 28px;
+  font-family: var(--font-primary-bold);
+  font-size: var(--font-size-sm);
+  gap: 8px;
+  align-items: center;
+  z-index: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: opacity var(--transition);
+}
+
+.mobile-filter-fab:hover { opacity: 0.85; }
+
+/* Overlay behind sidebar on mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 950;
+}
+
+.sidebar-overlay.visible { display: block; }
+
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+
+@media (max-width: 992px) {
+
+  .shop-layout {
+    flex-direction: column;
+  }
+
+  /* Sidebar slides in from left on mobile */
+  .filter-sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;           /* Hidden off-screen */
+    width: 280px;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--color-bg-card);
+    z-index: 960;
+    transition: left 0.3s ease;
+    padding: 20px 0;
+  }
+
+  /* JS adds this class to slide it in */
+  .filter-sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-card {
+    border: none;
+    border-radius: 0;
+    height: 100%;
+  }
+
+  .mobile-filter-fab {
+    display: flex;
+  }
+
+  .product-area {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Cards: back to 2 per row on tablets (Bootstrap col-sm-6 handles this) */
+  .product-area-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .pagination-wrapper {
+    justify-content: center;
+  }
+
+  .prev-btn,
+  .next-btn {
+    padding: 0 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-container {
+    padding: 0 16px;
+  }
+}

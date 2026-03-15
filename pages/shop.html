@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop – SHOP.CO</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/hero-page.css" />
+  <link rel="stylesheet" href="../styles/shop.css" />
+  <link rel="stylesheet" href="../styles/products.css">
+</head>
+<body>
+
+  <!-- Top Info Bar -->
+  <div class="top-info">
+    Sign up and get 20% off your first order.
+    <a href="#" style="color:#fff;text-decoration:underline;margin-left:4px;">Sign Up Now</a>
+  </div>
+
+  <!-- Navbar -->
+  <nav>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="nav-left">
+      <a href="../index.html" class="logo heading">SHOP.CO</a>
+      <ul class="nav-menu mb-0">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">Shop
+            <i class="fa-solid fa-chevron-down dropdown-caret"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Shoes</a></li>
+          </ul>
+        </li>
+        <li><a href="#">On Sale</a></li>
+        <li><a href="#new-arrival">New Arrivals</a></li>
+        <li><a href="#">Brands</a></li>
+      </ul>
+    </div>
+    <div class="search-container">
+      <input type="text" class="search-bar" placeholder="Search for products…" aria-label="Search" />
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+    </div>
+    <div class="nav-icons">
+      <button class="search-icon-btn" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <a href="../pages/cart.html" class="icon-btn cart-icon-wrapper" aria-label="View cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge" id="cart-badge"></span>
+      </a>
+      <button class="icon-btn">
+        <i class="fa-solid fa-circle-user"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <main class="shop-page">
+    <div class="container-fluid shop-container">
+
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="shop-breadcrumb">
+        <button class="back-btn d-lg-none" onclick="history.back()">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item active">Shop</li>
+        </ol>
+      </nav>
+
+      <!-- Two-column layout: sidebar + product area -->
+      <div class="shop-layout">
+
+        <!-- ── LEFT: Filter Sidebar ── -->
+        <aside class="filter-sidebar" id="filter-sidebar">
+          <div class="sidebar-card">
+
+            <!-- Sidebar header -->
+            <div class="sidebar-header">
+              <span class="sidebar-title">Filters</span>
+              <button class="filter-icon-btn" aria-label="Filter options">
+                <i class="fa-solid fa-sliders"></i>
+              </button>
+            </div>
+
+            <hr class="sidebar-divider" />
+
+            <!-- Category Accordion -->
+            <div class="filter-group">
+              <button class="filter-accordion-btn" id="category-toggle" aria-expanded="false">
+                <span>Category</span>
+                <i class="fa-solid fa-chevron-down accordion-caret"></i>
+              </button>
+
+              <!--
+                Category list — JS populates this.
+                Hidden by default; accordion toggle shows/hides it.
+              -->
+              <ul class="category-list" id="category-list" style="display:none;">
+                <!-- JS renders <li> items here -->
+              </ul>
+            </div>
+
+            <hr class="sidebar-divider" />
+
+            <!-- Clear Filter -->
+            <button class="clear-filter-btn" id="clear-filter-btn">
+              Clear Filter
+            </button>
+
+          </div>
+        </aside>
+
+        <!-- ── RIGHT: Product Area ── -->
+        <div class="product-area">
+
+          <!-- Top bar: title + count -->
+          <div class="product-area-header">
+            <h1 class="shop-title heading">Shop</h1>
+            <!--
+              "Showing 1-10 of 194 products"
+              JS updates this text after every render.
+            -->
+            <p class="product-count" id="product-count">Loading…</p>
+          </div>
+
+          <!-- Product Grid -->
+          <!--
+            .row is Bootstrap's flex row.
+            Cards come back from createProductCard() with col-lg-3.
+            shop.css overrides col-lg-3 inside this specific grid
+            to col-lg-4 width — giving us 3 columns, not 4.
+          -->
+          <div class="row g-3" id="shop-products-grid">
+            <!-- Loading spinner shown by JS on init -->
+          </div>
+
+          <!-- Pagination -->
+          <!--
+            JS renders: Previous  1  2  …  20  Next
+            Each page button has data-page attribute.
+            Click → update state.currentPage → renderPage()
+          -->
+          <div class="pagination-wrapper" id="pagination-container"></div>
+
+        </div><!-- /product-area -->
+      </div><!-- /shop-layout -->
+    </div>
+  </main>
+
+  <!-- Mobile filter toggle button (fixed bottom) -->
+  <!--
+    On mobile the sidebar is hidden. This button slides it in.
+    Only visible on screens < 992px (controlled by CSS).
+  -->
+  <button class="mobile-filter-fab" id="mobile-filter-btn" aria-label="Open filters">
+    <i class="fa-solid fa-sliders"></i> Filters
+  </button>
+
+  <!-- Mobile sidebar overlay (darkens background when sidebar is open) -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/shop.js"></script>
+
+  <script>
+    // Navbar toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navEl = document.querySelector('nav');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        navEl.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', navEl.classList.contains('nav-open'));
+      });
+    }
+    const searchIconBtn = document.querySelector('.search-icon-btn');
+    const searchContainer = document.querySelector('.search-container');
+    if (searchIconBtn) {
+      searchIconBtn.addEventListener('click', () => {
+        searchContainer.classList.toggle('search-open');
+      });
+    }
+  </script>
+</body>
+</html>
