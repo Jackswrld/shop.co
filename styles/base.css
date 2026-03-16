@@ -436,6 +436,10 @@ nav.nav-fixed {
     position: relative;
   }
 
+  .search-container i {
+    display: none;
+  }
+
   /* Search dropdown styles for mobile */
   .search-container.search-open {
     position: absolute;
