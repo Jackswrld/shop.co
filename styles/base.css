@@ -267,10 +267,15 @@ nav.nav-fixed {
   display: none;
   background: none;
   border: none;
-  padding: 8px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   cursor: pointer;
   color: #666;
   font-size: 18px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .search-icon-btn:hover {
@@ -299,16 +304,24 @@ nav.nav-fixed {
 
 .nav-icons {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
 }
 
 .icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   background: none;
   border: none;
   font-size: 20px;
+  line-height: 1;
   cursor: pointer;
   color: #000;
+  flex-shrink: 0;
 }
 
 /* Navbar dropdown */
@@ -378,8 +391,8 @@ nav.nav-fixed {
 .cart-badge {
   display: none;
   position: absolute;
-  top: -6px;
-  right: -8px;
+  top: -2px;
+  right: -2px;
   background: #e53e3e;
   color: #fff;
   font-size: 10px;
@@ -387,6 +400,7 @@ nav.nav-fixed {
   min-width: 18px;
   height: 18px;
   border-radius: 50%;
+  border: 2px solid #fff;
   align-items: center;
   justify-content: center;
   padding: 0 4px;
@@ -427,7 +441,7 @@ nav.nav-fixed {
   }
 
   .search-icon-btn {
-    display: block;
+    display: inline-flex;
     color: var(--color-black);
   }
 
@@ -509,6 +523,13 @@ nav.nav-fixed {
   }
 
   .nav-icons {
-    gap: 8px;
+    gap: 6px;
+  }
+
+  .search-icon-btn,
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
   }
 }
