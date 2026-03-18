@@ -66,13 +66,12 @@
     <div class="search-container">
       <input type="text" class="search-bar" placeholder="Search for products…" aria-label="Search" />
       <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-    </div>
 
-     <!-- Search Results Dropdown -->
-          <div class="search-results-dropdown" id="search-results-dropdown">
-            <ul class="search-results-list" id="search-results-list"></ul>
-          </div>
-        </div>
+      <!-- Search Results Dropdown -->
+      <div class="search-results-dropdown" id="search-results-dropdown">
+        <ul class="search-results-list" id="search-results-list"></ul>
+      </div>
+    </div>
 
     <div class="nav-icons">
       <button class="search-icon-btn" aria-label="Search">
@@ -100,10 +99,10 @@
       <!-- Breadcrumb -->
       <nav aria-label="breadcrumb" class="cart-breadcrumb">
         <!--
-          The mobile "back" chevron (visible only on small screens).
+          The breadcrumb back chevron.
           Clicking it goes back one step in browser history.
         -->
-        <button class="back-btn d-lg-none" onclick="history.back()" aria-label="Go back">
+        <button class="back-btn" onclick="history.back()" aria-label="Go back">
           <i class="fa-solid fa-chevron-left"></i>
         </button>
         <ol class="breadcrumb mb-0">
