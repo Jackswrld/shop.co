@@ -1,7 +1,7 @@
 // Navbar Toggle Functionality
 document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector("nav");
+  const nav = document.querySelector("body > nav");
   const searchIconBtn = document.querySelector(".search-icon-btn");
   const searchContainer = document.querySelector(".search-container");
   const searchBar = document.querySelector(".search-bar");

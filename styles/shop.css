@@ -22,10 +22,15 @@
 .shop-breadcrumb {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
+}
+
+.shop-breadcrumb .breadcrumb {
+  flex-wrap: wrap;
 }
 
 .shop-breadcrumb .breadcrumb-item a {
@@ -413,7 +418,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.4);
-  z-index: 950;
+  z-index: 1090;
 }
 
 .sidebar-overlay.visible { display: block; }
@@ -438,7 +443,7 @@
     height: 100vh;
     overflow-y: auto;
     background: var(--color-bg-card);
-    z-index: 960;
+    z-index: 1100;
     transition: left 0.3s ease;
     padding: 20px 0;
   }

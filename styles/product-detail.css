@@ -13,6 +13,10 @@
   flex-wrap: wrap;
 }
 
+.product-breadcrumb .breadcrumb {
+  flex-wrap: wrap;
+}
+
 .back-btn {
   background: var(--color-bg-section);
   border: 1px solid var(--color-border);
