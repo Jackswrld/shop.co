@@ -2,35 +2,132 @@
 document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector("body > nav");
+  const navMenu = nav?.querySelector(".nav-menu");
+  const navDropdowns = nav ? [...nav.querySelectorAll(".dropdown")] : [];
   const searchIconBtn = document.querySelector(".search-icon-btn");
   const searchContainer = document.querySelector(".search-container");
   const searchBar = document.querySelector(".search-bar");
   const cartBadge = document.getElementById("cart-badge");
   const topInfo = document.querySelector(".top-info");
+  const mobileNavMedia = window.matchMedia("(max-width: 900px)");
+  let navOverlay = null;
+
+  function syncNavToggleIcon(isOpen) {
+    if (!navToggle) return;
+
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+
+    const toggleIcon = navToggle.querySelector("i");
+    if (!toggleIcon) return;
+
+    toggleIcon.classList.toggle("fa-bars", !isOpen);
+    toggleIcon.classList.toggle("fa-xmark", isOpen);
+  }
+
+  function ensureNavOverlay() {
+    if (!nav || navOverlay) return navOverlay;
+
+    navOverlay = document.createElement("div");
+    navOverlay.className = "nav-overlay";
+    navOverlay.setAttribute("aria-hidden", "true");
+    document.body.appendChild(navOverlay);
+
+    navOverlay.addEventListener("click", () => {
+      closeNav();
+    });
+
+    return navOverlay;
+  }
+
+  function closeSearch() {
+    if (!searchContainer) return;
+    searchContainer.classList.remove("search-open");
+  }
+
+  function closeDropdowns(exception = null) {
+    navDropdowns.forEach((dropdown) => {
+      const shouldStayOpen = dropdown === exception;
+      dropdown.classList.toggle("is-open", shouldStayOpen);
+
+      const toggleBtn = dropdown.querySelector(".dropdown-toggle-btn");
+      if (toggleBtn) {
+        toggleBtn.setAttribute("aria-expanded", String(shouldStayOpen));
+      }
+    });
+  }
+
+  function openNav() {
+    if (!nav || !navMenu || !mobileNavMedia.matches) return;
+
+    closeSearch();
+    nav.classList.add("nav-open");
+    ensureNavOverlay()?.classList.add("is-visible");
+    syncNavToggleIcon(true);
+  }
+
+  function closeNav() {
+    if (!nav) return;
+
+    nav.classList.remove("nav-open");
+    navOverlay?.classList.remove("is-visible");
+    closeDropdowns();
+    syncNavToggleIcon(false);
+  }
+
+  function toggleNav() {
+    if (!nav) return;
+
+    if (nav.classList.contains("nav-open")) {
+      closeNav();
+      return;
+    }
+
+    openNav();
+  }
 
   // Navbar menu toggle
-  if (navToggle) {
-    navToggle.addEventListener("click", () => {
-      nav.classList.toggle("nav-open");
-      // Update aria-expanded attribute for accessibility
-      const isExpanded = nav.classList.contains("nav-open");
-      navToggle.setAttribute("aria-expanded", isExpanded);
+  if (navToggle && nav) {
+    ensureNavOverlay();
+    syncNavToggleIcon(nav.classList.contains("nav-open"));
+
+    navToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleNav();
     });
 
     // Close menu when clicking on a nav link
-    const navLinks = document.querySelectorAll(".nav-menu a");
+    const navLinks = nav.querySelectorAll(".nav-menu a");
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        nav.classList.remove("nav-open");
-        navToggle.setAttribute("aria-expanded", "false");
+        if (mobileNavMedia.matches) {
+          closeNav();
+        } else {
+          closeDropdowns();
+        }
+      });
+    });
+
+    const dropdownToggleButtons = nav.querySelectorAll(".dropdown-toggle-btn");
+    dropdownToggleButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const dropdown = button.closest(".dropdown");
+        if (!dropdown) return;
+
+        const shouldOpen = !dropdown.classList.contains("is-open");
+        closeDropdowns(shouldOpen ? dropdown : null);
       });
     });
   }
 
   // Search icon toggle functionality for mobile
-  if (searchIconBtn) {
+  if (searchIconBtn && searchContainer) {
     searchIconBtn.addEventListener("click", (e) => {
       e.stopPropagation();
+      closeNav();
       searchContainer.classList.toggle("search-open");
       
       // Focus the search input when opened
@@ -42,8 +139,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Close search dropdown when clicking outside
   document.addEventListener("click", (e) => {
-    if (searchContainer && searchBar && !searchContainer.contains(e.target)) {
-      searchContainer.classList.remove("search-open");
+    if (
+      searchContainer &&
+      searchBar &&
+      !searchContainer.contains(e.target) &&
+      !searchIconBtn?.contains(e.target)
+    ) {
+      closeSearch();
+    }
+
+    if (
+      nav &&
+      mobileNavMedia.matches &&
+      nav.classList.contains("nav-open") &&
+      !nav.contains(e.target)
+    ) {
+      closeNav();
+    }
+
+    if (!e.target.closest("body > nav .nav-menu .dropdown")) {
+      closeDropdowns();
     }
   });
 
@@ -51,10 +166,18 @@ document.addEventListener("DOMContentLoaded", () => {
   if (searchBar) {
     searchBar.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        searchContainer.classList.remove("search-open");
+        closeSearch();
       }
     });
   }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+
+    closeSearch();
+    closeNav();
+    closeDropdowns();
+  });
 
   function loadCartFromStorage() {
     try {
@@ -100,7 +223,16 @@ document.addEventListener("DOMContentLoaded", () => {
 updateNavState();
 
 // On resize, update everything
-window.addEventListener("resize", updateNavState);
+window.addEventListener("resize", () => {
+  if (!mobileNavMedia.matches) {
+    closeNav();
+    closeSearch();
+  }
+
+  closeDropdowns();
+
+  updateNavState();
+});
 
 // On scroll, update only fixed state (like your original)
 window.addEventListener("scroll", () => {
