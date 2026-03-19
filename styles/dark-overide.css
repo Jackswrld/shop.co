@@ -1,0 +1,913 @@
+/* ============================================================
+   DARK MODE OVERRIDES — dark-overrides.css
+   
+   One unified dark canvas across the entire site.
+   Every section, card, and element lives on the same
+   deep #0f172a → #111111 background world as the auth page.
+
+   Link this on EVERY page, after all other stylesheets:
+   <link rel="stylesheet" href="styles/dark-overrides.css" />
+   ============================================================ */
+
+
+/* ============================================================
+   1. THE CANVAS — body & all section backgrounds go transparent
+      so the single fixed gradient shows through everywhere
+   ============================================================ */
+
+[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.04) 0%, transparent 26%),
+    radial-gradient(circle at 88% 6%, rgba(255, 255, 255, 0.05) 0%, transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+    linear-gradient(160deg, #0f172a 0%, #111111 48%, #1a2235 100%);
+  background-attachment: fixed;
+  background-color: #0f172a;
+  min-height: 100vh;
+}
+
+/* Every section and wrapper — wipe their background entirely */
+[data-theme="dark"] section,
+[data-theme="dark"] .hero-section,
+[data-theme="dark"] .new-arrivals-section,
+[data-theme="dark"] .top-selling-section,
+[data-theme="dark"] .featured-shoes-section,
+[data-theme="dark"] .featured-shirts-section,
+[data-theme="dark"] .featured-dresses-section,
+[data-theme="dark"] .featured-accessories-section,
+[data-theme="dark"] .happy-customers-section,
+[data-theme="dark"] .browse-style-outer,
+[data-theme="dark"] .section-wrapper,
+[data-theme="dark"] .browse-section,
+[data-theme="dark"] .shop-section,
+[data-theme="dark"] .cart-section,
+[data-theme="dark"] .product-detail-section,
+[data-theme="dark"] main,
+[data-theme="dark"] .page-wrapper,
+[data-theme="dark"] .container,
+[data-theme="dark"] .container-xl,
+[data-theme="dark"] .container-fluid {
+  background: transparent !important;
+}
+
+
+/* ============================================================
+   2. NAVBAR — glassmorphism floating on the canvas
+   ============================================================ */
+
+[data-theme="dark"] body > nav {
+  background: rgba(15, 23, 42, 0.72) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] body > nav .logo,
+[data-theme="dark"] body > nav .nav-menu a,
+[data-theme="dark"] body > nav .icon-btn,
+[data-theme="dark"] body > nav .cart-icon-wrapper {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .search-bar {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f1f1f1 !important;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .search-bar::placeholder {
+  color: rgba(255, 255, 255, 0.32) !important;
+}
+
+[data-theme="dark"] .search-bar:focus {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] body > nav .dropdown-menu {
+  background: rgba(15, 23, 42, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] body > nav .dropdown-menu li a {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+[data-theme="dark"] body > nav .dropdown-menu li a:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #f1f1f1 !important;
+}
+
+/* Mobile nav open state */
+[data-theme="dark"] body > nav.nav-open .nav-menu {
+  background: rgba(15, 23, 42, 0.96) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(24px);
+}
+
+
+/* ============================================================
+   3. HERO SECTION
+   ============================================================ */
+
+[data-theme="dark"] .hero-section {
+  background: transparent !important;
+}
+
+[data-theme="dark"] .hero-heading,
+[data-theme="dark"] .hero-title,
+[data-theme="dark"] h1.heading {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .hero-description,
+[data-theme="dark"] .hero-copy {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-theme="dark"] .stats-number {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .stats-label {
+  color: rgba(255, 255, 255, 0.58) !important;
+}
+
+/* Stats dividers */
+[data-theme="dark"] .hero-stats .col-6:not(:last-child),
+[data-theme="dark"] .hero-stats [class*="col-"]:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Shop Now button */
+[data-theme="dark"] .btn-shop-now,
+[data-theme="dark"] a.btn-shop-now {
+  background: #f1f1f1 !important;
+  color: #0f172a !important;
+  border-color: transparent !important;
+  box-shadow: 0 12px 30px rgba(241, 241, 241, 0.12);
+}
+
+[data-theme="dark"] .btn-shop-now:hover,
+[data-theme="dark"] a.btn-shop-now:hover {
+  background: #ffffff !important;
+  box-shadow: 0 18px 36px rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   4. BRANDS BAR
+   ============================================================ */
+
+[data-theme="dark"] .brands-bar {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+[data-theme="dark"] .brand-name {
+  color: rgba(255, 255, 255, 0.55) !important;
+  letter-spacing: 0.06em;
+}
+
+
+/* ============================================================
+   5. SECTION TITLES
+   ============================================================ */
+
+[data-theme="dark"] .section-title,
+[data-theme="dark"] h2.section-title {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] hr,
+[data-theme="dark"] .section-divider {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+
+/* ============================================================
+   6. PRODUCT CARDS — glassy dark surface
+   ============================================================ */
+
+[data-theme="dark"] .product-card {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+[data-theme="dark"] .product-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .product-card .product-image-wrapper,
+[data-theme="dark"] .product-card .img-wrapper,
+[data-theme="dark"] .product-card .card-img-top,
+[data-theme="dark"] .product-card .product-img {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-radius: 18px 18px 0 0 !important;
+}
+
+[data-theme="dark"] .product-name,
+[data-theme="dark"] .product-title,
+[data-theme="dark"] .card-title {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .product-price,
+[data-theme="dark"] .price-current,
+[data-theme="dark"] .price {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .product-old-price,
+[data-theme="dark"] .price-original,
+[data-theme="dark"] .original-price,
+[data-theme="dark"] .price-crossed {
+  color: rgba(255, 255, 255, 0.38) !important;
+  text-decoration: line-through;
+}
+
+[data-theme="dark"] .product-badge,
+[data-theme="dark"] .discount-badge,
+[data-theme="dark"] .badge {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+/* View All / Load More */
+[data-theme="dark"] .btn-view-all,
+[data-theme="dark"] .load-more-btn {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #f1f1f1 !important;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .btn-view-all:hover,
+[data-theme="dark"] .load-more-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   7. BROWSE BY DRESS STYLE
+   ============================================================ */
+
+[data-theme="dark"] .browse-style-outer,
+[data-theme="dark"] .browse-section {
+  background: transparent !important;
+}
+
+[data-theme="dark"] .style-card {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+[data-theme="dark"] .style-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .style-card .label,
+[data-theme="dark"] .style-card span.label {
+  color: #f1f1f1 !important;
+  background: rgba(15, 23, 42, 0.55) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 999px;
+  padding: 6px 18px;
+}
+
+
+/* ============================================================
+   8. HAPPY CUSTOMERS / REVIEWS CAROUSEL
+   ============================================================ */
+
+[data-theme="dark"] .happy-customers-section {
+  background: transparent !important;
+}
+
+[data-theme="dark"] .hc-title {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .hc-arrow {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .hc-arrow:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+}
+
+[data-theme="dark"] .review-card,
+[data-theme="dark"] .hc-card {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+[data-theme="dark"] .review-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.42) !important;
+}
+
+[data-theme="dark"] .reviewer-name,
+[data-theme="dark"] .review-author,
+[data-theme="dark"] .hc-name {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .review-text,
+[data-theme="dark"] .review-body,
+[data-theme="dark"] .hc-text {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* Carousel edge fade — must match body background */
+[data-theme="dark"] .hc-fade-left {
+  background: linear-gradient(to right, #0f172a, transparent) !important;
+}
+
+[data-theme="dark"] .hc-fade-right {
+  background: linear-gradient(to left, #0f172a, transparent) !important;
+}
+
+
+/* ============================================================
+   9. FOOTER
+   ============================================================ */
+
+[data-theme="dark"] .footer {
+  background: rgba(10, 15, 30, 0.85) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px);
+}
+
+[data-theme="dark"] .footer-main {
+  background: transparent !important;
+}
+
+[data-theme="dark"] .footer-newsletter {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+[data-theme="dark"] .newsletter-title {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .newsletter-input {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.32) !important;
+}
+
+[data-theme="dark"] .newsletter-input:focus {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  outline: none;
+}
+
+[data-theme="dark"] .newsletter-btn {
+  background: #f1f1f1 !important;
+  color: #0f172a !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .newsletter-btn:hover {
+  background: #ffffff !important;
+  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .footer-heading {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .footer-col-title {
+  color: #f1f1f1 !important;
+  letter-spacing: 0.08em;
+}
+
+[data-theme="dark"] .footer-description,
+[data-theme="dark"] .footer-copyright {
+  color: rgba(255, 255, 255, 0.52) !important;
+}
+
+[data-theme="dark"] .footer-links li a {
+  color: rgba(255, 255, 255, 0.55) !important;
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .footer-links li a:hover {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .footer-divider {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .social-icon {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .social-icon:hover {
+  background: rgba(255, 255, 255, 0.13) !important;
+  color: #f1f1f1 !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+
+/* ============================================================
+   10. AUTH PAGE — panel in sync with the dark world
+   ============================================================ */
+
+[data-theme="dark"] .auth-page {
+  background:
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.04) 0%, transparent 26%),
+    radial-gradient(circle at 88% 6%, rgba(255, 255, 255, 0.05) 0%, transparent 22%),
+    linear-gradient(160deg, #0f172a 0%, #111111 48%, #1a2235 100%) !important;
+  background-attachment: fixed !important;
+}
+
+[data-theme="dark"] .auth-shell {
+  background: linear-gradient(145deg, #0f172a 0%, #111111 48%, #1e2535 100%) !important;
+}
+
+[data-theme="dark"] .auth-panel {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+}
+
+[data-theme="dark"] .auth-panel::before {
+  background: linear-gradient(90deg, #f1f1f1 0%, #a0aec0 55%, rgba(160, 174, 192, 0.4) 100%) !important;
+}
+
+[data-theme="dark"] .auth-panel-title    { color: #f1f1f1 !important; }
+[data-theme="dark"] .form-kicker         { color: rgba(255, 255, 255, 0.5) !important; }
+
+[data-theme="dark"] .auth-panel-badge {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .auth-tab-controls {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+[data-theme="dark"] .auth-tab {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme="dark"] #login-tab:checked ~ .auth-tab-controls label[for="login-tab"],
+[data-theme="dark"] #register-tab:checked ~ .auth-tab-controls label[for="register-tab"] {
+  background: #f1f1f1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .auth-form h2      { color: #f1f1f1 !important; }
+[data-theme="dark"] .auth-form-copy    { color: rgba(255, 255, 255, 0.6) !important; }
+[data-theme="dark"] .auth-form label:not(.checkbox-row) {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme="dark"] .auth-form input[type="email"],
+[data-theme="dark"] .auth-form input[type="password"],
+[data-theme="dark"] .auth-form input[type="text"] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f1f1f1 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .auth-form input::placeholder {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .auth-form input:focus {
+  border-color: rgba(255, 255, 255, 0.36) !important;
+  background: rgba(255, 255, 255, 0.09) !important;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06) !important;
+}
+
+[data-theme="dark"] .checkbox-row       { color: rgba(255, 255, 255, 0.65) !important; }
+[data-theme="dark"] .checkbox-row input { accent-color: #f1f1f1 !important; }
+[data-theme="dark"] .text-link          { color: rgba(255, 255, 255, 0.8) !important; }
+
+[data-theme="dark"] .auth-btn {
+  background: linear-gradient(135deg, #f1f1f1 0%, #d4d4d4 100%) !important;
+  color: #0f172a !important;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .auth-btn:hover {
+  background: #ffffff !important;
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .auth-divider       { color: rgba(255, 255, 255, 0.35) !important; }
+[data-theme="dark"] .auth-divider::before {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+[data-theme="dark"] .auth-divider span  {
+  background: transparent !important;
+}
+
+[data-theme="dark"] .social-btn {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] .social-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="dark"] .register-note { color: rgba(255, 255, 255, 0.5) !important; }
+
+[data-theme="dark"] .auth-assurance {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+[data-theme="dark"] .auth-assurance i  { color: #f1f1f1 !important; }
+[data-theme="dark"] .auth-footer        { background: transparent !important; }
+[data-theme="dark"] .auth-footer-inner p    { color: #f1f1f1 !important; }
+[data-theme="dark"] .auth-footer-inner span { color: rgba(255, 255, 255, 0.45) !important; }
+
+
+/* ============================================================
+   11. SEARCH RESULTS DROPDOWN
+   ============================================================ */
+
+[data-theme="dark"] .search-results-dropdown {
+  background: rgba(15, 23, 42, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .search-result-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+[data-theme="dark"] .search-result-item:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: #f1f1f1 !important;
+}
+
+
+/* ============================================================
+   12. SHOP PAGE — filter sidebar & layout
+   ============================================================ */
+
+[data-theme="dark"] .filter-sidebar,
+[data-theme="dark"] .filter-panel,
+[data-theme="dark"] .shop-filters {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  backdrop-filter: blur(14px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+}
+
+[data-theme="dark"] .filter-title,
+[data-theme="dark"] .filter-heading {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .filter-option,
+[data-theme="dark"] .filter-label {
+  color: rgba(255, 255, 255, 0.65) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .filter-option:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .filter-option.active,
+[data-theme="dark"] .filter-option.selected {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+
+/* ============================================================
+   13. CART PAGE
+   ============================================================ */
+
+[data-theme="dark"] .cart-item,
+[data-theme="dark"] .cart-row {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+[data-theme="dark"] .cart-item-name,
+[data-theme="dark"] .cart-product-name { color: #f1f1f1 !important; }
+
+[data-theme="dark"] .cart-item-price,
+[data-theme="dark"] .cart-price        { color: #f1f1f1 !important; }
+
+[data-theme="dark"] .cart-summary,
+[data-theme="dark"] .order-summary {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  backdrop-filter: blur(14px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28) !important;
+}
+
+[data-theme="dark"] .cart-summary h2,
+[data-theme="dark"] .order-summary h2,
+[data-theme="dark"] .summary-title     { color: #f1f1f1 !important; }
+
+[data-theme="dark"] .summary-label,
+[data-theme="dark"] .cart-label        { color: rgba(255, 255, 255, 0.6) !important; }
+
+[data-theme="dark"] .summary-value,
+[data-theme="dark"] .cart-value        { color: #f1f1f1 !important; }
+
+[data-theme="dark"] .qty-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+  backdrop-filter: blur(6px);
+}
+
+[data-theme="dark"] .qty-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+}
+
+[data-theme="dark"] .qty-display { color: #f1f1f1 !important; }
+
+[data-theme="dark"] .checkout-btn,
+[data-theme="dark"] .btn-checkout {
+  background: #f1f1f1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 14px 28px rgba(241, 241, 241, 0.1) !important;
+}
+
+[data-theme="dark"] .checkout-btn:hover,
+[data-theme="dark"] .btn-checkout:hover {
+  background: #ffffff !important;
+  box-shadow: 0 18px 36px rgba(255, 255, 255, 0.14) !important;
+}
+
+[data-theme="dark"] .coupon-input,
+[data-theme="dark"] .promo-input {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .coupon-input::placeholder,
+[data-theme="dark"] .promo-input::placeholder {
+  color: rgba(255, 255, 255, 0.32) !important;
+}
+
+
+/* ============================================================
+   14. PRODUCT DETAIL PAGE
+   ============================================================ */
+
+[data-theme="dark"] .product-detail-wrapper,
+[data-theme="dark"] .product-detail,
+[data-theme="dark"] .product-detail-section {
+  background: transparent !important;
+}
+
+[data-theme="dark"] .product-detail-title,
+[data-theme="dark"] .detail-product-name {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .product-detail-price { color: #f1f1f1 !important; }
+
+[data-theme="dark"] .product-detail-description,
+[data-theme="dark"] .detail-description {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-theme="dark"] .thumbnail,
+[data-theme="dark"] .thumb-img {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .thumbnail.active,
+[data-theme="dark"] .thumbnail:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-theme="dark"] .main-product-image,
+[data-theme="dark"] .detail-img-wrapper {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 24px !important;
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .size-btn {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-theme="dark"] .size-btn:hover,
+[data-theme="dark"] .size-btn.active {
+  background: #f1f1f1 !important;
+  color: #0f172a !important;
+  border-color: transparent !important;
+  box-shadow: 0 6px 16px rgba(241, 241, 241, 0.12) !important;
+}
+
+[data-theme="dark"] .add-to-cart-btn,
+[data-theme="dark"] .btn-add-cart {
+  background: #f1f1f1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 14px 28px rgba(241, 241, 241, 0.1) !important;
+}
+
+[data-theme="dark"] .add-to-cart-btn:hover,
+[data-theme="dark"] .btn-add-cart:hover {
+  background: #ffffff !important;
+  box-shadow: 0 18px 36px rgba(255, 255, 255, 0.14) !important;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .tab-btn,
+[data-theme="dark"] .tab-control,
+[data-theme="dark"] .detail-tab {
+  color: rgba(255, 255, 255, 0.5) !important;
+  border-bottom: 2px solid transparent !important;
+  background: transparent !important;
+}
+
+[data-theme="dark"] .tab-btn.active,
+[data-theme="dark"] .tab-control.active,
+[data-theme="dark"] .detail-tab.active {
+  color: #f1f1f1 !important;
+  border-bottom-color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .tab-pane,
+[data-theme="dark"] .tab-content {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-theme="dark"] .tabs-wrapper,
+[data-theme="dark"] .detail-tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+
+/* ============================================================
+   15. BREADCRUMBS & PAGE HEADINGS (shop, cart, detail pages)
+   ============================================================ */
+
+[data-theme="dark"] .breadcrumb-item,
+[data-theme="dark"] .breadcrumb-link {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+[data-theme="dark"] .breadcrumb-item.active,
+[data-theme="dark"] .breadcrumb-item:last-child {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .breadcrumb-separator { color: rgba(255, 255, 255, 0.3) !important; }
+
+[data-theme="dark"] .page-title,
+[data-theme="dark"] .page-heading {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .page-subtitle,
+[data-theme="dark"] .page-description {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+
+/* ============================================================
+   16. PAGINATION
+   ============================================================ */
+
+[data-theme="dark"] .pagination-btn,
+[data-theme="dark"] .page-btn {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .pagination-btn:hover,
+[data-theme="dark"] .page-btn:hover {
+  background: rgba(255, 255, 255, 0.13) !important;
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .pagination-btn.active,
+[data-theme="dark"] .page-btn.active {
+  background: #f1f1f1 !important;
+  color: #0f172a !important;
+  border-color: transparent !important;
+}
+
+
+/* ============================================================
+   17. COLOUR SWATCHES & SELECTORS
+   ============================================================ */
+
+[data-theme="dark"] .color-swatch {
+  border: 2px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .color-swatch.active,
+[data-theme="dark"] .color-swatch:hover {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18) !important;
+}
+
+
+/* ============================================================
+   18. MODALS & DRAWERS (cart drawer, filters drawer)
+   ============================================================ */
+
+[data-theme="dark"] .modal,
+[data-theme="dark"] .drawer,
+[data-theme="dark"] .side-panel {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(24px) !important;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .modal-title,
+[data-theme="dark"] .drawer-title { color: #f1f1f1 !important; }
+
+[data-theme="dark"] .modal-body,
+[data-theme="dark"] .drawer-body  { color: rgba(255, 255, 255, 0.72) !important; }
+
+[data-theme="dark"] .modal-overlay,
+[data-theme="dark"] .drawer-overlay {
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(6px) !important;
+}

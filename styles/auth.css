@@ -708,3 +708,187 @@
     margin-inline: 6px;
   }
 }
+
+
+
+
+
+
+
+/* ============================================
+   AUTH PAGE — auth.css
+   Dark mode additions appended below the
+   existing auth.css file. Paste these rules
+   at the very bottom of your auth.css.
+   ============================================ */
+
+/* ── Auth page background ── */
+[data-theme="dark"] .auth-page {
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.06), transparent 24%),
+    linear-gradient(180deg, #0a0f1e 0%, #0f172a 45%, #111827 100%);
+}
+
+/* ── Shell (the two-column wrapper) ── */
+[data-theme="dark"] .auth-shell {
+  background: linear-gradient(145deg, #0f172a 0%, #111111 48%, #1e2535 100%);
+}
+
+/* ── Auth panel (the form card — was white, now dark in sync) ── */
+[data-theme="dark"] .auth-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(24px);
+}
+
+[data-theme="dark"] .auth-panel::before {
+  background: linear-gradient(90deg, #f1f1f1 0%, #a0aec0 55%, rgba(160, 174, 192, 0.4) 100%);
+}
+
+/* ── Panel header text ── */
+[data-theme="dark"] .auth-panel-title {
+  color: #f1f1f1;
+}
+
+[data-theme="dark"] .form-kicker {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Panel badge ── */
+[data-theme="dark"] .auth-panel-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f1f1f1;
+}
+
+/* ── Tab controls ── */
+[data-theme="dark"] .auth-tab-controls {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .auth-tab {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] #login-tab:checked ~ .auth-tab-controls label[for="login-tab"],
+[data-theme="dark"] #register-tab:checked ~ .auth-tab-controls label[for="register-tab"] {
+  background: #f1f1f1;
+  color: #0f172a;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Form headings and copy ── */
+[data-theme="dark"] .auth-form h2 {
+  color: #f1f1f1;
+}
+
+[data-theme="dark"] .auth-form-copy {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Form labels ── */
+[data-theme="dark"] .auth-form label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Form inputs ── */
+[data-theme="dark"] .auth-form input[type="email"],
+[data-theme="dark"] .auth-form input[type="password"],
+[data-theme="dark"] .auth-form input[type="text"] {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f1f1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .auth-form input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .auth-form input:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.07);
+}
+
+/* ── Checkbox row ── */
+[data-theme="dark"] .checkbox-row {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .checkbox-row input {
+  accent-color: #f1f1f1;
+}
+
+/* ── Text link (forgot password) ── */
+[data-theme="dark"] .text-link {
+  color: #f1f1f1;
+}
+
+/* ── Submit button ── */
+[data-theme="dark"] .auth-btn {
+  background: linear-gradient(135deg, #f1f1f1 0%, #d4d4d4 100%);
+  color: #0f172a;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .auth-btn:hover {
+  box-shadow: 0 22px 34px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Divider ── */
+[data-theme="dark"] .auth-divider {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="dark"] .auth-divider::before {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .auth-divider span {
+  background: transparent;
+}
+
+/* ── Social buttons ── */
+[data-theme="dark"] .social-btn {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f1f1f1;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .social-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Register note ── */
+[data-theme="dark"] .register-note {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Assurance strip ── */
+[data-theme="dark"] .auth-assurance {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .auth-assurance i {
+  color: #f1f1f1;
+}
+
+/* ── Footer ── */
+[data-theme="dark"] .auth-footer {
+  background: transparent;
+}
+
+[data-theme="dark"] .auth-footer-inner p {
+  color: #f1f1f1;
+}
+
+[data-theme="dark"] .auth-footer-inner span {
+  color: rgba(255, 255, 255, 0.45);
+}
