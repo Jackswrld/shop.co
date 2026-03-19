@@ -11,13 +11,25 @@
 
   <link rel="stylesheet" href="../styles/base.css" />
   <link rel="stylesheet" href="../styles/auth.css" />
+
+  <!-- THEME — runs before page paint to prevent flash of wrong theme -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem("shopco-theme");
+      if (saved === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
 </head>
 
 <body>
-  
+
   <main class="auth-page">
     <section class="auth-hero">
       <div class="container auth-shell">
+
+        <!-- ══ LEFT PANEL — Intro ══ -->
         <div class="auth-intro">
           <div class="auth-topline">
             <a href="../index.html" class="auth-return-link">
@@ -81,16 +93,31 @@
           </div>
         </div>
 
+        <!-- ══ RIGHT PANEL — Forms ══ -->
         <section class="auth-panel" aria-label="Authentication forms">
           <div class="auth-panel-header">
             <div>
               <p class="form-kicker">Account access</p>
               <h2 class="auth-panel-title">Choose how you want to continue</h2>
             </div>
-            <span class="auth-panel-badge">
-              <i class="fa-solid fa-lock"></i>
-              Protected
-            </span>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="auth-panel-badge">
+                <i class="fa-solid fa-lock"></i>
+                Protected
+              </span>
+
+              <!-- ── THEME TOGGLE ── -->
+              <button
+                class="theme-toggle-btn"
+                id="theme-toggle-btn"
+                aria-label="Toggle dark mode"
+                title="Toggle dark / light mode"
+              >
+                <i class="fa-solid fa-moon icon-moon"></i>
+                <i class="fa-solid fa-sun icon-sun"></i>
+              </button>
+            </div>
           </div>
 
           <input class="auth-toggle" type="radio" name="auth-mode" id="login-tab" checked />
@@ -102,6 +129,7 @@
           </div>
 
           <div class="auth-forms">
+            <!-- Login Form -->
             <form class="auth-form auth-login-form">
               <p class="form-kicker">Welcome back</p>
               <h2>Log in to continue shopping</h2>
@@ -139,6 +167,7 @@
               </div>
             </form>
 
+            <!-- Register Form -->
             <form class="auth-form auth-register-form">
               <p class="form-kicker">Join the club</p>
               <h2>Create a fresh account</h2>
@@ -176,6 +205,7 @@
             Your saved items, addresses, and orders stay synced across devices.
           </p>
         </section>
+
       </div>
     </section>
   </main>
@@ -188,6 +218,9 @@
       </div>
     </div>
   </footer>
+
+  <!-- ── SCRIPTS ── -->
+  <script src="../js/theme.js"></script>
 </body>
 
 </html>

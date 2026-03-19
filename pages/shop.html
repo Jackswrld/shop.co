@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="../styles/hero-page.css" />
   <link rel="stylesheet" href="../styles/shop.css" />
   <link rel="stylesheet" href="../styles/products.css">
+   <link rel="stylesheet" href="../styles/dark-overide.css" />
 </head>
 <body>
 
@@ -86,6 +87,19 @@
       <a href="../pages/auth.html" class="icon-btn">
         <i class="fa-solid fa-circle-user"></i>
       </a>
+
+        <!-- ── THEME TOGGLE ── -->
+          <button
+            class="theme-toggle-btn"
+            id="theme-toggle-btn"
+            aria-label="Toggle dark mode"
+            title="Toggle dark / light mode"
+          >
+            <!-- Moon shown in light mode -->
+            <i class="fa-solid fa-moon icon-moon"></i>
+            <!-- Sun shown in dark mode -->
+            <i class="fa-solid fa-sun icon-sun"></i>
+          </button>
     </div>
   </nav>
 
@@ -200,5 +214,6 @@
   <script type="module" src="../js/shop.js"></script>
 
   <script src="../js/navbar.js"></script>
+    <script src="../js/theme.js"></script>
 </body>
 </html>
