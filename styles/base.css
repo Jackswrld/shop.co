@@ -195,7 +195,7 @@ button {
    NAVIGATION BAR
    ============================================ */
 
-nav {
+body > nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -208,21 +208,22 @@ nav {
   left: 0;
   top: 0;
   z-index: 1000;
+  isolation: isolate;
+  transition:
+    background-color 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
 }
 
 body.nav-fixed {
   padding-top: var(--nav-height);
 }
 
-nav.nav-fixed {
+body > nav.nav-fixed {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-}
-
-.cart-breadcrumb {
-  z-index: 500 !important;
 }
 
 .nav-left {
@@ -240,6 +241,7 @@ nav.nav-fixed {
 
 .nav-menu {
   display: flex;
+  place-items: center;
   list-style: none;
   gap: 30px;
 }
@@ -267,10 +269,15 @@ nav.nav-fixed {
   display: none;
   background: none;
   border: none;
-  padding: 8px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   cursor: pointer;
   color: #666;
   font-size: 18px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .search-icon-btn:hover {
@@ -299,64 +306,113 @@ nav.nav-fixed {
 
 .nav-icons {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
 }
 
 .icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   background: none;
   border: none;
   font-size: 20px;
+  line-height: 1;
   cursor: pointer;
   color: #000;
+  flex-shrink: 0;
 }
 
 /* Navbar dropdown */
-.dropdown {
+body > nav .dropdown {
   position: relative;
 }
 
-.dropdown-menu {
+body > nav .dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+}
+
+body > nav .dropdown-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+body > nav .dropdown-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  color: var(--color-text-primary);
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+body > nav .dropdown-toggle-btn:hover,
+body > nav .dropdown-toggle-btn:focus-visible {
+  background: rgba(15, 23, 42, 0.08);
+}
+
+body > nav .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 12px);
   left: 0;
+  min-width: 210px;
   background: white;
   list-style: none;
   padding: 10px 0;
   margin: 0;
-  display: none;
-}
-
-.dropdown-menu li {
-  padding: 8px 20px;
-  white-space: nowrap;
-}
-
-.dropdown-menu li a {
-  text-decoration: none;
-}
-
-.dropdown:hover .dropdown-menu {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 0.24s ease,
+    transform 0.28s ease,
+    visibility 0.24s ease;
   display: block;
 }
 
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+body > nav .dropdown-menu li {
+  padding: 0;
+  white-space: nowrap;
 }
 
-.dropdown-caret {
+body > nav .dropdown-menu li a {
+  text-decoration: none;
+  display: block;
+  padding: 10px 18px;
+}
+
+body > nav .dropdown-caret {
   font-size: 0.7rem;
   transition: transform 0.2s ease;
 }
 
-.dropdown:hover .dropdown-caret {
-  transform: rotate(180deg);
+body > nav .dropdown.is-open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
-.dropdown-toggle::after {
-  display: none;
+body > nav .dropdown.is-open .dropdown-caret {
+  transform: rotate(180deg);
 }
 
 .nav-toggle {
@@ -365,6 +421,17 @@ nav.nav-fixed {
   border: none;
   font-size: 22px;
   cursor: pointer;
+  transition:
+    background-color 0.28s ease,
+    color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s ease;
+}
+
+.nav-toggle i {
+  transition:
+    transform 0.32s ease,
+    opacity 0.24s ease;
 }
 
 .cart-icon-wrapper {
@@ -378,8 +445,8 @@ nav.nav-fixed {
 .cart-badge {
   display: none;
   position: absolute;
-  top: -6px;
-  right: -8px;
+  top: -2px;
+  right: -2px;
   background: #e53e3e;
   color: #fff;
   font-size: 10px;
@@ -387,6 +454,7 @@ nav.nav-fixed {
   min-width: 18px;
   height: 18px;
   border-radius: 50%;
+  border: 2px solid #fff;
   align-items: center;
   justify-content: center;
   padding: 0 4px;
@@ -398,13 +466,35 @@ nav.nav-fixed {
   display: flex;
 }
 
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.28);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease;
+  z-index: 990;
+}
+
+.nav-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 /* ============================================
    RESPONSIVE NAVBAR
    ============================================ */
 
 @media (max-width: 900px) {
-  nav {
+  body > nav {
     padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
   }
 
   .nav-toggle {
@@ -414,26 +504,52 @@ nav.nav-fixed {
     color: var(--color-black);
     margin-right: 12px;
     flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.05);
   }
 
   .nav-left {
     gap: 12px;
     flex: 1;
+    min-width: 0;
   }
 
-  .nav-menu,
+  .logo {
+    font-size: 21px;
+  }
+
   .search-bar {
     display: none;
   }
 
   .search-icon-btn {
-    display: block;
+    display: inline-flex;
     color: var(--color-black);
   }
 
   .search-container {
     display: flex;
-    position: relative;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    padding: 12px 18px;
+    gap: 0;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition:
+      opacity 0.28s ease,
+      transform 0.28s ease,
+      visibility 0.28s ease;
   }
 
   .search-container i {
@@ -442,28 +558,21 @@ nav.nav-fixed {
 
   /* Search dropdown styles for mobile */
   .search-container.search-open {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    width: 100vw;
-    margin-left: -18px;
-    flex-direction: column;
-    background: #fff;
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
-    padding: 12px 18px;
-    gap: 0;
-    z-index: 999;
+    width: auto;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .search-container.search-open .search-bar {
     display: block;
     width: 100%;
     max-width: 100%;
-    padding: 10px 12px;
-    padding-left: 40px;
+    min-height: 42px;
+    padding: 10px 14px 10px 44px;
     margin: 0;
+    animation: mobileSearchFieldIn 0.28s ease;
   }
 
   .search-container.search-open .search-icon-btn {
@@ -473,42 +582,203 @@ nav.nav-fixed {
   .search-container.search-open i {
     display: block;
     position: absolute;
-    left: 30px;
-    top: 20px;
+    left: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
   }
 
-  /* when nav has .nav-open, show stacked menu */
-  nav.nav-open .nav-menu {
-    display: block;
+  .search-container.search-open .search-results-dropdown {
+    left: 18px;
+    right: 18px;
+    top: calc(100% - 4px);
+    border-radius: 0 0 20px 20px;
+  }
+
+  @keyframes mobileSearchFieldIn {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-menu {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: #fff;
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
+    place-items: start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 18px 22px;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.97);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.16);
+    backdrop-filter: blur(14px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-14px) scale(0.98);
+    transition:
+      opacity 0.28s ease,
+      transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0.28s ease;
+    z-index: 1002;
   }
 
-  nav.nav-open .nav-menu li {
+  body > nav.nav-open {
+    border-bottom-color: transparent;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  }
+
+  body > nav.nav-open .nav-toggle {
+    background: #111827;
+    color: #fff;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.2);
+    transform: rotate(90deg);
+  }
+
+  body > nav.nav-open .nav-toggle i {
+    transform: scale(0.94);
+  }
+
+  /* when nav has .nav-open, show stacked menu */
+  body > nav.nav-open .nav-menu {
+    display: flex;
+    position: absolute;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  body > nav.nav-open .nav-menu li {
     display: block;
-    padding: 10px 6px;
-    border-radius: 6px;
+    padding: 0;
+    border-radius: 16px;
   }
 
-  nav.nav-open .nav-menu .dropdown-menu {
+  body > nav.nav-open .nav-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 13px 14px;
+    border-radius: 16px;
+    background: transparent;
+    transition:
+      background-color 0.24s ease,
+      color 0.24s ease,
+      transform 0.24s ease;
+  }
+
+  body > nav.nav-open .nav-menu a:hover,
+  body > nav.nav-open .nav-menu a:focus-visible {
+    background: #111827;
+    color: #fff;
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  body > nav.nav-open .nav-menu .dropdown {
+    display: grid;
+  }
+
+  body > nav.nav-open .dropdown-trigger {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+  }
+
+  body > nav.nav-open .dropdown-toggle-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 16px;
+    background: transparent;
+  }
+
+  body > nav.nav-open .dropdown-toggle-btn:hover,
+  body > nav.nav-open .dropdown-toggle-btn:focus-visible,
+  body > nav.nav-open .dropdown.is-open .dropdown-toggle-btn {
+    background: #111827;
+    color: #fff;
+  }
+
+  body > nav.nav-open .nav-menu .dropdown-menu {
     position: static;
+    min-width: 0;
     box-shadow: none;
-    padding-left: 12px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: none;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.24s ease,
+      margin-top 0.24s ease;
   }
 
-  nav.nav-open .search-bar,
-  nav.nav-open .search-container,
-  nav.nav-open .search-icon-btn {
+  body > nav.nav-open .nav-menu .dropdown-menu li {
+    border-radius: 0;
+  }
+
+  body > nav.nav-open .nav-menu .dropdown.is-open .dropdown-menu {
+    max-height: 240px;
+    padding: 6px 0 0 14px;
+    margin-left: 12px;
+    margin-top: -2px;
+    border-left: 1px solid rgba(15, 23, 42, 0.1);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  body > nav.nav-open .nav-menu .dropdown-menu a {
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--color-text-secondary);
+  }
+
+  body > nav.nav-open .nav-menu .dropdown-menu a:hover,
+  body > nav.nav-open .nav-menu .dropdown-menu a:focus-visible {
+    background: rgba(15, 23, 42, 0.08);
+    color: var(--color-text-primary);
+    transform: translateX(3px);
+  }
+
+  body > nav.nav-open .dropdown-link {
+    min-width: 0;
+  }
+
+  body > nav.nav-open .search-bar,
+  body > nav.nav-open .search-container,
+  body > nav.nav-open .search-icon-btn {
     display: none !important;
   }
 
   .nav-icons {
-    gap: 8px;
+    gap: 6px;
+  }
+
+  .search-icon-btn,
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
   }
 }

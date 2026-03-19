@@ -22,10 +22,15 @@
 .shop-breadcrumb {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
+}
+
+.shop-breadcrumb .breadcrumb {
+  flex-wrap: wrap;
 }
 
 .shop-breadcrumb .breadcrumb-item a {
@@ -245,9 +250,11 @@
    col-lg-3 = 25% width (Bootstrap)
    We override to 33.333% = 3 columns.
 ──────────────────────────────────────────────────────────────── */
-#shop-products-grid .col-lg-3 {
-  flex: 0 0 33.333333%;
-  max-width: 33.333333%;
+@media (min-width: 992px) {
+  #shop-products-grid .col-lg-3 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
 }
 
 
@@ -411,7 +418,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.4);
-  z-index: 950;
+  z-index: 1090;
 }
 
 .sidebar-overlay.visible { display: block; }
@@ -436,7 +443,7 @@
     height: 100vh;
     overflow-y: auto;
     background: var(--color-bg-card);
-    z-index: 960;
+    z-index: 1100;
     transition: left 0.3s ease;
     padding: 20px 0;
   }
@@ -467,6 +474,12 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+
+  /* Match the breathing space used by the home page product sections */
+  #shop-products-grid {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 1.5rem;
   }
 
   .pagination-wrapper {

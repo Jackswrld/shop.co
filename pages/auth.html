@@ -14,68 +14,42 @@
 </head>
 
 <body>
-  <div class="top-info">
-    Sign up and get 20% off your first order.
-    <a href="./auth.html" style="color:#fff; text-decoration:underline; margin-left:4px;">Sign Up Now</a>
-  </div>
-
-  <nav>
-    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
-    <div class="nav-left">
-      <a href="../index.html" class="logo heading">SHOP.CO</a>
-      <!-----
-      <ul class="nav-menu mb-0">
-        <li class="dropdown">
-          <a href="./shop.html" class="dropdown-toggle">
-            Shop <i class="fa-solid fa-chevron-down dropdown-caret"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Men</a></li>
-            <li><a href="#">Women</a></li>
-            <li><a href="#">Accessories</a></li>
-            <li><a href="#">Shoes</a></li>
-          </ul>
-        </li>
-        <li><a href="#">On Sale</a></li>
-        <li><a href="../index.html#new-arrival">New Arrivals</a></li>
-        <li><a href="#">Brands</a></li>
-      </ul>
-    ---->
-    </div>
-
-    <div class="search-container">
-      <input type="text" class="search-bar" placeholder="Search for products..." aria-label="Search" />
-      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-    </div>
-
-    <div class="nav-icons">
-      <button class="search-icon-btn" aria-label="Search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-
-      <a href="./cart.html" class="icon-btn cart-icon-wrapper" aria-label="View cart">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span class="cart-badge" id="cart-badge"></span>
-      </a>
-
-      <a href="./auth.html" class="icon-btn" aria-label="Account">
-        <i class="fa-solid fa-circle-user"></i>
-      </a>
-    </div>
-  </nav>
-
+  
   <main class="auth-page">
     <section class="auth-hero">
       <div class="container auth-shell">
         <div class="auth-intro">
+          <div class="auth-topline">
+            <a href="../index.html" class="auth-return-link">
+              <i class="fa-solid fa-arrow-left-long"></i>
+              Continue shopping
+            </a>
+            <span class="auth-status-pill">
+              <i class="fa-solid fa-shield-halved"></i>
+              Secure member area
+            </span>
+          </div>
+
           <p class="auth-eyebrow">Member Access</p>
           <h1 class="heading auth-title">SIGN IN OR CREATE YOUR SHOP.CO ACCOUNT</h1>
           <p class="auth-copy">
             Save your favorites, track your orders, and move from discovery to checkout without losing your style.
           </p>
+
+          <div class="auth-metrics">
+            <div class="auth-metric">
+              <strong>24/7</strong>
+              <span>Order updates</span>
+            </div>
+            <div class="auth-metric">
+              <strong>Fast</strong>
+              <span>Checkout flow</span>
+            </div>
+            <div class="auth-metric">
+              <strong>Easy</strong>
+              <span>Wishlist sync</span>
+            </div>
+          </div>
 
           <div class="auth-feature-list">
             <div class="auth-feature">
@@ -100,9 +74,25 @@
               </div>
             </div>
           </div>
+
+          <div class="auth-style-note">
+            <p class="auth-style-kicker">Member Perk</p>
+            <h2>Early access to new drops, smoother checkout, and one clean place for every order.</h2>
+          </div>
         </div>
 
         <section class="auth-panel" aria-label="Authentication forms">
+          <div class="auth-panel-header">
+            <div>
+              <p class="form-kicker">Account access</p>
+              <h2 class="auth-panel-title">Choose how you want to continue</h2>
+            </div>
+            <span class="auth-panel-badge">
+              <i class="fa-solid fa-lock"></i>
+              Protected
+            </span>
+          </div>
+
           <input class="auth-toggle" type="radio" name="auth-mode" id="login-tab" checked />
           <input class="auth-toggle" type="radio" name="auth-mode" id="register-tab" />
 
@@ -115,6 +105,9 @@
             <form class="auth-form auth-login-form">
               <p class="form-kicker">Welcome back</p>
               <h2>Log in to continue shopping</h2>
+              <p class="auth-form-copy">
+                Pick up where you left off with your saved pieces, cart, and order history ready to go.
+              </p>
 
               <label for="login-email">Email address</label>
               <input id="login-email" type="email" placeholder="you@example.com" />
@@ -149,6 +142,9 @@
             <form class="auth-form auth-register-form">
               <p class="form-kicker">Join the club</p>
               <h2>Create a fresh account</h2>
+              <p class="auth-form-copy">
+                Make checkout faster and keep your favorite looks, delivery details, and order updates in one place.
+              </p>
 
               <label for="register-name">Full name</label>
               <input id="register-name" type="text" placeholder="Enter your full name" />
@@ -174,6 +170,11 @@
               </p>
             </form>
           </div>
+
+          <p class="auth-assurance">
+            <i class="fa-solid fa-circle-check"></i>
+            Your saved items, addresses, and orders stay synced across devices.
+          </p>
         </section>
       </div>
     </section>
@@ -187,25 +188,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const navEl = document.querySelector('nav');
-    if (navToggle) {
-      navToggle.addEventListener('click', () => {
-        navEl.classList.toggle('nav-open');
-        navToggle.setAttribute('aria-expanded', navEl.classList.contains('nav-open'));
-      });
-    }
-
-    const searchIconBtn = document.querySelector('.search-icon-btn');
-    const searchContainer = document.querySelector('.search-container');
-    if (searchIconBtn && searchContainer) {
-      searchIconBtn.addEventListener('click', () => {
-        searchContainer.classList.toggle('search-open');
-      });
-    }
-  </script>
 </body>
 
 </html>

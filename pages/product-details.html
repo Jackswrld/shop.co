@@ -56,9 +56,17 @@
       <a href="../index.html" class="logo heading">SHOP.CO</a>
       <ul class="nav-menu mb-0">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Shop
-            <i class="fa-solid fa-chevron-down dropdown-caret"></i>
-          </a>
+          <div class="dropdown-trigger">
+            <a href="../pages/shop.html" class="dropdown-link">Shop</a>
+            <button
+              class="dropdown-toggle-btn"
+              type="button"
+              aria-expanded="false"
+              aria-label="Toggle shop menu"
+            >
+              <i class="fa-solid fa-chevron-down dropdown-caret"></i>
+            </button>
+          </div>
 
           <ul class="dropdown-menu">
             <li><a href="#">Men</a></li>
@@ -100,10 +108,13 @@
     <div class="container-xl">
 
       <!-- Breadcrumb -->
-      <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb">
+      <nav aria-label="breadcrumb" class="product-breadcrumb mb-4">
+        <button class="back-btn" onclick="history.back()" aria-label="Go back">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <ol class="breadcrumb mb-0">
           <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Shop</a></li>
+          <li class="breadcrumb-item"><a href="../pages/shop.html">Shop</a></li>
           <li class="breadcrumb-item"><a href="#">Men</a></li>
           <li class="breadcrumb-item active" aria-current="page">T-shirts</li>
         </ol>
