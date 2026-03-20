@@ -20,6 +20,23 @@
   object-fit: contain;
   width: auto;
   margin: 0 auto; /* extra centering safety */
+  transition: opacity 0.22s ease, transform 0.22s ease;
+     will-change: opacity, transform;
+}
+
+.hero-image.hero-image--theme-switching {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image {
+    transition: none;
+  }
+
+  .hero-image.hero-image--theme-switching {
+    transform: none;
+  }
 }
 
 @media (max-width: 991px) {
