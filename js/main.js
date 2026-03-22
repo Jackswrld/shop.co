@@ -1,4 +1,104 @@
-  import { reviews } from './review.js';
+import { reviews } from './review.js';
+
+function initHeroThemeImage() {
+  const heroImage = document.querySelector(".hero-image[data-light-src][data-dark-src]");
+
+  if (!heroImage) return;
+
+  const sources = {
+    light: heroImage.dataset.lightSrc,
+    dark: heroImage.dataset.darkSrc,
+  };
+  const TRANSITION_DURATION_MS = 220;
+  let switchTimer = null;
+  let switchId = 0;
+
+  function getActiveTheme() {
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+
+  function preloadImage(src) {
+    return new Promise((resolve) => {
+      if (!src) {
+        resolve();
+        return;
+      }
+
+      const image = new Image();
+      const finish = () => resolve();
+
+      image.onload = finish;
+      image.onerror = finish;
+      image.src = src;
+
+      if (image.complete) {
+        resolve();
+      }
+    });
+  }
+
+  function setHeroSource(theme) {
+    const targetSrc = sources[theme] || sources.light;
+
+    if (!targetSrc) return;
+
+    if (heroImage.getAttribute("src") !== targetSrc) {
+      heroImage.setAttribute("src", targetSrc);
+    }
+  }
+
+  function swapHeroSource(theme) {
+    const targetSrc = sources[theme] || sources.light;
+
+    if (!targetSrc || heroImage.getAttribute("src") === targetSrc) {
+      return;
+    }
+
+    const currentSwitchId = ++switchId;
+
+    preloadImage(targetSrc).then(() => {
+      if (currentSwitchId !== switchId) return;
+
+      window.clearTimeout(switchTimer);
+      heroImage.classList.add("hero-image--theme-switching");
+
+      switchTimer = window.setTimeout(() => {
+        if (currentSwitchId !== switchId) return;
+
+        heroImage.setAttribute("src", targetSrc);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (currentSwitchId === switchId) {
+              heroImage.classList.remove("hero-image--theme-switching");
+            }
+          });
+        });
+      }, TRANSITION_DURATION_MS);
+    });
+  }
+
+  Object.values(sources).filter(Boolean).forEach((src) => {
+    preloadImage(src);
+  });
+
+  setHeroSource(getActiveTheme());
+
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === "attributes" && mutation.attributeName === "data-theme") {
+        swapHeroSource(getActiveTheme());
+      }
+    }
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+}
+
+initHeroThemeImage();
 
   //Function For Stats Countdowm
   document.addEventListener("DOMContentLoaded", () => {

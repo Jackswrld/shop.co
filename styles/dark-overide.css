@@ -56,11 +56,15 @@
    ============================================================ */
 
 [data-theme="dark"] body > nav {
-  background: rgba(15, 23, 42, 0.72) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%),
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.04) 0%, transparent 26%),
+    radial-gradient(circle at 88% 6%, rgba(255, 255, 255, 0.05) 0%, transparent 22%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.58) 0%, rgba(17, 17, 17, 0.5) 48%, rgba(26, 34, 53, 0.58) 100%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px) saturate(1.35);
+  -webkit-backdrop-filter: blur(20px) saturate(1.35);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 12px 30px rgba(0, 0, 0, 0.22);
 }
 
 [data-theme="dark"] body > nav .logo,
@@ -89,7 +93,10 @@
 }
 
 [data-theme="dark"] body > nav .dropdown-menu {
-  background: rgba(15, 23, 42, 0.92) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%),
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.03) 0%, transparent 28%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.74) 0%, rgba(17, 17, 17, 0.64) 48%, rgba(26, 34, 53, 0.74) 100%) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(20px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
@@ -106,7 +113,10 @@
 
 /* Mobile nav open state */
 [data-theme="dark"] body > nav.nav-open .nav-menu {
-  background: rgba(15, 23, 42, 0.96) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%),
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.03) 0%, transparent 30%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.82) 0%, rgba(17, 17, 17, 0.72) 48%, rgba(26, 34, 53, 0.82) 100%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(24px);
 }
@@ -369,7 +379,10 @@
    ============================================================ */
 
 [data-theme="dark"] .footer {
-  background: rgba(10, 15, 30, 0.85) !important;
+  background:
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.04) 0%, transparent 26%),
+    radial-gradient(circle at 88% 6%, rgba(255, 255, 255, 0.05) 0%, transparent 22%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.36) 0%, rgba(17, 17, 17, 0.3) 48%, rgba(26, 34, 53, 0.36) 100%) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(20px);
 }
@@ -379,8 +392,12 @@
 }
 
 [data-theme="dark"] .footer-newsletter {
-  background: rgba(255, 255, 255, 0.04) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%),
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.03) 0%, transparent 30%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.34) 0%, rgba(17, 17, 17, 0.28) 48%, rgba(26, 34, 53, 0.34) 100%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(18px);
 }
 
 [data-theme="dark"] .newsletter-title {

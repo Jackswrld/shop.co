@@ -1,8 +1,7 @@
 import { products } from "./products.js";
 import { reviews } from "./review.js";
 import { getAllProducts } from "./api-service.js";
-import { createProductCard } from "./render-products.js";
-import { attachProductCardListeners } from "./render-products.js";
+import { createProductCard, formatRatingText, normalizeRating } from "./render-products.js";
 
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -51,9 +50,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // ────── RENDER STARS ──────
   function renderStars(rating) {
-    const fullStars = Math.floor(rating);
-    const hasHalf = rating % 1 !== 0;
-    const empty = 5 - Math.ceil(rating);
+    const normalizedRating = normalizeRating(rating);
+    const fullStars = Math.floor(normalizedRating);
+    const hasHalf = normalizedRating % 1 !== 0;
+    const empty = 5 - Math.ceil(normalizedRating);
     let html = "";
 
     // Full stars
@@ -145,7 +145,8 @@ function updateCartBadge() {
     // Update rating
     const starsContainer = document.querySelector(".stars");
     starsContainer.innerHTML = renderStars(product.rating);
-    document.getElementById("rating-text").textContent = `${product.rating}/5`;
+    document.getElementById("rating-text").textContent =
+      formatRatingText(product.rating);
 
     // Update prices
     document.getElementById("current-price").textContent = `$${product.price}`;

@@ -206,13 +206,13 @@
   --color-accent-secondary: rgba(255, 255, 255, 0.72);
 
   /* ── Navbar ── */
-  --color-nav-bg: rgba(15, 23, 42, 0.92);
+  --color-nav-bg: rgba(12, 12, 12, 0.24);
   --color-nav-border: rgba(255, 255, 255, 0.08);
   --color-nav-text: #f1f1f1;
-  --color-nav-shadow: rgba(0, 0, 0, 0.4);
+  --color-nav-shadow: rgba(0, 0, 0, 0.28);
 
   /* ── Top Info Bar ── */
-  --color-topbar-bg: #000000;
+  --color-topbar-bg: transparent;
   --color-topbar-text: #ffffff;
 
   /* ── Buttons ── */
@@ -348,7 +348,9 @@ button { font-family: inherit; cursor: pointer; border: none; }
   text-align: center;
   padding: 10px;
   font-size: 12px;
-  transition: background-color 0.35s ease;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
 /* ============================================
@@ -373,18 +375,41 @@ button { font-family: inherit; cursor: pointer; border: none; }
     border-color 0.35s ease;
 }
 
-.tab-pane { transition: opacity 0.3s ease; }
-.tab-pane.active { animation: fadeIn 0.3s ease; }
-.filter-option { transition: background-color 0.2s ease, color 0.2s ease; }
-.reviews-count { transition: color 0.3s ease; }
-.qty-display { transition: transform 0.2s ease; }
-
-@keyframes bounce {
-  0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.2); }
+.tab-pane {
+  transition: opacity 0.3s ease;
 }
 
-.qty-display.updated { animation: bounce 0.3s ease; }
+.tab-pane.active {
+  animation: fadeIn 0.3s ease;
+}
+
+.filter-option {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.reviews-count {
+  transition: color 0.3s ease;
+}
+
+.qty-display {
+  transition: transform 0.2s ease;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.qty-display.updated {
+  animation: bounce 0.3s ease;
+}
 
 /* ============================================
    NAVIGATION BAR
@@ -580,7 +605,10 @@ body > nav .dropdown-trigger {
   background: transparent;
 }
 
-body > nav .dropdown-link { display: inline-flex; align-items: center; }
+body > nav .dropdown-link {
+  display: inline-flex;
+  align-items: center;
+}
 
 body > nav .dropdown-toggle-btn {
   display: inline-flex;
@@ -890,7 +918,9 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
     transform: translateX(4px);
   }
 
-  body > nav.nav-open .nav-menu .dropdown { display: block; }
+  body > nav.nav-open .nav-menu .dropdown {
+    display: block;
+  }
 
   body > nav.nav-open .dropdown-trigger {
     display: inline-flex;

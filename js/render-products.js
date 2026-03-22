@@ -31,6 +31,26 @@ function renderStars(rating) {
   return starsHtml;
 }
 
+export function normalizeRating(rating) {
+    const numericRating = Number(rating);
+
+    if (!Number.isFinite(numericRating) || numericRating <= 0) {
+      return 0;
+    }
+
+    const cappedRating = Math.min(5, numericRating);
+    const fullStars = Math.floor(cappedRating);
+    const hasHalfStar = cappedRating % 1 !== 0;
+
+    return fullStars + (hasHalfStar ? 0.5 : 0);
+  }
+
+  export function formatRatingText(rating) {
+    return `${normalizeRating(rating).toFixed(1)}/5`;
+  }
+
+
+
 // Function to create product card HTML
 export function createProductCard(product) {
   const discountPercent = product.oldPrice
@@ -49,7 +69,7 @@ export function createProductCard(product) {
             <div class="star-rating">
               ${renderStars(product.rating)}
             </div>
-            <span class="review-count">${product.reviewCount}</span>
+            <span class="review-count">${formatRatingText(product.rating)}</span>
           </div>
           <div class="product-price">
             <span class="current-price">$${product.price}</span>
