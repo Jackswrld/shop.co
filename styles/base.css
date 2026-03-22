@@ -61,6 +61,9 @@
   --color-nav-border: #eeeeee;
   --color-nav-text: #000000;
   --color-nav-shadow: rgba(0, 0, 0, 0.06);
+  --color-nav-link-hover-bg: rgba(15, 23, 42, 0.06);
+  --color-nav-link-hover-border: rgba(15, 23, 42, 0.08);
+  --color-nav-link-hover-shadow: rgba(15, 23, 42, 0.08);
 
   /* ── Top Info Bar ── */
   --color-topbar-bg: #000000;
@@ -210,6 +213,9 @@
   --color-nav-border: rgba(255, 255, 255, 0.08);
   --color-nav-text: #f1f1f1;
   --color-nav-shadow: rgba(0, 0, 0, 0.28);
+  --color-nav-link-hover-bg: rgba(255, 255, 255, 0.07);
+  --color-nav-link-hover-border: rgba(255, 255, 255, 0.08);
+  --color-nav-link-hover-shadow: rgba(0, 0, 0, 0.18);
 
   /* ── Top Info Bar ── */
   --color-topbar-bg: transparent;
@@ -467,15 +473,33 @@ body > nav.nav-fixed {
 }
 
 .nav-menu a {
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
   color: var(--color-nav-text);
   opacity: 0.9;
   font-size: 14px;
   cursor: pointer;
-  transition: color 0.35s ease, opacity 0.2s ease;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition:
+    color 0.35s ease,
+    opacity 0.2s ease,
+    background-color 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.22s ease;
 }
 
-.nav-menu a:hover { opacity: 0.7; }
+.nav-menu a:hover,
+.nav-menu a:focus-visible {
+  opacity: 1;
+  background: var(--color-nav-link-hover-bg);
+  border-color: var(--color-nav-link-hover-border);
+  box-shadow: 0 8px 20px var(--color-nav-link-hover-shadow);
+  transform: translateY(-1px);
+}
 
 .search-container {
   position: relative;
@@ -912,8 +936,10 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
 
   body > nav.nav-open .nav-menu a:hover,
   body > nav.nav-open .nav-menu a:focus-visible {
-    background: var(--color-accent-primary);
-    color: var(--color-bg-body);
+    background: var(--color-nav-link-hover-bg);
+    border-color: var(--color-nav-link-hover-border);
+    color: var(--color-nav-text);
+    box-shadow: 0 10px 24px var(--color-nav-link-hover-shadow);
     opacity: 1;
     transform: translateX(4px);
   }

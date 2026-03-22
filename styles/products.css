@@ -310,16 +310,16 @@
 .hc-carousel-wrapper {
   position: relative;
   padding: 0 clamp(16px, 4vw, 40px);
+  overflow: hidden;
 }
 
 /* ── Fade/blur peek overlays ── */
 .hc-fade {
   position: absolute;
   top: 0;
-  bottom: 0;
-   width: 7%;
-  max-width: 100%;    
-  height: 250px;
+  bottom: 8px;
+  width: 7%;
+  max-width: 100%;
   pointer-events: none;
   z-index: 2;
   transition: opacity 0.3s ease;
@@ -360,6 +360,7 @@
 /* ── Scrollable track ── */
 .hc-track {
   display: flex;
+  align-items: stretch;
   gap: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
@@ -376,11 +377,12 @@
 
 
 .hc-track .review-card {
-  flex: 0 0 300px;      
+  flex: 0 0 300px;
   min-width: clamp(150px, 400px, 300px);
-  opacity: 1;           
-  animation: none;           
-  }
+  height: auto;
+  opacity: 1;
+  animation: none;
+}
 
 
 
@@ -830,5 +832,4 @@
     text-align: center;
   }
 }
-
 
