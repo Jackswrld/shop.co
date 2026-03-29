@@ -801,6 +801,10 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
     ============================================ */
 
 @media (max-width: 1150px) {
+
+  body > nav {
+    padding: 10px 20px;
+  }
  
    .nav-toggle {
     display: inline-flex;
@@ -987,6 +991,11 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
 }
 
 @media (max-width: 759px) {
+
+   body > nav {
+    padding: 10px 5px;
+  }
+ 
  
   .nav-left { gap: 12px; flex: 1; min-width: 0; }
   .logo { font-size: 21px; }

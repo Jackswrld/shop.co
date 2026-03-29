@@ -188,9 +188,15 @@
 }
 
 /* Stats dividers */
-[data-theme="dark"] .hero-stats .col-6:not(:last-child),
-[data-theme="dark"] .hero-stats [class*="col-"]:not(:last-child) {
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+[data-theme="dark"] .hero-stats [class*="col-"] {
+  border-right: none !important;
+  border-left: none !important;
+}
+
+@media (max-width: 767px) {
+  [data-theme="dark"] .hero-stats > [class*="col-"]:first-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
 }
 
 /* Shop Now button */
