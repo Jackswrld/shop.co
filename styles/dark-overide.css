@@ -685,6 +685,29 @@
    13. CART PAGE
    ============================================================ */
 
+@keyframes itemSlideInDark {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 18px 34px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
 [data-theme="dark"] .cart-item,
 [data-theme="dark"] .cart-row {
   background: rgba(255, 255, 255, 0.07) !important;
@@ -693,11 +716,35 @@
   backdrop-filter: blur(12px) !important;
 }
 
+[data-theme="dark"] .cart-item:hover,
+[data-theme="dark"] .cart-row:hover,
+[data-theme="dark"] .cart-item.entering {
+  background: rgba(255, 255, 255, 0.11) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+[data-theme="dark"] .cart-item.entering {
+  animation: itemSlideInDark 0.4s ease forwards !important;
+}
+
 [data-theme="dark"] .cart-item-name,
 [data-theme="dark"] .cart-product-name { color: #f1f1f1 !important; }
 
 [data-theme="dark"] .cart-item-price,
 [data-theme="dark"] .cart-price        { color: #f1f1f1 !important; }
+
+[data-theme="dark"] .cart-delete-btn {
+  color: #fb7185 !important;
+}
+
+[data-theme="dark"] .cart-delete-btn:hover {
+  background: rgba(251, 113, 133, 0.12) !important;
+  color: #fda4af !important;
+}
 
 [data-theme="dark"] .cart-summary,
 [data-theme="dark"] .order-summary {
@@ -720,7 +767,7 @@
 
 [data-theme="dark"] .qty-btn {
   background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: inherit;
   color: #f1f1f1 !important;
   backdrop-filter: blur(6px);
 }
@@ -731,17 +778,35 @@
 
 [data-theme="dark"] .qty-display { color: #f1f1f1 !important; }
 
+[data-theme="dark"] .btn.btn-dark,
+[data-theme="dark"] .promo-apply-btn,
 [data-theme="dark"] .checkout-btn,
-[data-theme="dark"] .btn-checkout {
-  background: #f1f1f1 !important;
+[data-theme="dark"] .btn-checkout,
+[data-theme="dark"] .mobile-filter-fab {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(244, 244, 244, 0.9) 100%) !important;
   color: #0f172a !important;
-  box-shadow: 0 14px 28px rgba(241, 241, 241, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.36) !important;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.62) !important;
+  backdrop-filter: blur(12px) !important;
 }
 
+[data-theme="dark"] .btn.btn-dark:hover,
+[data-theme="dark"] .promo-apply-btn:hover,
 [data-theme="dark"] .checkout-btn:hover,
-[data-theme="dark"] .btn-checkout:hover {
-  background: #ffffff !important;
-  box-shadow: 0 18px 36px rgba(255, 255, 255, 0.14) !important;
+[data-theme="dark"] .btn-checkout:hover,
+[data-theme="dark"] .mobile-filter-fab:hover {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.99) 0%, rgba(248, 248, 248, 0.94) 100%) !important;
+  color: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.48) !important;
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+  opacity: 1 !important;
+  transform: translateY(-1px);
 }
 
 [data-theme="dark"] .coupon-input,
@@ -854,6 +919,138 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
+[data-theme="dark"] .nav-tabs .nav-link {
+  color: rgba(255, 255, 255, 0.54) !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link:hover {
+  color: #f8fafc !important;
+  border-bottom-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link.active {
+  color: #ffffff !important;
+  border-bottom-color: rgba(255, 255, 255, 0.92) !important;
+  background: transparent !important;
+}
+
+[data-theme="dark"] .reviews-header h5 {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .reviews-header .text-muted,
+[data-theme="dark"] .reviews-count {
+  color: rgba(255, 255, 255, 0.62) !important;
+}
+
+[data-theme="dark"] .product-breadcrumb .back-btn,
+[data-theme="dark"] .back-btn {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+[data-theme="dark"] .product-breadcrumb .back-btn:hover,
+[data-theme="dark"] .back-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .product-breadcrumb .back-btn i,
+[data-theme="dark"] .back-btn i {
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.34) !important;
+}
+
+[data-theme="dark"] .custom-dropdown .dropdown-trigger {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+[data-theme="dark"] .custom-dropdown .dropdown-trigger:hover {
+  background: rgba(255, 255, 255, 0.11) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-theme="dark"] .custom-dropdown .dropdown-trigger img {
+  filter: brightness(0) invert(1) opacity(0.88);
+}
+
+[data-theme="dark"] .dropdown-arrow {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-theme="dark"] .dropdown-content {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.04) 0%, transparent 26%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.9) 0%, rgba(17, 17, 17, 0.88) 52%, rgba(26, 34, 53, 0.9) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow:
+    0 22px 42px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(20px) saturate(1.08) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.08) !important;
+}
+
+[data-theme="dark"] .dropdown-content li a,
+[data-theme="dark"] .sort-option,
+[data-theme="dark"] .filter-option {
+  color: rgba(255, 255, 255, 0.76) !important;
+}
+
+[data-theme="dark"] .dropdown-content li a:hover,
+[data-theme="dark"] .sort-option:hover,
+[data-theme="dark"] .filter-option:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .filter-option.active,
+[data-theme="dark"] .filter-option.selected,
+[data-theme="dark"] .sort-option.active {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(244, 244, 244, 0.9) 100%) !important;
+  color: #0f172a !important;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.64) !important;
+}
+
+[data-theme="dark"] .filter-option.active:hover,
+[data-theme="dark"] .filter-option.selected:hover,
+[data-theme="dark"] .sort-option.active:hover {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.99) 0%, rgba(248, 248, 248, 0.94) 100%) !important;
+  color: #0f172a !important;
+}
+
+[data-theme="dark"] .similar-scroll-btn {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="dark"] .similar-scroll-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .similar-scroll-btn:disabled {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.28) !important;
+}
+
 
 /* ============================================================
    15. BREADCRUMBS & PAGE HEADINGS (shop, cart, detail pages)
@@ -947,6 +1144,115 @@
 [data-theme="dark"] .drawer-overlay {
   background: rgba(0, 0, 0, 0.65) !important;
   backdrop-filter: blur(6px) !important;
+}
+
+[data-theme="dark"] .review-modal {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.04) 0%, transparent 24%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.92) 0%, rgba(17, 17, 17, 0.9) 52%, rgba(26, 34, 53, 0.92) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  color: #f1f1f1 !important;
+  backdrop-filter: blur(24px) saturate(1.14) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.14) !important;
+}
+
+[data-theme="dark"] .review-modal .modal-header,
+[data-theme="dark"] .review-modal .modal-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .review-modal .modal-header h3 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .review-modal .modal-close-btn {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.74) !important;
+}
+
+[data-theme="dark"] .review-modal .modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .review-modal .form-label,
+[data-theme="dark"] .review-modal .checkbox-label,
+[data-theme="dark"] .review-modal .rating-text-display,
+[data-theme="dark"] .review-modal .char-count {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+[data-theme="dark"] .review-modal .form-input,
+[data-theme="dark"] .review-modal .form-textarea {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .review-modal .form-input::placeholder,
+[data-theme="dark"] .review-modal .form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.36) !important;
+}
+
+[data-theme="dark"] .review-modal .form-input:focus,
+[data-theme="dark"] .review-modal .form-textarea:focus {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .review-modal .checkbox-custom {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+[data-theme="dark"] .review-modal .checkbox-label:hover .checkbox-custom {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+}
+
+[data-theme="dark"] .review-modal .form-checkbox:checked + .checkbox-custom {
+  background: #f1f1f1 !important;
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .review-modal .form-checkbox:checked + .checkbox-custom::after {
+  color: #0f172a !important;
+}
+
+[data-theme="dark"] .review-modal .btn-secondary {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f1f1 !important;
+}
+
+[data-theme="dark"] .review-modal .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .review-modal .btn-primary {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(244, 244, 244, 0.9) 100%) !important;
+  color: #0f172a !important;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.62) !important;
+}
+
+[data-theme="dark"] .review-modal .btn-primary:hover {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.99) 0%, rgba(248, 248, 248, 0.94) 100%) !important;
+  color: #0f172a !important;
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
 }
 
 /* Dedicated dark styling for the View All products modal */

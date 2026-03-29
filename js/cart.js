@@ -155,6 +155,16 @@ function renderCart() {
   itemsCard.classList.add("visible");
 
   itemsList.innerHTML = state.cart.map((item) => renderCartItem(item)).join("");
+
+  itemsList.querySelectorAll(".cart-item.entering").forEach((itemEl) => {
+    itemEl.addEventListener(
+      "animationend",
+      () => {
+        itemEl.classList.remove("entering");
+      },
+      { once: true }
+    );
+  });
 }
 
 function renderCartItem(item) {

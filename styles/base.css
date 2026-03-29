@@ -395,6 +395,29 @@ button { font-family: inherit; cursor: pointer; border: none; }
     color 0.2s ease;
 }
 
+.product-breadcrumb .breadcrumb,
+.cart-breadcrumb .breadcrumb,
+.shop-breadcrumb .breadcrumb {
+  align-items: center;
+}
+
+.product-breadcrumb .breadcrumb-item,
+.cart-breadcrumb .breadcrumb-item,
+.shop-breadcrumb .breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.product-breadcrumb .breadcrumb-item + .breadcrumb-item::before,
+.cart-breadcrumb .breadcrumb-item + .breadcrumb-item::before,
+.shop-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  float: none;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  vertical-align: middle;
+}
+
 .reviews-count {
   transition: color 0.3s ease;
 }

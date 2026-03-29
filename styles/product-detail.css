@@ -51,13 +51,15 @@
 
 .breadcrumb-item + .breadcrumb-item::before {
   content: "\f054";
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 6 Free";
   font-weight: 900;
   font-style: normal;
   font-size: 0.75rem;
   color: var(--color-text-secondary);
   margin: 0 0.9rem 0 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
   opacity: 0.9;
 }
 
@@ -194,15 +196,32 @@
   color: var(--color-text-primary);
 }
 
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  line-height: 1;
+}
+
 .stars i {
   color: var(--color-star);
   font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 
 .rating-text {
+  display: inline-flex;
+  align-items: center;
   font-size: var(--font-size-md);
   color: var(--color-black);
   letter-spacing: 1px;
+  line-height: 1;
+}
+
+.rating-text strong {
+  line-height: 1;
 }
 
 .price {
