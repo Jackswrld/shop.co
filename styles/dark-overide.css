@@ -94,21 +94,36 @@
 
 [data-theme="dark"] body > nav .dropdown-menu {
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%),
-    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.03) 0%, transparent 28%),
-    linear-gradient(160deg, rgba(15, 23, 42, 0.74) 0%, rgba(17, 17, 17, 0.64) 48%, rgba(26, 34, 53, 0.74) 100%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%),
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.07) 0%, transparent 28%),
+    radial-gradient(circle at 88% 6%, rgba(255, 255, 255, 0.06) 0%, transparent 22%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.82) 0%, rgba(17, 17, 17, 0.74) 48%, rgba(26, 34, 53, 0.82) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 0px 0px 18px 18px !important;
+  padding: 8px 0 !important;
+  backdrop-filter: blur(24px) saturate(1.22) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.22) !important;
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 [data-theme="dark"] body > nav .dropdown-menu li a {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+  margin: 0 8px !important;
+  border-radius: 12px !important;
 }
 
-[data-theme="dark"] body > nav .dropdown-menu li a:hover {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #f1f1f1 !important;
+[data-theme="dark"] body > nav .dropdown-menu li a:hover,
+[data-theme="dark"] body > nav .dropdown-menu li a:focus-visible {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] body > nav .dropdown-toggle-btn:hover,
+[data-theme="dark"] body > nav .dropdown-toggle-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
 }
 
 /* Mobile nav open state */
@@ -119,6 +134,29 @@
     linear-gradient(160deg, rgba(15, 23, 42, 0.82) 0%, rgba(17, 17, 17, 0.72) 48%, rgba(26, 34, 53, 0.82) 100%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(24px);
+}
+
+[data-theme="dark"] body > nav.nav-open .nav-menu .dropdown-menu {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%),
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.06) 0%, transparent 30%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.8) 0%, rgba(17, 17, 17, 0.72) 48%, rgba(26, 34, 53, 0.8) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 18px !important;
+  padding: 8px 0 0 10px !important;
+  backdrop-filter: blur(24px) saturate(1.18) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.18) !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] body > nav.nav-open .nav-menu .dropdown-menu a {
+  color: rgba(255, 255, 255, 0.86) !important;
+}
+
+[data-theme="dark"] body > nav.nav-open .nav-menu .dropdown-menu a:hover,
+[data-theme="dark"] body > nav.nav-open .nav-menu .dropdown-menu a:focus-visible {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
 }
 
 
