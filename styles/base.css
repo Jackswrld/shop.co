@@ -306,7 +306,9 @@
    ============================================ */
 
 html {
-  transition: background-color 0.35s ease, color 0.35s ease;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
 body {
@@ -317,14 +319,24 @@ body {
   height: 100vh;
   width: 100%;
   overflow-x: hidden !important;
-  transition: background-color 0.35s ease, color 0.35s ease;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
 /* ── Dark mode body — same gradient as auth page shell ── */
 [data-theme="dark"] body {
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), transparent 28%),
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.06), transparent 24%),
+    radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.04),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.06),
+      transparent 24%
+    ),
     linear-gradient(160deg, #0f172a 0%, #111111 48%, #1e2535 100%);
   background-attachment: fixed;
   min-height: 100vh;
@@ -338,10 +350,20 @@ body {
   transition: color 0.35s ease;
 }
 
-a { text-decoration: none; }
-p { font-family: var(--font-primary); }
-img { max-width: 100%; }
-button { font-family: inherit; cursor: pointer; border: none; }
+a {
+  text-decoration: none;
+}
+p {
+  font-family: var(--font-primary);
+}
+img {
+  max-width: 100%;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
 
 /* ============================================
    TOP INFO BAR
@@ -465,7 +487,9 @@ body > nav {
     border-color 0.35s ease;
 }
 
-body.nav-fixed { padding-top: var(--nav-height); }
+body.nav-fixed {
+  padding-top: var(--nav-height);
+}
 
 body > nav.nav-fixed {
   position: fixed;
@@ -489,11 +513,11 @@ body > nav.nav-fixed {
 }
 
 .nav-menu {
-   display: flex;
-   align-items: center;
-   list-style: none;
-   gap: 15px;
- }
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 15px;
+}
 
 .nav-menu a {
   display: inline-flex;
@@ -547,7 +571,9 @@ body > nav.nav-fixed {
   transition: color 0.35s ease;
 }
 
-.search-icon-btn:hover { color: var(--color-text-primary); }
+.search-icon-btn:hover {
+  color: var(--color-text-primary);
+}
 
 .search-container i {
   position: absolute;
@@ -576,7 +602,9 @@ body > nav.nav-fixed {
     color 0.35s ease;
 }
 
-.search-bar::placeholder { color: var(--color-input-placeholder); }
+.search-bar::placeholder {
+  color: var(--color-input-placeholder);
+}
 
 .nav-icons {
   display: flex;
@@ -633,17 +661,27 @@ body > nav.nav-fixed {
 }
 
 /* Moon in light mode → Sun in dark mode */
-.theme-toggle-btn .icon-sun  { display: none; }
-.theme-toggle-btn .icon-moon { display: block; }
+.theme-toggle-btn .icon-sun {
+  display: none;
+}
+.theme-toggle-btn .icon-moon {
+  display: block;
+}
 
-[data-theme="dark"] .theme-toggle-btn .icon-sun  { display: block; }
-[data-theme="dark"] .theme-toggle-btn .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle-btn .icon-sun {
+  display: block;
+}
+[data-theme="dark"] .theme-toggle-btn .icon-moon {
+  display: none;
+}
 
 /* ============================================
    NAVBAR DROPDOWN
    ============================================ */
 
-body > nav .dropdown { position: relative; }
+body > nav .dropdown {
+  position: relative;
+}
 
 body > nav .dropdown-trigger {
   display: flex;
@@ -704,17 +742,24 @@ body > nav .dropdown-menu {
   display: block;
 }
 
-body > nav .dropdown-menu li { padding: 0; white-space: nowrap; }
+body > nav .dropdown-menu li {
+  padding: 0;
+  white-space: nowrap;
+}
 
 body > nav .dropdown-menu li a {
   text-decoration: none;
   display: block;
   padding: 10px 18px;
   color: var(--color-text-primary);
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-body > nav .dropdown-menu li a:hover { background-color: var(--color-bg-subtle); }
+body > nav .dropdown-menu li a:hover {
+  background-color: var(--color-bg-subtle);
+}
 
 body > nav .dropdown-caret {
   font-size: 0.7rem;
@@ -728,7 +773,9 @@ body > nav .dropdown.is-open .dropdown-menu {
   transform: translateY(0);
 }
 
-body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
+body > nav .dropdown.is-open .dropdown-caret {
+  transform: rotate(180deg);
+}
 
 .nav-toggle {
   display: none;
@@ -744,7 +791,11 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
     transform 0.28s ease;
 }
 
-.nav-toggle i { transition: transform 0.32s ease, opacity 0.24s ease; }
+.nav-toggle i {
+  transition:
+    transform 0.32s ease,
+    opacity 0.24s ease;
+}
 
 .cart-icon-wrapper {
   position: relative;
@@ -776,7 +827,9 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
   transition: border-color 0.35s ease;
 }
 
-.cart-badge.visible { display: flex; }
+.cart-badge.visible {
+  display: flex;
+}
 
 .nav-overlay {
   position: fixed;
@@ -786,7 +839,9 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.28s ease, visibility 0.28s ease;
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease;
   z-index: 990;
 }
 
@@ -797,16 +852,96 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
 }
 
 /* ============================================
+ POPUP OVERLAY 
+    ============================================ */
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+}
+
+/* Popup box */
+.popup-box {
+  position: relative;
+  top: 20px;
+  max-width: 60%;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: popIn 0.3s ease;
+}
+
+/* Sale image */
+.popup-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Close button */
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffffc9;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s;
+}
+
+.popup-close:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Pop-in animation */
+@keyframes popIn {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Hide class */
+.hidden {
+  display: none !important;
+}
+
+/* Scroll lock class - prevents scrolling on both html and body */
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* ============================================
     RESPONSIVE NAVBAR
     ============================================ */
 
 @media (max-width: 1150px) {
-
   body > nav {
     padding: 10px 20px;
   }
- 
-   .nav-toggle {
+
+  .nav-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -818,7 +953,6 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
     border-radius: 14px;
     background: var(--color-bg-subtle);
   }
-
 
   .nav-menu {
     position: absolute;
@@ -858,7 +992,9 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
     transform: rotate(90deg);
   }
 
-  body > nav.nav-open .nav-toggle i { transform: scale(0.94); }
+  body > nav.nav-open .nav-toggle i {
+    transform: scale(0.94);
+  }
 
   body > nav.nav-open .nav-menu {
     display: flex;
@@ -883,7 +1019,10 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
     padding: 13px 14px;
     border-radius: 16px;
     background: transparent;
-    transition: background-color 0.24s ease, color 0.24s ease, transform 0.24s ease;
+    transition:
+      background-color 0.24s ease,
+      color 0.24s ease,
+      transform 0.24s ease;
   }
 
   body > nav.nav-open .nav-menu a:hover,
@@ -935,7 +1074,9 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
       margin-top 0.24s ease;
   }
 
-  body > nav.nav-open .nav-menu .dropdown-menu li { border-radius: 0; }
+  body > nav.nav-open .nav-menu .dropdown-menu li {
+    border-radius: 0;
+  }
 
   body > nav.nav-open .nav-menu .dropdown.is-open .dropdown-menu {
     max-height: 240px;
@@ -974,32 +1115,39 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
     display: none !important;
   }
 
-  .nav-icons { gap: 6px; }
+  .nav-icons {
+    gap: 6px;
+  }
 
   .theme-toggle-btn {
     width: 36px;
     height: 36px;
     font-size: 15px;
   }
-
 }
 
 @media (max-width: 874px) {
-  .search-bar{
+  .search-bar {
     max-width: 400px;
   }
 }
 
 @media (max-width: 759px) {
-
-   body > nav {
+  body > nav {
     padding: 10px 5px;
   }
- 
- 
-  .nav-left { gap: 12px; flex: 1; min-width: 0; }
-  .logo { font-size: 21px; }
-  .search-bar { display: none; }
+
+  .nav-left {
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+  .logo {
+    font-size: 21px;
+  }
+  .search-bar {
+    display: none;
+  }
 
   .search-icon-btn {
     display: inline-flex;
@@ -1029,7 +1177,9 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
       visibility 0.28s ease;
   }
 
-  .search-container i { display: none; }
+  .search-container i {
+    display: none;
+  }
 
   .search-container.search-open {
     width: auto;
@@ -1049,7 +1199,9 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
     animation: mobileSearchFieldIn 0.28s ease;
   }
 
-  .search-container.search-open .search-icon-btn { display: none; }
+  .search-container.search-open .search-icon-btn {
+    display: none;
+  }
 
   .search-container.search-open i {
     display: block;
@@ -1068,8 +1220,13 @@ body > nav .dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
   }
 
   @keyframes mobileSearchFieldIn {
-    from { opacity: 0; transform: translateY(-8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-
 }

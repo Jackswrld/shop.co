@@ -195,7 +195,7 @@
 
 @media (max-width: 767px) {
   [data-theme="dark"] .hero-stats > [class*="col-"]:first-child {
-    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-right: 2px solid rgba(255, 255, 255, 0.1) !important;
   }
 }
 

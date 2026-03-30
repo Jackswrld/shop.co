@@ -378,7 +378,7 @@
 
 .hc-track .review-card {
   flex: 0 0 300px;
-  min-width: clamp(150px, 400px, 300px);
+  min-width: 400px;
   height: auto;
   opacity: 1;
   animation: none;
@@ -727,10 +727,10 @@
     padding: 40px 0;
   }
 
-  .hc-track .review-card {
+  /* .hc-track .review-card {
     flex: 0 0 260px;
     min-width: 260px;
-  }
+  } */
 
   /* Footer */
   .newsletter-content {
@@ -797,10 +797,10 @@
     min-height: 2.4em;
   }
 
-  .hc-track .review-card {
-    flex: 0 0 290px;
-    min-width: 290px;
-  }
+  /* .hc-track .review-card {
+    flex: 0 0 400px;
+    min-width: 400px;
+  } */
 
   /* Modal */
   .view-all-modal-content {
