@@ -1,7 +1,22 @@
 import { reviews } from "./review.js";
 
+// Close Popup Image
+
+// Lock scroll when page loads and popup is visible
+document.documentElement.classList.add("no-scroll");
+document.body.classList.add("no-scroll");
+
+// Unlock scroll and hide popup when close button is clicked
+document.getElementById("closePopup").addEventListener("click", function () {
+  document.getElementById("salePopup").classList.add("hidden");
+  document.documentElement.classList.remove("no-scroll");
+  document.body.classList.remove("no-scroll");
+});
+
 function initHeroThemeImage() {
-  const heroImage = document.querySelector(".hero-image[data-light-src][data-dark-src]");
+  const heroImage = document.querySelector(
+    ".hero-image[data-light-src][data-dark-src]",
+  );
 
   if (!heroImage) return;
 
@@ -9,13 +24,15 @@ function initHeroThemeImage() {
     light: heroImage.dataset.lightSrc,
     dark: heroImage.dataset.darkSrc,
   };
-  
+
   const TRANSITION_DURATION_MS = 220;
   let switchTimer = null;
   let switchId = 0;
 
   function getActiveTheme() {
-    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    return document.documentElement.getAttribute("data-theme") === "dark"
+      ? "dark"
+      : "light";
   }
 
   function preloadImage(src) {
@@ -59,10 +76,10 @@ function initHeroThemeImage() {
       return;
     }
 
-   const currentSwitchId = ++switchId;
+    const currentSwitchId = ++switchId;
 
-   preloadImage(targetSrc).then(() => {
-    if (currentSwitchId !== switchId) return;
+    preloadImage(targetSrc).then(() => {
+      if (currentSwitchId !== switchId) return;
 
       window.clearTimeout(switchTimer);
       heroImage.classList.add("hero-image--theme-switching");
@@ -79,34 +96,37 @@ function initHeroThemeImage() {
             }
           });
         });
-
       }, TRANSITION_DURATION_MS);
     });
   }
 
-  window.addEventListener("load", ()=> {
-    Object.values(sources).filter(Boolean).forEach((src) => {
-      preloadImage(src);
-    });
+  window.addEventListener("load", () => {
+    Object.values(sources)
+      .filter(Boolean)
+      .forEach((src) => {
+        preloadImage(src);
+      });
   });
 
-
-    setHeroSource(getActiveTheme());
+  setHeroSource(getActiveTheme());
 
   const observer = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
-      if (mutation.type === "attributes" && mutation.attributeName === "data-theme") {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "data-theme"
+      ) {
         swapHeroSource(getActiveTheme());
       }
     }
   });
 
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-  }
-  initHeroThemeImage();
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+}
+initHeroThemeImage();
 
 //Function For Stats Countdowm
 document.addEventListener("DOMContentLoaded", () => {

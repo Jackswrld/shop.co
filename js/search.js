@@ -19,8 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Clear results if search term is empty
       if (searchTerm === "") {
-        searchResultsDropdown.style.display = "none";
-        searchResultsList.innerHTML = "";
+        if (searchResultsDropdown) {
+          searchResultsDropdown.style.display = "none";
+        }
+        if (searchResultsList) {
+          searchResultsList.innerHTML = "";
+        }
+        return;
+      }
+
+      if (!searchResultsDropdown || !searchResultsList) {
         return;
       }
 
@@ -33,6 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show dropdown when search bar is focused (if there's text)
     searchBar.addEventListener("focus", () => {
+      if (!searchResultsDropdown || !searchResultsList) {
+        return;
+      }
+
       const searchTerm = searchBar.value.trim().toLowerCase();
       if (searchTerm !== "" && searchResultsList.innerHTML !== "") {
         searchResultsDropdown.style.display = "block";
@@ -95,6 +107,10 @@ async function filterProducts(searchTerm) {
  * @param {HTMLElement} dropdown - The dropdown container
  */
 function displaySearchResults(filteredProducts, resultsList, dropdown) {
+  if (!resultsList || !dropdown) {
+    return;
+  }
+
   // Clear previous results
   resultsList.innerHTML = "";
 

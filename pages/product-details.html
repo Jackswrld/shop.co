@@ -84,7 +84,11 @@
     <div class="search-container">
       <input type="text" class="search-bar" placeholder="Search for products..." aria-label="Search" />
 
-      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+      <div class="search-results-dropdown" id="search-results-dropdown">
+        <ul class="search-results-list" id="search-results-list"></ul>
+      </div>
     </div>
 
     <div class="nav-icons">
@@ -600,7 +604,8 @@
   <script type="module" src="../js/product-detail.js"></script>
   <script src="../js/navbar.js"></script>
   <script src="../js/main.js"></script>
-    <script src="../js/theme.js"></script>
+  <script src="../js/theme.js"></script>
+  <script type="module" src="../js/search.js"></script>
 </body>
 
 </html>

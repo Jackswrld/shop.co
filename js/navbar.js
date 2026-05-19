@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchBar = document.querySelector(".search-bar");
   const cartBadge = document.getElementById("cart-badge");
   const topInfo = document.querySelector(".top-info");
-  const mobileNavMedia = window.matchMedia("(max-width: 900px)");
+  const mobileNavMedia = window.matchMedia("(max-width: 1150px)");
   let navOverlay = null;
 
   function syncNavToggleIcon(isOpen) {
