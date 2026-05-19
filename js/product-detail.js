@@ -1,8 +1,11 @@
 import { products } from "./products.js";
 import { reviews } from "./review.js";
 import { getAllProducts } from "./api-service.js";
-import { createProductCard, formatRatingText, normalizeRating } from "./render-products.js";
-
+import {
+  createProductCard,
+  formatRatingText,
+  normalizeRating,
+} from "./render-products.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   // ============================================
@@ -11,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const params = new URLSearchParams(window.location.search);
   const productId = params.get("id");
-  
+
   // Get all products (local + API)
   const allProducts = await getAllProducts(products);
   const product = allProducts.find((p) => p.id == productId);
@@ -24,8 +27,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   // Hide spinner, reveal real content
-  document.getElementById('product-loading-spinner').style.display = 'none';
-  document.querySelector('.product-main-row').classList.add('loaded');
+  document.getElementById("product-loading-spinner").style.display = "none";
+  document.querySelector(".product-main-row").classList.add("loaded");
 
   // ============================================
   // 2. STATE MANAGEMENT
@@ -102,36 +105,36 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   // Reads cart from localStorage — same helper as cart.js
-// We duplicate it here so product-detail.js works standalone
-// without importing cart.js.
-function getCartFromStorage() {
-  try {
-    const raw = localStorage.getItem("shopco_cart");
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
+  // We duplicate it here so product-detail.js works standalone
+  // without importing cart.js.
+  function getCartFromStorage() {
+    try {
+      const raw = localStorage.getItem("shopco_cart");
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
   }
-}
- 
-function saveCartToStorage(cart) {
-  localStorage.setItem("shopco_cart", JSON.stringify(cart));
-}
- 
-// Updates the navbar badge count on this page too
-function updateCartBadge() {
-  const badge = document.getElementById("cart-badge");
-  if (!badge) return;
- 
-  const cart       = getCartFromStorage();
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
- 
-  if (totalItems > 0) {
-    badge.textContent = totalItems > 99 ? "99+" : totalItems;
-    badge.classList.add("visible");
-  } else {
-    badge.classList.remove("visible");
+
+  function saveCartToStorage(cart) {
+    localStorage.setItem("shopco_cart", JSON.stringify(cart));
   }
-}
+
+  // Updates the navbar badge count on this page too
+  function updateCartBadge() {
+    const badge = document.getElementById("cart-badge");
+    if (!badge) return;
+
+    const cart = getCartFromStorage();
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    if (totalItems > 0) {
+      badge.textContent = totalItems > 99 ? "99+" : totalItems;
+      badge.classList.add("visible");
+    } else {
+      badge.classList.remove("visible");
+    }
+  }
 
   // ============================================
   // 4. PRODUCT DATA FUNCTIONS
@@ -145,8 +148,9 @@ function updateCartBadge() {
     // Update rating
     const starsContainer = document.querySelector(".stars");
     starsContainer.innerHTML = renderStars(product.rating);
-    document.getElementById("rating-text").textContent =
-      formatRatingText(product.rating);
+    document.getElementById("rating-text").textContent = formatRatingText(
+      product.rating,
+    );
 
     // Update prices
     document.getElementById("current-price").textContent = `$${product.price}`;
@@ -221,21 +225,27 @@ function updateCartBadge() {
   }
 
   function loadSimilarProducts() {
-
     // Match by broad category for more similar products
-    let similarProducts = allProducts
-      .filter(p => p.category === product.category && p.id !== product.id);
+    let similarProducts = allProducts.filter(
+      (p) => p.category === product.category && p.id !== product.id,
+    );
 
-    const similarProductsContainer = document.getElementById("similar-products-container");
+    const similarProductsContainer = document.getElementById(
+      "similar-products-container",
+    );
     if (!similarProductsContainer) return;
 
-    similarProductsContainer.innerHTML = similarProducts.map(createProductCard).join('');
-   
-    similarProductsContainer.querySelectorAll('.product-card').forEach(card => {
-      card.addEventListener('click', function (){
-        window.location.href = `../pages/product-details.html?id=${this.dataset.id}`
-      })
-    });
+    similarProductsContainer.innerHTML = similarProducts
+      .map(createProductCard)
+      .join("");
+
+    similarProductsContainer
+      .querySelectorAll(".product-card")
+      .forEach((card) => {
+        card.addEventListener("click", function () {
+          window.location.href = `../pages/product-details.html?id=${this.dataset.id}`;
+        });
+      });
     // ── Scroll logic ──
     const track = document.getElementById("similar-scroll-track");
     const inner = similarProductsContainer;
@@ -243,7 +253,9 @@ function updateCartBadge() {
     const rightBtn = document.getElementById("similar-scroll-right");
 
     let currentIndex = 0;
-    function getVisibleCount() { return window.innerWidth <= 768 ? 1.3 : 4; }
+    function getVisibleCount() {
+      return window.innerWidth <= 768 ? 1.3 : 4;
+    }
     const gap = 16;
 
     function getCardWidth() {
@@ -255,22 +267,32 @@ function updateCartBadge() {
 
     function updateScroll() {
       const cardWidth = getCardWidth();
-      inner.querySelectorAll("[class*=\"col-\"]").forEach(col => {
+      inner.querySelectorAll('[class*="col-"]').forEach((col) => {
         col.style.flex = `0 0 ${cardWidth}px`;
         col.style.width = `${cardWidth}px`;
       });
       inner.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
       leftBtn.disabled = currentIndex === 0;
       const vc = getVisibleCount();
-      rightBtn.disabled = currentIndex >= similarProducts.length - Math.floor(vc);
+      rightBtn.disabled =
+        currentIndex >= similarProducts.length - Math.floor(vc);
     }
 
     leftBtn.addEventListener("click", () => {
-      if (currentIndex > 0) { currentIndex--; updateScroll(); }
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateScroll();
+      }
     });
 
     rightBtn.addEventListener("click", () => {
-      if (currentIndex < similarProducts.length - Math.floor(getVisibleCount())) { currentIndex++; updateScroll(); }
+      if (
+        currentIndex <
+        similarProducts.length - Math.floor(getVisibleCount())
+      ) {
+        currentIndex++;
+        updateScroll();
+      }
     });
 
     // Set initial button state
@@ -357,7 +379,6 @@ function updateCartBadge() {
         countElement.textContent = `(${allProductReviews.length})`;
         countElement.classList.remove("fade");
       }, 200);
-
     });
   }
 
@@ -391,7 +412,6 @@ function updateCartBadge() {
 
       document.querySelector(".reviews-count").textContent =
         `(${allProductReviews.length})`;
-    
     });
   }
 
@@ -433,7 +453,7 @@ function updateCartBadge() {
 
   // ────── ADD TO CART ──────
   function addToCart() {
-  /*
+    /*
     We're now SAVING to localStorage instead of showing an alert.
  
     The cartItem object shape must match what cart.js expects:
@@ -444,44 +464,48 @@ function updateCartBadge() {
     productState is already set up in your existing code —
     we just extend it with image, category, and cartKey.
   */
- 
-  // Build the cart item object from productState + product data
-  const cartItem = {
-    id:       product.id,
-    name:     product.name,
-    image:    product.images[0],          // First image as thumbnail
-    price:    product.price,
-    size:     productState.selectedSize,
-    color:    product.color || null,      // Optional — some products may not have color
-    category: product.category || "fashion",
-    quantity: productState.quantity,
-    cartKey:  `${product.id}_${productState.selectedSize}`, // Unique key
-  };
- 
-  // ── Load existing cart ──────────────────────────────────
-  const cart     = getCartFromStorage();
-  const existing = cart.findIndex((i) => i.cartKey === cartItem.cartKey);
- 
-  if (existing !== -1) {
-    // Already in cart with same size → just increase quantity
-    cart[existing].quantity += cartItem.quantity;
-  } else {
-    // New item → push to array
-    cart.push(cartItem);
-  }
- 
-  // ── Save back to localStorage ───────────────────────────
-  saveCartToStorage(cart);
- 
-  // ── Update navbar badge count ───────────────────────────
-  updateCartBadge();
- 
-  // ── Show a visual confirmation toast ───────────────────
-  showAddToCartToast(product.name, productState.selectedSize, productState.quantity);
-}
 
-function showAddToCartToast(productName, size, qty) {
-  /*
+    // Build the cart item object from productState + product data
+    const cartItem = {
+      id: product.id,
+      name: product.name,
+      image: product.images[0], // First image as thumbnail
+      price: product.price,
+      size: productState.selectedSize,
+      color: product.color || null, // Optional — some products may not have color
+      category: product.category || "fashion",
+      quantity: productState.quantity,
+      cartKey: `${product.id}_${productState.selectedSize}`, // Unique key
+    };
+
+    // ── Load existing cart ──────────────────────────────────
+    const cart = getCartFromStorage();
+    const existing = cart.findIndex((i) => i.cartKey === cartItem.cartKey);
+
+    if (existing !== -1) {
+      // Already in cart with same size → just increase quantity
+      cart[existing].quantity += cartItem.quantity;
+    } else {
+      // New item → push to array
+      cart.push(cartItem);
+    }
+
+    // ── Save back to localStorage ───────────────────────────
+    saveCartToStorage(cart);
+
+    // ── Update navbar badge count ───────────────────────────
+    updateCartBadge();
+
+    // ── Show a visual confirmation toast ───────────────────
+    showAddToCartToast(
+      product.name,
+      productState.selectedSize,
+      productState.quantity,
+    );
+  }
+
+  function showAddToCartToast(productName, size, qty) {
+    /*
     createElement + appendChild — the programmatic way to add DOM elements.
     Alternative to innerHTML: safer for user-generated content
     because it doesn't parse HTML (no XSS risk).
@@ -489,9 +513,9 @@ function showAddToCartToast(productName, size, qty) {
     HOWEVER — for our controlled data (product names from our own API)
     innerHTML is fine and more readable. Both approaches work.
   */
-  const toast = document.createElement("div");
-  toast.className = "add-to-cart-toast";
-  toast.innerHTML = `
+    const toast = document.createElement("div");
+    toast.className = "add-to-cart-toast";
+    toast.innerHTML = `
     <i class="fa-solid fa-circle-check" style="color:#16a34a; font-size:18px;"></i>
     <div>
       <strong>${productName}</strong> added to cart!
@@ -510,35 +534,34 @@ function showAddToCartToast(productName, size, qty) {
       flex-shrink:0;
     ">View Cart</a>
   `;
- 
-  // Inline styles for the toast container
-  Object.assign(toast.style, {
-    position:      "fixed",
-    bottom:        "24px",
-    right:         "24px",
-    background:    "#fff",
-    border:        "1px solid #e6e6e6",
-    borderRadius:  "12px",
-    padding:       "14px 18px",
-    display:       "flex",
-    alignItems:    "center",
-    gap:           "12px",
-    boxShadow:     "0 10px 30px rgba(0,0,0,0.12)",
-    zIndex:        "9999",
-    maxWidth:      "380px",
-    animation:     "slideInRight 0.3s ease",
-    fontFamily:    "inherit",
-  });
- 
-  document.body.appendChild(toast);
- 
-  // Auto-remove after 3.5 seconds
-  setTimeout(() => {
-    toast.style.animation = "slideInRight 0.3s ease reverse";
-    setTimeout(() => toast.remove(), 300);
-  }, 3500);
-}
 
+    // Inline styles for the toast container
+    Object.assign(toast.style, {
+      position: "fixed",
+      bottom: "24px",
+      right: "24px",
+      background: "#fff",
+      border: "1px solid #e6e6e6",
+      borderRadius: "12px",
+      padding: "14px 18px",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+      zIndex: "9999",
+      maxWidth: "380px",
+      animation: "slideInRight 0.3s ease",
+      fontFamily: "inherit",
+    });
+
+    document.body.appendChild(toast);
+
+    // Auto-remove after 3.5 seconds
+    setTimeout(() => {
+      toast.style.animation = "slideInRight 0.3s ease reverse";
+      setTimeout(() => toast.remove(), 300);
+    }, 3500);
+  }
 
   // ────── THUMBNAIL SWITCHING ──────
   function changeMainImage(clickedThumbnail) {
@@ -1042,6 +1065,4 @@ function showAddToCartToast(productName, size, qty) {
   updateCartBadge();
   setupStarRating();
   setupCharCounter();
-
 }); // End DOMContentLoaded
-  

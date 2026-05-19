@@ -155,7 +155,11 @@
   gap: 16px;
   padding: 20px;
   border-bottom: 1px solid var(--color-border);
-  transition: background var(--transition);
+  transition:
+    background var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
   position: relative;           /* Needed for absolute-positioned delete btn */
 }
 
@@ -163,7 +167,12 @@
   border-bottom: none;
 }
 
-
+.cart-item:hover {
+  background: #fafafa;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.05);
+  z-index: 1;
+}
 
 
 /* Product thumbnail image */

@@ -30,7 +30,8 @@
   <link rel="stylesheet" href="../styles/hero-page.css" />
   <link rel="stylesheet" href="../styles/shop.css" />
   <link rel="stylesheet" href="../styles/products.css">
-   <link rel="stylesheet" href="../styles/dark-overide.css" />
+  <link rel="stylesheet" href="../styles/search.css" />
+  <link rel="stylesheet" href="../styles/dark-overide.css" />
 </head>
 <body>
 
@@ -41,7 +42,9 @@
   </div>
 
   <!-- Navbar -->
+
   <nav>
+    
     <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fa-solid fa-bars"></i>
     </button>
@@ -74,7 +77,11 @@
     </div>
     <div class="search-container">
       <input type="text" class="search-bar" placeholder="Search for products…" aria-label="Search" />
-       <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> 
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+      <div class="search-results-dropdown" id="search-results-dropdown">
+        <ul class="search-results-list" id="search-results-list"></ul>
+      </div>
     </div>
     <div class="nav-icons">
       <button class="search-icon-btn" aria-label="Search">
@@ -214,6 +221,7 @@
   <script type="module" src="../js/shop.js"></script>
 
   <script src="../js/navbar.js"></script>
-    <script src="../js/theme.js"></script>
+  <script src="../js/theme.js"></script>
+  <script type="module" src="../js/search.js"></script>
 </body>
 </html>
